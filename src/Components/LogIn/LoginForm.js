@@ -3,46 +3,130 @@ import React, { useState } from "react";
 
 export default function (props) {
   const [authMode, setAuthMode] = useState("signin");
-  const [email,setEmail] = useState("");
-  const [password,setPassword] = useState("");
-
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [mobile, setMobile] = useState("");
 
   const changeAuthMode = () => {
     setAuthMode(authMode === "signin" ? "signup" : "signin");
   };
 
-  const handleEmail = (e) => {
-    console.log(e.target.value)
+  const handleEmailChange = (e) => {
+    console.log(e.target.value);
     setEmail(e.target.value);
-  }
+  };
 
-  const handlePassword = (e) => {
+  const handlePasswordChange = (e) => {
     setPassword(e.target.value);
-  }
+  };
 
-  const handleSubmit = (event) => {
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleMobileChange = (e) => {
+    setMobile(e.target.value);
+  };
+
+  const handleSubmitLogin = (event) => {
     event.preventDefault();
     console.log("Submitted form");
 
-    axios.post('http://localhost:3200/login', {
-      email: email,
-      password: password
-    })
-    .then((response) => {
-      console.log(response.data);
-      alert('Successfully loggedin');
-    })
-    .catch((err) => {
-      console.log(err);
-      console.log(err.response);
-      alert(err.response.data.error.message);
-    })
-  }
+    // axios.post("https://reqres.in/api/login", {
+    //   email: email,
+    //   password: password,
+    // });
+    axios
+      .post("https://reqres.in/api/login", {
+        withCredentials: true,
+
+        crossorigin: true,
+
+        headers: {
+          common: {
+            "Access-Control-Request-Method": "POST",
+
+            "Access-Control-Request-Headers": "origin, x-requested-with",
+          },
+        },
+
+        data: JSON.stringify({ email: email, password: password }),
+      })
+      .then((response) => {
+        console.log(response.data);
+        alert("Successfully loggedin");
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log(err.response);
+        alert(err.response.data.error.message);
+      });
+  };
+
+  const handleSubmitSignup = (event) => {
+    event.preventDefault();
+    console.log("Submitted form");
+    console.log(email);
+    console.log(name);
+    console.log(password);
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+
+        "Access-Control-Allow-Origin": "*",
+
+        "Access-Control-Allow-Methods":
+          "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+
+        "Access-Control-Allow-Headers":
+          "Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset,boundary,Content-Length",
+      },
+    };
+
+    // axios
+    //   .post(
+    //     "https://reqres.in/api/register",
+    //     {
+    //       name: name,
+    //       email: email,
+    //       password: password,
+    //       mobile: mobile,
+    //     },
+    //     config
+    //   )
+    axios
+      .post("http://reqres.in/api/register", {
+        withCredentials: true,
+
+        crossorigin: true,
+
+        headers: {
+          common: {
+            "Access-Control-Request-Method": "POST",
+
+            "Access-Control-Request-Headers": "origin, x-requested-with",
+          },
+        },
+
+        data: JSON.stringify({ email: email, password: password }),
+      })
+      .then((response) => {
+        console.log(response);
+        alert("Successfully loggedin");
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log(err.response);
+        // alert(err.response.data.error.message);
+      });
+  };
 
   if (authMode === "signin") {
     return (
       <div className="Auth-form-container">
-        <form className="Auth-form">
+        <form className="Auth-form" onSubmit={handleSubmitLogin}>
           <div className="Auth-form-content">
             <h3 className="Auth-form-title">Sign In</h3>
             <div className="text-center">
@@ -53,13 +137,17 @@ export default function (props) {
             </div>
             <div className="form-group mt-3">
               <label>Hospital</label>
-          
-              <select placeholder="hospitalList" name="hospital" id="" className="form-control mt-1">
-              <option >KEM</option>
-              <option >Civil</option>
-              <option >Sahyadri</option>
+
+              <select
+                placeholder="hospitalList"
+                name="hospital"
+                id=""
+                className="form-control mt-1"
+              >
+                <option>KEM</option>
+                <option>Civil</option>
+                <option>Sahyadri</option>
               </select>
-             
             </div>
             <div className="form-group mt-3">
               <label>Email address</label>
@@ -67,6 +155,9 @@ export default function (props) {
                 type="email"
                 className="form-control mt-1"
                 placeholder="Enter email"
+                value={email}
+                onChange={handleEmailChange}
+                required
               />
             </div>
             <div className="form-group mt-3">
@@ -75,6 +166,9 @@ export default function (props) {
                 type="password"
                 className="form-control mt-1"
                 placeholder="Enter password"
+                value={password}
+                onChange={handlePasswordChange}
+                required
               />
             </div>
             <div className="d-grid gap-2 mt-3">
@@ -90,7 +184,7 @@ export default function (props) {
 
   return (
     <div className="Auth-form-container">
-      <form className="Auth-form">
+      <form className="Auth-form" onSubmit={handleSubmitSignup}>
         <div className="Auth-form-content">
           <h3 className="Auth-form-title">Sign Up</h3>
           <div className="text-center">
@@ -102,9 +196,11 @@ export default function (props) {
           <div className="form-group mt-3">
             <label>Full Name</label>
             <input
-              type="email"
+              type="text"
               className="form-control mt-1"
               placeholder="Enter Full Name"
+              onChange={handleNameChange}
+              value={name}
             />
           </div>
           <div className="form-group mt-3">
@@ -113,6 +209,8 @@ export default function (props) {
               type="email"
               className="form-control mt-1"
               placeholder="Email Address"
+              onChange={handleEmailChange}
+              value={email}
             />
           </div>
           <div className="form-group mt-3">
@@ -121,6 +219,8 @@ export default function (props) {
               type="password"
               className="form-control mt-1"
               placeholder="Password"
+              onChange={handlePasswordChange}
+              value={password}
             />
           </div>
           <div className="form-group mt-3">
@@ -129,14 +229,16 @@ export default function (props) {
               type="number"
               className="form-control mt-1"
               placeholder="Mobile Number"
+              onChange={handleMobileChange}
+              value={mobile}
             />
           </div>
           <div form-group mt-3>
             <label> Hospitals</label>
             <select name="" id="" className="form-control mt-1">
-              <option >KEM</option>
-              <option >Civil</option>
-              <option >Sahyadri</option>
+              <option>KEM</option>
+              <option>Civil</option>
+              <option>Sahyadri</option>
             </select>
           </div>
           <div className="d-grid gap-2 mt-3">
