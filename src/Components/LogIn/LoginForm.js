@@ -1,12 +1,27 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function (props) {
   const [authMode, setAuthMode] = useState("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [mobile, setMobile] = useState("");
+  const [mobileNumber, setMobileNumber] = useState("");
+  const [hospitalId, setHospitalId]=useState(1)
+
+
+  const navigate=useNavigate()
+
+  const dataToLoggedIn={
+    email,
+    password
+  }
+
+  const userToRegister={
+    email, password,
+    name, mobileNumber, hospitalId
+  }
 
   const changeAuthMode = () => {
     setAuthMode(authMode === "signin" ? "signup" : "signin");
@@ -26,50 +41,61 @@ export default function (props) {
   };
 
   const handleMobileChange = (e) => {
-    setMobile(e.target.value);
+    setMobileNumber(e.target.value);
   };
 
   const handleSubmitLogin = (event) => {
     event.preventDefault();
     console.log("Submitted form");
+    
 
     // axios.post("https://reqres.in/api/login", {
     //   email: email,
     //   password: password,
     // });
     axios
-      .post("https://reqres.in/api/login", {
-        withCredentials: true,
-
-        crossorigin: true,
-
-        headers: {
-          common: {
-            "Access-Control-Request-Method": "POST",
-
-            "Access-Control-Request-Headers": "origin, x-requested-with",
-          },
-        },
-
-        data: JSON.stringify({ email: email, password: password }),
-      })
+      .post("https://localhost:7264/api/login/", dataToLoggedIn)
       .then((response) => {
-        console.log(response.data);
+        const jwtToken=response.data
+        localStorage.setItem("jwtToken", jwtToken)
         alert("Successfully loggedin");
+        navigate('/welcome')
       })
       .catch((err) => {
         console.log(err);
         console.log(err.response);
-        alert(err.response.data.error.message);
+       // alert(err.response.data.error.message);
       });
   };
 
-  const handleSubmitSignup = (event) => {
-    event.preventDefault();
-    console.log("Submitted form");
-    console.log(email);
-    console.log(name);
-    console.log(password);
+    const handleSubmitSignup = (event) => {
+      event.preventDefault();
+      console.log("Submitted form");
+      console.log(email);
+      console.log(name);
+      console.log(password);
+    
+      // Check email validity
+      // if (!validateEmail(email)) {
+      //   alert("Invalid email address");
+      //   return;
+      // }
+    
+      // Check password length
+      if (password.length < 8) {
+        alert("Password must be at least 8 characters long");
+        return;
+      }
+    
+      // Check mobile number length
+      if (mobileNumber.length !== 10) {
+        alert("Mobile number must be 10 digits long");
+        return;
+      }
+
+
+
+
 
     const config = {
       headers: {
@@ -97,24 +123,11 @@ export default function (props) {
     //     config
     //   )
     axios
-      .post("http://reqres.in/api/register", {
-        withCredentials: true,
-
-        crossorigin: true,
-
-        headers: {
-          common: {
-            "Access-Control-Request-Method": "POST",
-
-            "Access-Control-Request-Headers": "origin, x-requested-with",
-          },
-        },
-
-        data: JSON.stringify({ email: email, password: password }),
-      })
+      .post("https://localhost:7264/api/users", userToRegister)
       .then((response) => {
         console.log(response);
-        alert("Successfully loggedin");
+        alert("Successfully registered..!");
+        navigate('/')
       })
       .catch((err) => {
         console.log(err);
@@ -135,7 +148,7 @@ export default function (props) {
                 Sign Up
               </span>
             </div>
-            <div className="form-group mt-3">
+            {/* <div className="form-group mt-3">
               <label>Hospital</label>
 
               <select
@@ -148,7 +161,7 @@ export default function (props) {
                 <option>Civil</option>
                 <option>Sahyadri</option>
               </select>
-            </div>
+            </div> */}
             <div className="form-group mt-3">
               <label>Email address</label>
               <input
@@ -230,7 +243,7 @@ export default function (props) {
               className="form-control mt-1"
               placeholder="Mobile Number"
               onChange={handleMobileChange}
-              value={mobile}
+              value={mobileNumber}
             />
           </div>
           <div form-group mt-3>
