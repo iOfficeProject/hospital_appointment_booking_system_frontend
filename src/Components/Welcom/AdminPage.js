@@ -3,38 +3,31 @@ import "./AdminPage.css";
 import { FaHome, FaHospitalSymbol, FaUserAlt } from "react-icons/fa";
 import { RiAdminLine } from "react-icons/ri";
 import { HiUsers } from "react-icons/hi";
-import { NavLink } from "react-router-dom";
-
-const doctorData = [
-  {
-    name: "Alfreds",
-    speciality: "Heart",
-    contact: 1234567890,
-  },
-  {
-    name: "Centro",
-    speciality: "Stomach",
-    contact: 1234567899,
-  },
-  {
-    name: "Ernst",
-    speciality: "Bones",
-    contact: 1234567890,
-  },
-  {
-    name: "Laugh",
-    speciality: "Heart",
-    contact: 1234567888,
-  },
-];
+import { Link, Navigate, NavLink, useNavigate } from "react-router-dom";
+import { Button, Table } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Doctors from "./Doctors";
 
 const AdminPage = () => {
-  const [doctors, setDoctors] = useState([]);
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    const doctors = localStorage.getItem("doctors");
-    setDoctors(JSON.parse(doctors));
-  }, []);
+  const handleEdit = (id, name, speciality, contact) => {
+    localStorage.setItem("Name", name);
+    localStorage.setItem("Speciality", speciality);
+    localStorage.setItem("Contact", contact);
+    localStorage.setItem("Id", id);
+  };
+
+  const handleDelete = (id) => {
+    let index = Doctors.map(function (e) {
+      return e.id;
+    }).indexOf(id);
+
+    Doctors.splice(index, 1);
+
+    navigate("/");
+  };
+
   return (
     <>
       {/* Header */}
@@ -55,35 +48,57 @@ const AdminPage = () => {
         <article>
           <h2 style={{ textAlign: "center" }}>List of doctors</h2>
           <br />
-          <NavLink className="add-doctor" to="/adddoctor">
-            Add Doctors
-          </NavLink>
+          <Link to="/create">
+            <Button size="lg">Add Doctors</Button>
+          </Link>
           <br />
           <br />
-          <table>
-            <tr>
-              <th>Doctor Name</th>
-              <th>Speciality</th>
-              <th>Contact</th>
-              <th>Actions</th>
-            </tr>
 
-            {doctors && doctors.length > 0
-              ? doctors.map((doctor) => {
-                return (
-                  <tr>
-                    <td>{doctor.name}</td>
-                    <td>{doctor.speciality}</td>
-                    <td>{doctor.contact}</td>
-                    <td>
-                      <button className="edit">Edit</button>
-                      <button className="delete">Delete</button>
-                    </td>
-                  </tr>
-                );
-              })
-              : "No Data found"}
-          </table>
+          <div style={{ margin: "2rem" }}>
+            <Table striped bordered hover size="sm">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Speciality</th>
+                  <th>Contact</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Doctors && Doctors.length > 0
+                  ? Doctors.map((doctor) => {
+                      return (
+                        <tr>
+                          <td>{doctor.Name}</td>
+                          <td>{doctor.Speciality}</td>
+                          <td>{doctor.Contact}</td>
+                          <td>
+                            <Link to={`/edit`}>
+                              <Button
+                                onClick={() =>
+                                  handleEdit(
+                                    doctor.id,
+                                    doctor.Name,
+                                    doctor.Speciality,
+                                    doctor.Contact
+                                  )
+                                }
+                              >
+                                Edit
+                              </Button>
+                            </Link>
+                            &nbsp;
+                            <Button onClick={() => handleDelete(doctor.id)}>
+                              Delete
+                            </Button>
+                          </td>
+                        </tr>
+                      );
+                    })
+                  : "No data available"}
+              </tbody>
+            </Table>
+          </div>
         </article>
         {/* Sidebar */}
         <nav>

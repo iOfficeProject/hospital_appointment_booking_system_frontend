@@ -1,32 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Doctors from "./Doctors";
 import { v4 as uuid } from "uuid";
 import { Link, useNavigate } from "react-router-dom";
-import "./AddDoctor.css";
 
-const AddDoctor = () => {
+const EditDoctor = () => {
   const [name, setName] = useState("");
-  const [contact, setContact] = useState("");
   const [speciality, setSpeciality] = useState("");
+  const [contact, setContact] = useState("");
+  const [id, setId] = useState("");
 
   const navigate = useNavigate();
+
+  let index = Doctors.map(function (e) {
+    return e.id;
+  }).indexOf(id);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const ids = uuid();
-    let uniqueId = ids.slice(0, 8);
-
-    let a = name,
-      b = speciality,
-      c = contact;
-
-    Doctors.push({ id: uniqueId, Name: a, Speciality: b, Contact: c });
+    let a = Doctors[index];
+    a.Name = name;
+    a.Speciality = speciality;
+    a.Contact = contact;
 
     navigate("/");
   };
+
+  useEffect(() => {
+    setName(localStorage.getItem("Name"));
+    setSpeciality(localStorage.getItem("Speciality"));
+    setContact(localStorage.getItem("Contact"));
+    setId(localStorage.getItem("Id"));
+  }, []);
 
   const handleBackBtn = () => {
     navigate("/");
@@ -35,7 +42,7 @@ const AddDoctor = () => {
   return (
     <div className="form-container">
       <div>
-        <h3 className="heading">Add Doctor Form</h3>
+      <h3 className="heading">Edit Doctor Form</h3>
       </div>
       <Form style={{ margin: "10rem" }}>
         <label htmlFor="name">Full Name:</label>
@@ -43,6 +50,7 @@ const AddDoctor = () => {
           type="text"
           placeholder="enter name"
           required
+          value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <label htmlFor="speciality">Speciality:</label>
@@ -50,6 +58,7 @@ const AddDoctor = () => {
           type="text"
           placeholder="enter speciality"
           required
+          value={speciality}
           onChange={(e) => setSpeciality(e.target.value)}
         />
         <label htmlFor="speciality">Contact:</label>
@@ -57,10 +66,11 @@ const AddDoctor = () => {
           type="text"
           placeholder="enter contact number"
           required
+          value={contact}
           onChange={(e) => setContact(e.target.value)}
         />
         <Button onClick={(e) => handleSubmit(e)} type="submit">
-          Submit
+          Update
         </Button>&nbsp;
         <Button onClick={(e) => handleBackBtn(e)} type="submit">
           Back
@@ -70,4 +80,4 @@ const AddDoctor = () => {
   );
 };
 
-export default AddDoctor;
+export default EditDoctor;
