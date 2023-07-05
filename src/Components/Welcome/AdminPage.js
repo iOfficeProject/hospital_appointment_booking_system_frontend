@@ -146,7 +146,7 @@ const AdminPage = () => {
             <li>
               <div>
                 <FaHospitalSymbol />
-                Hospital
+                <Link to="/hospital">Hospital</Link>
               </div>
             </li>
 

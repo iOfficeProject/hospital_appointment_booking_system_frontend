@@ -10,6 +10,8 @@ import EditDoctor from "./Components/Welcome/EditDoctor";
 import AddHospital from "./Components/Welcome/AddHospital";
 import AddUser from "./Components/Welcome/AddUser";
 import AddRole from "./Components/Welcome/AddRole";
+import HospitalPage from "./Components/Welcome/HospitalPage";
+import EditHospital from "./Components/Welcome/EditHospital";
 
 function App() {
   return (
@@ -21,9 +23,11 @@ function App() {
         <Route path="/" element={<AdminPage />} />
         <Route path="/create" element={<AddDoctor />} />
         <Route path="/edit" element={<EditDoctor />} />
+        <Route path="/hospital" element={<HospitalPage />} />
         <Route path="/addhospital" element={<AddHospital />} />
         <Route path="/adduser" element={<AddUser />} />
         <Route path="/addrole" element={<AddRole />} />
+        <Route path="/edithospital" element={<EditHospital />} />
         
       </Routes>
     {/* <AdminPage /> */}
