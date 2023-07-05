@@ -4,11 +4,16 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Doctors from "./Doctors";
 import { v4 as uuid } from "uuid";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+
 
 const EditDoctor = () => {
   const [name, setName] = useState("");
+
   const [speciality, setSpeciality] = useState("");
+
   const [contact, setContact] = useState("");
+
   const [id, setId] = useState("");
 
   const navigate = useNavigate();
@@ -17,33 +22,52 @@ const EditDoctor = () => {
     return e.id;
   }).indexOf(id);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // const handleSubmit = (e) => {
 
-    let a = Doctors[index];
-    a.Name = name;
-    a.Speciality = speciality;
-    a.Contact = contact;
+  //   e.preventDefault();
 
-    navigate("/");
+  //   let a = Doctors[index];
+
+  //   a.Name = name;
+
+  //   a.Speciality = speciality;
+
+  //   a.Contact = contact;
+
+  //   navigate("/");
+
+  // };
+
+  const updateDoctor = (doctorId) => {
+    axios
+
+      .put("url/" + doctorId, {})
+
+      .then((res) => {})
+
+      .catch((err) => {});
   };
 
   useEffect(() => {
     setName(localStorage.getItem("Name"));
+
     setSpeciality(localStorage.getItem("Speciality"));
+
     setContact(localStorage.getItem("Contact"));
+
     setId(localStorage.getItem("Id"));
   }, []);
 
   const handleBackBtn = () => {
     navigate("/");
-  }
+  };
 
   return (
     <div className="form-container">
       <div>
-      <h3 className="heading">Edit Doctor Form</h3>
+        <h3 className="heading">Edit Doctor Form</h3>
       </div>
+
       <Form style={{ margin: "10rem" }}>
         <label htmlFor="name">Full Name:</label>
         <input
@@ -69,9 +93,10 @@ const EditDoctor = () => {
           value={contact}
           onChange={(e) => setContact(e.target.value)}
         />
-        <Button onClick={(e) => handleSubmit(e)} type="submit">
+        <Button onClick={(e) => updateDoctor(e)} type="submit">
           Update
-        </Button>&nbsp;
+        </Button>
+        &nbsp;
         <Button onClick={(e) => handleBackBtn(e)} type="submit">
           Back
         </Button>
