@@ -7,6 +7,9 @@ import Welcome from "./Components/Welcome/Welcome";
 import AdminPage from "./Components/Welcome/AdminPage";
 import AddDoctor from "./Components/Welcome/AddDoctor";
 import EditDoctor from "./Components/Welcome/EditDoctor";
+import AddHospital from "./Components/Welcome/AddHospital";
+import AddUser from "./Components/Welcome/AddUser";
+import AddRole from "./Components/Welcome/AddRole";
 
 function App() {
   return (
@@ -18,6 +21,9 @@ function App() {
         <Route path="/" element={<AdminPage />} />
         <Route path="/create" element={<AddDoctor />} />
         <Route path="/edit" element={<EditDoctor />} />
+        <Route path="/addhospital" element={<AddHospital />} />
+        <Route path="/adduser" element={<AddUser />} />
+        <Route path="/addrole" element={<AddRole />} />
         
       </Routes>
     {/* <AdminPage /> */}
