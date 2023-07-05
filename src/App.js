@@ -24,7 +24,7 @@ import EditUser from "./Components/Welcome/EditUser";
 import AddRole from "./Components/Welcome/AddRole";
 
 import HospitalPage from "./Components/Welcome/HospitalPage";
-
+import UserPage from "./Components/Welcome/UserPage";
 import EditHospital from "./Components/Welcome/EditHospital";
 import EditRole from "./Components/Welcome/EditRole";
 import RolePage from "./Components/Welcome/RolePage";
@@ -58,6 +58,7 @@ function App() {
 
           <Route path="/adduser" element={<AddUser />} />
           <Route path="/edituser" element={<EditUser />} />
+          <Route path="/user" element={<UserPage/>}/>
 
           <Route path="/addrole" element={<AddRole />} />
 

@@ -146,21 +146,21 @@ const AdminPage = () => {
             <li>
               <div>
                 <FaHospitalSymbol />
-                <Link to="/hospital">Hospital</Link>
+                <Link to="/hospital">Hospitals</Link>
               </div>
             </li>
 
             <li>
               <div>
                 <FaUserAlt />
-                Users
+                <Link to="/user">Users</Link>
               </div>
             </li>
 
             <li>
               <div>
                 <HiUsers />
-                Roles
+                <Link to="/role">Roles</Link>
               </div>
             </li>
           </ul>

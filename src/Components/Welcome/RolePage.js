@@ -55,7 +55,7 @@ const RolePage = () => {
 
                     <br />
 
-                    <Link to="/create">
+                    <Link to="/addrole">
                         <Button size="lg">Add Role</Button>
                     </Link>
 
