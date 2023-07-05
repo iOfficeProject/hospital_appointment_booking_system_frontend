@@ -12,8 +12,13 @@ import AddUser from "./Components/Welcome/AddUser";
 import EditUser from "./Components/Welcome/EditUser";
 import EditHospital from "./Components/Welcome/EditHospital";
 import AddRole from "./Components/Welcome/AddRole";
+<<<<<<< HEAD
 import EditRole from "./Components/Welcome/EditRole";
 import RolePage from "./Components/Welcome/RolePage";
+=======
+import HospitalPage from "./Components/Welcome/HospitalPage";
+import EditHospital from "./Components/Welcome/EditHospital";
+>>>>>>> 35f570d0493a74dec0a534dbe0497bc26d0aa1af
 
 function App() {
   return (
@@ -25,13 +30,18 @@ function App() {
         <Route path="/" element={<AdminPage />} />
         <Route path="/create" element={<AddDoctor />} />
         <Route path="/edit" element={<EditDoctor />} />
+        <Route path="/hospital" element={<HospitalPage />} />
         <Route path="/addhospital" element={<AddHospital />} />
         <Route path="/edithospital" element={<EditHospital />} />
         <Route path="/adduser" element={<AddUser />} />
         <Route path="/edituser" element={<EditUser />} />
         <Route path="/addrole" element={<AddRole />} />
+<<<<<<< HEAD
         <Route path="/editrole" element={<EditRole />} />
         <Route path="/role" element={<RolePage />} />
+=======
+        <Route path="/edithospital" element={<EditHospital />} />
+>>>>>>> 35f570d0493a74dec0a534dbe0497bc26d0aa1af
         
       </Routes>
     {/* <AdminPage /> */}

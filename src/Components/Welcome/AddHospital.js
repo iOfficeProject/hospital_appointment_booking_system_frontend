@@ -22,7 +22,7 @@ const AddHospital = () => {
     };
 
     const backBtnHandler = () => {
-        navigate("/");
+        navigate("/hospital");
     };
 
     const onSubmitClickHandler = (e) => {
@@ -85,7 +85,6 @@ const AddHospital = () => {
                     pattern="[0-9]+"
                     title="Must contain numbers only"
                 />
-
                 <input
                     type="button"
                     className="back-btn"
