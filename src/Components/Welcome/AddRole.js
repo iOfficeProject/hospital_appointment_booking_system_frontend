@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./AddDoctor.css";
 
+
 const AddRole = () => {
     const [role, setRole] = useState("");
 
@@ -47,7 +48,7 @@ const AddRole = () => {
                     onChange={onRoleChangeHandler}>
                     <option value="">-- Select --</option>
                     <option value="option1">Doctor</option>
-                    <option value="option1">User</option>
+                    <option value="option2">User</option>
                 </select>
                 <br/>
                 <input

@@ -1,72 +1,28 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "./AddDoctor.css";
-
-const AddUser = () => {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [contact, setContact] = useState("");
-    const [password, setPassword] = useState("");
-    const [role, setRole] = useState("");
+import React, { useState, useEffect } from "react";
+import { Button, Form } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Doctors from "./Doctors";
+import { v4 as uuid } from "uuid";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 
-    const navigate = useNavigate();
+const EditUser = () => {
+  
 
-    const onNameChangeHandler = (e) => {
-        setName(e.target.value);
-    };
+  return (
+    <div className="form-container">
+      <div>
+        <h3 className="heading">Edit User Form</h3>
+      </div>
 
-    const onEmailChangeHandler = (e) => {
-        setEmail(e.target.value);
-    };
-
-    const onContactChangeHandler = (e) => {
-        setContact(e.target.value);
-    };
-
-    const onPasswordChangeHandler = (e) => {
-        setPassword(e.target.value);
-    };
-
-    const onRoleChangeHandler = (e) => {
-        setRole(e.target.value);
-    };
-
-    const backBtnHandler = () => {
-        navigate("/");
-    };
-
-    const onSubmitClickHandler = (e) => {
-        e.preventDefault();
-        console.log(name, email, contact, password, role);
-        const _users =
-            localStorage.getItem("users") &&
-                localStorage.getItem("users").length > 0
-                ? JSON.parse(localStorage.getItem("users"))
-                : [];
-
-        localStorage.setItem(
-            "users",
-            JSON.stringify([..._users, { name, email, contact, password, role }])
-        );
-
-        navigate("/");
-    };
-
-    return (
-        <div className="form-container">
-            <div>
-                <h3 className="heading">Add User Form</h3>
-            </div>
-            <form onSubmit={onSubmitClickHandler}>
+      <form>
                 <label htmlFor="name">
                     <b>Enter your full name :</b>
                 </label>
                 <input
                     type="text"
                     placeholder="Full Name"
-                    value={name}
-                    onChange={onNameChangeHandler}
                     required
                     pattern={"[A-Za-z ]+"}
                     title="Must contain alphabets and spaces only, numbers not allowed"
@@ -79,8 +35,6 @@ const AddUser = () => {
                 <input
                     type="email"
                     placeholder="Email"
-                    value={email}
-                    onChange={onEmailChangeHandler}
                     required
                     title="Email should be in proper format"
                 />
@@ -91,8 +45,6 @@ const AddUser = () => {
                 <input
                     type="text"
                     placeholder="Mobile Number"
-                    value={contact}
-                    onChange={onContactChangeHandler}
                     required
                     pattern="[0-9]+"
                     title="Must contain numbers only"
@@ -105,8 +57,6 @@ const AddUser = () => {
                 <input
                     type="password"
                     placeholder="Password"
-                    value={password}
-                    onChange={onPasswordChangeHandler}
                     pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
                     title="Password must contain at least 8 characters, including 1 alphabet, 1 number, and 1 special character."
                     required
@@ -118,8 +68,7 @@ const AddUser = () => {
                 </label>
                 <select
                     id="dropdown"
-                    value={role}
-                    onChange={onRoleChangeHandler}>
+                    >
                     <option value="">-- Select --</option>
                     <option value="option1">Doctor</option>
                     <option value="option2">User</option>
@@ -129,12 +78,11 @@ const AddUser = () => {
                     type="button"
                     className="back-btn"
                     value="Back"
-                    onClick={backBtnHandler}
                 />
                 <input type="submit" className="btn" value="Submit"/>
             </form>
-        </div>
-    );
+    </div>
+  );
 };
 
-export default AddUser;
+export default EditUser;

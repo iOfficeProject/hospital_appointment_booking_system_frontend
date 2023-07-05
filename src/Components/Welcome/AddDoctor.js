@@ -46,9 +46,9 @@ const AddDoctor = () => {
 
       .post("url", {})
 
-      .then((res) => {})
+      .then((res) => { })
 
-      .catch((err) => {});
+      .catch((err) => { });
   };
 
   //  useEffect(()=>{
@@ -75,28 +75,35 @@ const AddDoctor = () => {
         <h3 className="heading">Add Doctor Form</h3>
       </div>
 
-      <Form style={{ margin: "10rem" }}>
+      <Form>
         <label htmlFor="name">Full Name:</label>
         <input
           type="text"
-          placeholder="enter name"
+          placeholder="enter your full name"
           required
+          pattern={"[A-Za-z ]+"}
+          title="Must contain alphabets and spaces only, numbers not allowed"
           onChange={(e) => setName(e.target.value)}
         />
         <label htmlFor="speciality">Speciality:</label>
         <input
           type="text"
-          placeholder="enter speciality"
+          placeholder="enter your speciality"
           required
+          pattern={"[A-Za-z ]+"}
+          title="Must contain alphabets and spaces only, numbers not allowed"
           onChange={(e) => setSpeciality(e.target.value)}
         />
         <label htmlFor="speciality">Contact:</label>
         <input
           type="text"
-          placeholder="enter contact number"
+          placeholder="enter your contact number"
           required
+          pattern="[0-9]+"
+          title="Must contain numbers only"
           onChange={(e) => setContact(e.target.value)}
         />
+        <br /><br />
         <Button onClick={(e) => addDoctor()} type="submit">
           Submit
         </Button>

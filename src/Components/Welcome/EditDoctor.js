@@ -43,9 +43,9 @@ const EditDoctor = () => {
 
       .put("url/" + doctorId, {})
 
-      .then((res) => {})
+      .then((res) => { })
 
-      .catch((err) => {});
+      .catch((err) => { });
   };
 
   useEffect(() => {
@@ -68,7 +68,7 @@ const EditDoctor = () => {
         <h3 className="heading">Edit Doctor Form</h3>
       </div>
 
-      <Form style={{ margin: "10rem" }}>
+      <Form>
         <label htmlFor="name">Full Name:</label>
         <input
           type="text"
@@ -93,6 +93,7 @@ const EditDoctor = () => {
           value={contact}
           onChange={(e) => setContact(e.target.value)}
         />
+        <br /><br />
         <Button onClick={(e) => updateDoctor(e)} type="submit">
           Update
         </Button>
