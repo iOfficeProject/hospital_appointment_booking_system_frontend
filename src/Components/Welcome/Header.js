@@ -5,7 +5,7 @@ import { AiOutlineUser } from "react-icons/ai";
 
 const Header = () => {
   return (
-    <div>
+    <div className="body">
         <nav className="nav">
           <ul>
             <div className="icon">
@@ -14,7 +14,7 @@ const Header = () => {
             <li>
               <div className="admin-logo">
                 <AiOutlineUser />
-                <h4>Admin</h4>
+                <span>Admin</span>
               </div>
             </li>
           </ul>

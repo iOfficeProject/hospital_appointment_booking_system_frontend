@@ -13,6 +13,7 @@ body {
 #main article {
   flex: 1;
   background: whitesmoke;
+  height: 100vh;
 }
 #main nav {
   flex: 0 0 20vw;
@@ -98,4 +99,10 @@ tr:nth-child(even) {
   margin-bottom: 50px;
   border: 1px solid rgb(109, 231, 231);
   text-decoration: none;
+}
+.col-md-2{
+  padding: 0;
+}
+.col-md-10{
+  padding: 0;
 }

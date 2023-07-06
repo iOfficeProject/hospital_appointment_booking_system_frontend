@@ -8,6 +8,8 @@ import { Button, Table } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Doctors from "./Doctors";
 import axios from "axios";
+import Sidebar from "./Sidebar";
+import Header from "./Header";
 
 const AdminPage = () => {
   const navigate = useNavigate();
@@ -52,19 +54,7 @@ const AdminPage = () => {
     <>
       {/* Header */}
 
-      <header>
-        <nav className="navbar">
-          <div className="navbar-left">
-            <FaHome className="navbar-icon" />
-          </div>
-
-          <div className="navbar-right">
-            <RiAdminLine className="navbar-icon" />
-
-            <h3>Admin</h3>
-          </div>
-        </nav>
-      </header>
+      <Header/>
 
       {/* Main Content */}
 
@@ -139,32 +129,8 @@ const AdminPage = () => {
           </div>
         </article>
 
-        {/* Sidebar */}
-
-        <nav>
-          <ul>
-            <li>
-              <div>
-                <FaHospitalSymbol />
-                <Link to="/hospital">Hospitals</Link>
-              </div>
-            </li>
-
-            <li>
-              <div>
-                <FaUserAlt />
-                <Link to="/user">Users</Link>
-              </div>
-            </li>
-
-            <li>
-              <div>
-                <HiUsers />
-                <Link to="/role">Roles</Link>
-              </div>
-            </li>
-          </ul>
-        </nav>
+          <Sidebar/>
+        
       </div>
     </>
   );
