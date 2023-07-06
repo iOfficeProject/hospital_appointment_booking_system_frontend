@@ -18,13 +18,13 @@ const Sidebar = () => {
       <li>
         <div className="side-icons">
           <FaUserAlt />
-          <Link to="/users">Users</Link>
+          <Link to="/user">Users</Link>
         </div>
       </li>
       <li>
         <div className="side-icons">
           <HiUsers />
-          <Link to="/roles">Roles</Link>
+          <Link to="/role">Roles</Link>
         </div>
       </li>
     </ul>

@@ -8,6 +8,9 @@ import { Button, Table } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import Roles from "./Roles";
+import Sidebar from "./Sidebar";
+import Header from "./Header";
+
 
 const RolePage = () => {
     const navigate = useNavigate();
@@ -33,19 +36,7 @@ const RolePage = () => {
         <>
             {/* Header */}
 
-            <header>
-                <nav className="navbar">
-                    <div className="navbar-left">
-                        <FaHome className="navbar-icon" />
-                    </div>
-
-                    <div className="navbar-right">
-                        <RiAdminLine className="navbar-icon" />
-
-                        <h3>Admin</h3>
-                    </div>
-                </nav>
-            </header>
+            <Header/>
 
             {/* Main Content */}
 
@@ -106,30 +97,7 @@ const RolePage = () => {
 
                 {/* Sidebar */}
 
-                <nav>
-                    <ul>
-                        <li>
-                            <div>
-                                <FaHospitalSymbol />
-                                Hospital
-                            </div>
-                        </li>
-
-                        <li>
-                            <div>
-                                <FaUserAlt />
-                                Users
-                            </div>
-                        </li>
-
-                        <li>
-                            <div>
-                                <HiUsers />
-                                Roles
-                            </div>
-                        </li>
-                    </ul>
-                </nav>
+                <Sidebar/>
             </div>
         </>
     );
