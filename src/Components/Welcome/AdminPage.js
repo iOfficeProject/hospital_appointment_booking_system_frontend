@@ -4,7 +4,7 @@ import { FaHome, FaHospitalSymbol, FaUserAlt } from "react-icons/fa";
 import { RiAdminLine } from "react-icons/ri";
 import { HiUsers } from "react-icons/hi";
 import { Link, Navigate, NavLink, useNavigate } from "react-router-dom";
-import { Button, Table } from "react-bootstrap";
+import { Button, Table, Row, Col, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Doctors from "./Doctors";
 import axios from "axios";
@@ -45,93 +45,103 @@ const AdminPage = () => {
 
       .delete(url)
 
-      .then((res) => {})
+      .then((res) => { })
 
-      .catch((err) => {});
+      .catch((err) => { });
   };
 
   return (
     <>
       {/* Header */}
 
-      <Header/>
+      <Header />
 
-      {/* Main Content */}
+      <Container fluid>
 
-      <div id="main">
-        <article>
-          <h2 style={{ textAlign: "center" }}>List of doctors</h2>
+        <Row>
+          {/* Sidebar */}
+          <Col md={2}>
+            <Sidebar />
+          </Col>
 
-          <br />
+          {/* Main Content */}
+          <Col md={10}>
+            <div id="main">
+              <article>
+                <h2 style={{ textAlign: "center" }}>List of doctors</h2>
 
-          <Link to="/create">
-            <Button size="lg">Add Doctors</Button>
-          </Link>
+                <br />
 
-          <br />
+                <Link to="/adddoctor">
+                  <Button size="lg">Add Doctors</Button>
+                </Link>
 
-          <br />
+                <br />
 
-          <div style={{ margin: "2rem" }}>
-            <Table striped bordered hover size="sm">
-              <thead>
-                <tr>
-                  <th>Name</th>
+                <br />
 
-                  <th>Speciality</th>
+                <div style={{ margin: "2rem" }}>
+                  <Table striped bordered hover size="sm">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
 
-                  <th>Contact</th>
+                        <th>Speciality</th>
 
-                  <th>Actions</th>
-                </tr>
-              </thead>
+                        <th>Contact</th>
 
-              <tbody>
-                {Doctors && Doctors.length > 0
-                  ? Doctors.map((doctor) => {
-                      return (
-                        <tr>
-                          <td>{doctor.Name}</td>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
 
-                          <td>{doctor.Speciality}</td>
+                    <tbody>
+                      {Doctors && Doctors.length > 0
+                        ? Doctors.map((doctor) => {
+                          return (
+                            <tr>
+                              <td>{doctor.Name}</td>
 
-                          <td>{doctor.Contact}</td>
+                              <td>{doctor.Speciality}</td>
 
-                          <td>
-                            <Link to={`/edit`}>
-                              <Button
-                                onClick={() =>
-                                  handleEdit(
-                                    doctor.id,
+                              <td>{doctor.Contact}</td>
 
-                                    doctor.Name,
+                              <td>
+                                <Link to={`/editdoctor`}>
+                                  <Button
+                                    onClick={() =>
+                                      handleEdit(
+                                        doctor.id,
 
-                                    doctor.Speciality,
+                                        doctor.Name,
 
-                                    doctor.Contact
-                                  )
-                                }
-                              >
-                                Edit
-                              </Button>
-                            </Link>
-                            &nbsp;
-                            <Button onClick={() => deleteDoctor(doctor.id)}>
-                              Delete
-                            </Button>
-                          </td>
-                        </tr>
-                      );
-                    })
-                  : "No data available"}
-              </tbody>
-            </Table>
-          </div>
-        </article>
+                                        doctor.Speciality,
 
-          <Sidebar/>
-        
-      </div>
+                                        doctor.Contact
+                                      )
+                                    }
+                                  >
+                                    Edit
+                                  </Button>
+                                </Link>
+                                &nbsp;
+                                <Button onClick={() => deleteDoctor(doctor.id)}>
+                                  Delete
+                                </Button>
+                              </td>
+                            </tr>
+                          );
+                        })
+                        : "No data available"}
+                    </tbody>
+                  </Table>
+                </div>
+              </article>
+            </div>
+          </Col>
+
+        </Row>
+
+      </Container>
     </>
   );
 };

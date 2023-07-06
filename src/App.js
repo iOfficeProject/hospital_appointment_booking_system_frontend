@@ -48,9 +48,9 @@ function App() {
 
           <Route path="/" element={<AdminPage />} />
 
-          <Route path="/create" element={<AddDoctor />} />
+          <Route path="/adddoctor" element={<AddDoctor />} />
 
-          <Route path="/edit" element={<EditDoctor />} />
+          <Route path="/editdoctor" element={<EditDoctor />} />
 
           <Route path="/hospital" element={<HospitalPage />} />
 

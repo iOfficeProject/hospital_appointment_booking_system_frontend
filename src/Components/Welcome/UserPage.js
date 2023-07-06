@@ -30,7 +30,7 @@ function UserPage() {
 
 
 
-  const handleEdit = (id, name, email, contact,password,role) => {
+  const handleEdit = (id, name, email, contact, password, role) => {
 
     localStorage.setItem('Name', name);
 
@@ -57,9 +57,9 @@ function UserPage() {
 
       .delete(url)
 
-      .then((res) => {})
+      .then((res) => { })
 
-      .catch((err) => {});
+      .catch((err) => { });
 
     navigate('/user');
 

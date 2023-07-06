@@ -4,7 +4,7 @@ import { FaHome, FaHospitalSymbol, FaUserAlt } from "react-icons/fa";
 import { RiAdminLine } from "react-icons/ri";
 import { HiUsers } from "react-icons/hi";
 import { Link, Navigate, NavLink, useNavigate } from "react-router-dom";
-import { Button, Table } from "react-bootstrap";
+import { Button, Table, Row, Col, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import Roles from "./Roles";
@@ -36,10 +36,18 @@ const RolePage = () => {
         <>
             {/* Header */}
 
-            <Header/>
+            <Header />
+            <Container fluid>
+
+            <Row>
+            {/* Sidebar */}
+            <Col md={2}>
+                <Sidebar />
+            </Col>
 
             {/* Main Content */}
 
+            <Col md={10}>
             <div id="main">
                 <article>
                     <h2 style={{ textAlign: "center" }}>List of roles</h2>
@@ -59,6 +67,7 @@ const RolePage = () => {
                             <thead>
                                 <tr>
                                     <th>Roles</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
 
@@ -95,10 +104,13 @@ const RolePage = () => {
                     </div>
                 </article>
 
-                {/* Sidebar */}
 
-                <Sidebar/>
             </div>
+            </Col>
+
+            </Row>
+
+      </Container>
         </>
     );
 };
