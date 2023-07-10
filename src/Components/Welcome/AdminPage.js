@@ -12,7 +12,29 @@ import Sidebar from "./Sidebar";
 import Header from "./Header";
 
 const AdminPage = () => {
-  const navigate = useNavigate();
+  // const [doctor, setDoctor] = useState([]);
+
+  // const API_URL = "";
+
+  // const getDoctors = async () => {
+  //   try {
+  //     const fetchData = await axios.get(API_URL, {
+  //       headers: {
+  //         authorization: "Bearer JWT Token",
+  //       },
+  //     });
+  //     setDoctor(fetchData.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   window.addEventListener("load", getDoctors);
+  //   return () => {
+  //     window.removeEventListener("load", getDoctors);
+  //   };
+  // }, [doctor]);
 
   const handleEdit = (id, name, speciality, contact) => {
     localStorage.setItem("Name", name);
@@ -45,9 +67,9 @@ const AdminPage = () => {
 
       .delete(url)
 
-      .then((res) => { })
+      .then((res) => {})
 
-      .catch((err) => { });
+      .catch((err) => {});
   };
 
   return (
@@ -57,7 +79,6 @@ const AdminPage = () => {
       <Header />
 
       <Container fluid>
-
         <Row>
           {/* Sidebar */}
           <Col md={2}>
@@ -97,40 +118,42 @@ const AdminPage = () => {
                     <tbody>
                       {Doctors && Doctors.length > 0
                         ? Doctors.map((doctor) => {
-                          return (
-                            <tr>
-                              <td>{doctor.Name}</td>
+                            return (
+                              <tr>
+                                <td>{doctor.Name}</td>
 
-                              <td>{doctor.Speciality}</td>
+                                <td>{doctor.Speciality}</td>
 
-                              <td>{doctor.Contact}</td>
+                                <td>{doctor.Contact}</td>
 
-                              <td>
-                                <Link to={`/editdoctor`}>
+                                <td>
+                                  <Link to={`/editdoctor`}>
+                                    <Button
+                                      onClick={() =>
+                                        handleEdit(
+                                          doctor.id,
+
+                                          doctor.Name,
+
+                                          doctor.Speciality,
+
+                                          doctor.Contact
+                                        )
+                                      }
+                                    >
+                                      Edit
+                                    </Button>
+                                  </Link>
+                                  &nbsp;
                                   <Button
-                                    onClick={() =>
-                                      handleEdit(
-                                        doctor.id,
-
-                                        doctor.Name,
-
-                                        doctor.Speciality,
-
-                                        doctor.Contact
-                                      )
-                                    }
+                                    onClick={() => deleteDoctor(doctor.id)}
                                   >
-                                    Edit
+                                    Delete
                                   </Button>
-                                </Link>
-                                &nbsp;
-                                <Button onClick={() => deleteDoctor(doctor.id)}>
-                                  Delete
-                                </Button>
-                              </td>
-                            </tr>
-                          );
-                        })
+                                </td>
+                              </tr>
+                            );
+                          })
                         : "No data available"}
                     </tbody>
                   </Table>
@@ -138,9 +161,7 @@ const AdminPage = () => {
               </article>
             </div>
           </Col>
-
         </Row>
-
       </Container>
     </>
   );
