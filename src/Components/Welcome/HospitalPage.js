@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import { Button, Table, Row, Col, Container } from "react-bootstrap";
@@ -7,6 +7,25 @@ import Hospitals from "./Hospitals";
 import axios from "axios";
 
 const HospitalPage = () => {
+  const [hospitals, setHospitals] = useState([]);
+
+  const API_URL = "https://localhost:7264/api/Hospital";
+
+  useEffect(() => {
+    getHospitals();
+  }, []);
+
+  const getHospitals = () => {
+    axios
+      .get(`${API_URL}`)
+      .then((response) => {
+        const allHospitals = response.data;
+        setHospitals(allHospitals);
+      })
+      .catch((error) => console.error(`Error: ${error}`));
+  };
+
+
   const handleEdit = (id, name, locality, contact) => {
     localStorage.setItem("Name", name);
     localStorage.setItem("Locality", locality);
@@ -49,18 +68,16 @@ const HospitalPage = () => {
                       <tr>
                         <th>Name</th>
                         <th>Locality</th>
-                        <th>Contact</th>
                         <th>Actions</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {Hospitals && Hospitals.length > 0 ? (
-                        Hospitals.map((hospital) => {
+                      {hospitals && hospitals.length > 0 ? (
+                        hospitals.map((hospital, index) => {
                           return (
-                            <tr>
+                            <tr key={index}>
                               <td>{hospital.Name}</td>
-                              <td>{hospital.locality}</td>
-                              <td>{hospital.Contact}</td>
+                              <td>{hospital.location}</td>
                               <td>
                                 <Link to={`/edithospital`}>
                                   <Button
@@ -77,7 +94,11 @@ const HospitalPage = () => {
                                   </Button>
                                 </Link>
                                 &nbsp;
-                                <Button onClick={() => deleteHospital(hospital.id)}>Delete</Button>
+                                <Button
+                                  onClick={() => deleteHospital(hospital.id)}
+                                >
+                                  Delete
+                                </Button>
                               </td>
                             </tr>
                           );
