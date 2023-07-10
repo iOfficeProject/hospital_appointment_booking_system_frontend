@@ -21,6 +21,7 @@ const HospitalPage = () => {
       .then((response) => {
         const allHospitals = response.data;
         setHospitals(allHospitals);
+        console.log(allHospitals);
       })
       .catch((error) => console.error(`Error: ${error}`));
   };
@@ -76,7 +77,7 @@ const HospitalPage = () => {
                         hospitals.map((hospital, index) => {
                           return (
                             <tr key={index}>
-                              <td>{hospital.Name}</td>
+                              <td>{hospital.hospitalName}</td>
                               <td>{hospital.location}</td>
                               <td>
                                 <Link to={`/edithospital`}>

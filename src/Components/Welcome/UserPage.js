@@ -60,6 +60,7 @@ const getUsers=()=>{
   .then((response)=>{
     const allUsers=response.data;
     setUsers(allUsers);
+    console.log(allUsers);
   })
   .catch((error)=>{
     console.error(`Error:${error}`);
@@ -162,7 +163,7 @@ const getUsers=()=>{
 
                               <td>{user.mobileNumber}</td>
 
-                              <td>{user.roleId}</td>
+                              <td>{user.role}</td>
 
                               <td>
 

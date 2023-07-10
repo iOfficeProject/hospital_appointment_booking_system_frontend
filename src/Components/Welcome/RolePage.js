@@ -14,6 +14,9 @@ import Header from "./Header";
 
 const RolePage = () => {
     const navigate = useNavigate();
+    const [roles,setRoles]=useState([]);
+
+    const url="https://localhost:7264/api/roles";
 
     const handleEdit = (id, role) => {
         localStorage.setItem("Role", role);
@@ -32,6 +35,20 @@ const RolePage = () => {
             .catch((err) => { });
     };
 
+    useEffect(()=>{
+        getRoles();
+    },[]);
+
+    const getRoles=()=>{
+        axios.get(`${url}`)
+        .then((res)=>{
+            const allRoles=res.data;
+            setRoles(allRoles);
+        })
+        .catch((err)=>{
+            console.error(`Error: ${err}`);
+        })
+    }
     return (
         <>
             {/* Header */}
@@ -72,11 +89,11 @@ const RolePage = () => {
                             </thead>
 
                             <tbody>
-                                {Roles && Roles.length > 0
-                                    ? Roles.map((role) => {
+                                {roles && roles.length > 0
+                                    ? roles.map((role) => {
                                         return (
                                             <tr>
-                                                <td>{role.Name}</td>
+                                                <td>{role.roleName}</td>
 
                                                 <td>
                                                     <Link to={`/editrole`}>
