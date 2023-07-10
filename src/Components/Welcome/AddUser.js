@@ -123,15 +123,28 @@ const AddUser = () => {
 
     // };
 
-    const addUser = () => {
+    const addUser = (e) => {
+        e.preventDefault();
+        const payLoad = {
+        "userId": 0,
+        "name": name,
+        "email": email,
+        "password": password,
+        "mobileNumber": contact,
+        "roleId": 0,
+        "specializationId": 0,
+        "hospitalId": 0
+    }
+    console.log(payLoad);
 
         axios
 
-          .post("url", {})
+          .post("https://localhost:7264/api/users", payLoad)
 
-          .then((res) => {})
+          .then((res) => {console.log(res)})
+          
 
-          .catch((err) => {});
+          .catch((err) => {console.log(err)});
 
           navigate("/");
 

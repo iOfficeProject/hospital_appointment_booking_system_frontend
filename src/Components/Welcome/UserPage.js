@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Header from './Header';
 
@@ -25,6 +25,8 @@ import Users from "./Users";
 
 function UserPage() {
 
+  const [users,setUsers] = useState([]);
+
   const navigate = useNavigate();
 
 
@@ -47,7 +49,22 @@ function UserPage() {
   };
 
 
+const url="https://localhost:7264/api/users";
 
+useEffect(()=>{
+  getUsers();
+},[])
+
+const getUsers=()=>{
+  axios.get(`${url}`)
+  .then((response)=>{
+    const allUsers=response.data;
+    setUsers(allUsers);
+  })
+  .catch((error)=>{
+    console.error(`Error:${error}`);
+  })
+}
 
   const deleteUser = (userId) => {
 
@@ -121,8 +138,6 @@ function UserPage() {
 
                         <th>Contact</th>
 
-                        <th>Password</th>
-
                         <th>Role</th>
 
                         <th>Actions</th>
@@ -133,23 +148,21 @@ function UserPage() {
 
                     <tbody>
 
-                      {Users && Users.length > 0 ? (
+                      {users && users.length > 0 ? (
 
-                        Users.map((user) => {
+                        users.map((user,index) => {
 
                           return (
 
-                            <tr>
+                            <tr key={index}>
 
-                              <td>{user.Name}</td>
+                              <td>{user.name}</td>
 
-                              <td>{user.Email}</td>
+                              <td>{user.email}</td>
 
-                              <td>{user.Contact}</td>
+                              <td>{user.mobileNumber}</td>
 
-                              <td>{user.Password}</td>
-
-                              <td>{user.Role}</td>
+                              <td>{user.roleId}</td>
 
                               <td>
 
