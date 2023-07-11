@@ -21,7 +21,6 @@ const HospitalPage = () => {
       .then((response) => {
         const allHospitals = response.data;
         setHospitals(allHospitals);
-        console.log(allHospitals);
       })
       .catch((error) => console.error(`Error: ${error}`));
   };
@@ -34,16 +33,15 @@ const HospitalPage = () => {
     localStorage.setItem("Id", id);
   };
 
-  const deleteHospital = (hospitalId) => {
-    var url = "https://localhost:3000/hospital/" + hospitalId;
-
-    axios
-
-      .delete(url)
-
-      .then((res) => {})
-
-      .catch((err) => {});
+  const deleteHospital = async(id) => {
+     try{
+      const res = await axios.delete(`${API_URL}/${id}`)
+      console.log("deleted successfully");
+      getHospitals();
+     }
+     catch(err){
+      console.error(`Error:${err}`);
+     }
   };
   return (
     <>
@@ -96,7 +94,7 @@ const HospitalPage = () => {
                                 </Link>
                                 &nbsp;
                                 <Button
-                                  onClick={() => deleteHospital(hospital.id)}
+                                  onClick={() => deleteHospital(hospital.hospitalId)}
                                 >
                                   Delete
                                 </Button>

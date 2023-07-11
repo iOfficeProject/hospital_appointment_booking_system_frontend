@@ -135,7 +135,7 @@ const getUsers=()=>{
 
                         <th>Name</th>
 
-                        <th>Eamil</th>
+                        <th>Email</th>
 
                         <th>Contact</th>
 
@@ -157,13 +157,13 @@ const getUsers=()=>{
 
                             <tr key={index}>
 
-                              <td>{user.name}</td>
+                              <td>{user.Name}</td>
 
-                              <td>{user.email}</td>
+                              <td>{user.Email}</td>
 
-                              <td>{user.mobileNumber}</td>
+                              <td>{user.MobileNumber}</td>
 
-                              <td>{user.role}</td>
+                              <td>{user.Role.RoleName}</td>
 
                               <td>
 

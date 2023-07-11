@@ -1,46 +1,45 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./AddDoctor.css";
+import axios from "axios";
 
 const AddHospital = () => {
-    const [name, setName] = useState("");
-    const [locality, setLocality] = useState("");
-    const [contact, setContact] = useState("");
+    const [hospitalName, setHospitalName] = useState("");
+    const [location, setLocation] = useState("");
+
+    const url="https://localhost:7264/api/Hospital";
 
     const navigate = useNavigate();
 
     const onNameChangeHandler = (e) => {
-        setName(e.target.value);
+        setHospitalName(e.target.value);
     };
 
     const onLocalityChangeHandler = (e) => {
-        setLocality(e.target.value);
-    };
-
-    const onContactChangeHandler = (e) => {
-        setContact(e.target.value);
+        setLocation(e.target.value);
     };
 
     const backBtnHandler = () => {
         navigate("/hospital");
     };
 
-    const onSubmitClickHandler = (e) => {
+    const onSubmitClickHandler = async(e) => {
         e.preventDefault();
-        console.log(name, locality, contact);
-        const _hospitals =
-            localStorage.getItem("hospitals") &&
-                localStorage.getItem("hospitals").length > 0
-                ? JSON.parse(localStorage.getItem("hospitals"))
-                : [];
+        const post={
+           hospitalName,location
+        }
+        try{
+            const res = await axios.post(url,post)
+            console.log(res);
+        }
+        catch(err){
+            console.error(`Error: ${err}`);
+        }
 
-        localStorage.setItem(
-            "hospitals",
-            JSON.stringify([..._hospitals, { name, locality, contact }])
-        );
-
-        navigate("/");
+        navigate("/hospital");
     };
+
+
 
     return (
         <div className="form-container">
@@ -54,7 +53,7 @@ const AddHospital = () => {
                 <input
                     type="text"
                     placeholder="Hospital's Name"
-                    value={name}
+                    value={hospitalName}
                     onChange={onNameChangeHandler}
                     required
                     pattern={"[A-Za-z ]+"}
@@ -67,23 +66,10 @@ const AddHospital = () => {
                 <input
                     type="text"
                     placeholder="Address of Hospital"
-                    value={locality}
+                    value={location}
                     onChange={onLocalityChangeHandler}
                     required
                     title="Can contain alphabets, numbers and some relevant symbols"
-                />
-
-                <label htmlFor="contact">
-                    <b>Contact Number :</b>
-                </label>
-                <input
-                    type="text"
-                    placeholder="Enter contact number..."
-                    value={contact}
-                    onChange={onContactChangeHandler}
-                    required
-                    pattern="[0-9]+"
-                    title="Must contain numbers only"
                 />
                 <input
                     type="button"
