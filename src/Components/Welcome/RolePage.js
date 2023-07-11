@@ -11,125 +11,116 @@ import Roles from "./Roles";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 
-
 const RolePage = () => {
-    const navigate = useNavigate();
-    const [roles,setRoles]=useState([]);
+  const navigate = useNavigate();
+  const [roles, setRoles] = useState([]);
 
-    const url="https://localhost:7264/api/roles";
+  const API_URL = "https://localhost:7264/api/roles";
 
-    const handleEdit = (id, role) => {
-        localStorage.setItem("Role", role);
-        localStorage.setItem("Id", id);
-    };
+  const handleEdit = (id, role) => {
+    localStorage.setItem("Role", role);
+    localStorage.setItem("Id", id);
+  };
 
-    const deleteRole = (roleId) => {
-        var url = "https://localhost:3000/doctor/" + roleId;
+  useEffect(() => {
+    getRoles();
+  }, []);
 
-        axios
+  const getRoles = () => {
+    axios
+      .get(`${API_URL}`)
+      .then((res) => {
+        const allRoles = res.data;
+        setRoles(allRoles);
+        console.log(allRoles);
+      })
+      .catch((err) => {
+        console.error(`Error: ${err}`);
+      });
+  };
 
-            .delete(url)
-
-            .then((res) => { })
-
-            .catch((err) => { });
-    };
-
-    useEffect(()=>{
-        getRoles();
-    },[]);
-
-    const getRoles=()=>{
-        axios.get(`${url}`)
-        .then((res)=>{
-            const allRoles=res.data;
-            setRoles(allRoles);
-        })
-        .catch((err)=>{
-            console.error(`Error: ${err}`);
-        })
+  const deleteRole = async (id) => {
+    try {
+      const res = await axios.delete(`${API_URL}/${id}`);
+      console.log("deleted successfully");
+      getRoles();
+    } catch (err) {
+      console.error(`Error:${err}`);
     }
-    return (
-        <>
-            {/* Header */}
+  };
 
-            <Header />
-            <Container fluid>
+  return (
+    <>
+      {/* Header */}
 
-            <Row>
-            {/* Sidebar */}
-            <Col md={2}>
-                <Sidebar />
-            </Col>
+      <Header />
+      <Container fluid>
+        <Row>
+          {/* Sidebar */}
+          <Col md={2}>
+            <Sidebar />
+          </Col>
 
-            {/* Main Content */}
+          {/* Main Content */}
 
-            <Col md={10}>
+          <Col md={10}>
             <div id="main">
-                <article>
-                    <h2 style={{ textAlign: "center" }}>List of roles</h2>
+              <article>
+                <h2 style={{ textAlign: "center" }}>List of roles</h2>
 
-                    <br />
+                <br />
 
-                    <Link to="/addrole">
-                        <Button size="lg">Add Role</Button>
-                    </Link>
+                <Link to="/addrole">
+                  <Button size="lg">Add Role</Button>
+                </Link>
 
-                    <br />
+                <br />
 
-                    <br />
+                <br />
 
-                    <div style={{ margin: "2rem" }}>
-                        <Table striped bordered hover size="sm">
-                            <thead>
-                                <tr>
-                                    <th>Roles</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
+                <div style={{ margin: "2rem" }}>
+                  <Table striped bordered hover size="sm">
+                    <thead>
+                      <tr>
+                        <th>Roles</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
 
-                            <tbody>
-                                {roles && roles.length > 0
-                                    ? roles.map((role) => {
-                                        return (
-                                            <tr>
-                                                <td>{role.roleName}</td>
+                    <tbody>
+                      {roles && roles.length > 0
+                        ? roles.map((role) => {
+                            return (
+                              <tr>
+                                <td>{role.roleName}</td>
 
-                                                <td>
-                                                    <Link to={`/editrole`}>
-                                                        <Button
-                                                            onClick={() =>
-                                                                handleEdit(
-                                                                    role.id,
-                                                                )
-                                                            }
-                                                        >
-                                                            Edit
-                                                        </Button>
-                                                    </Link>
-                                                    &nbsp;
-                                                    <Button onClick={() => deleteRole(role.id)}>
-                                                        Delete
-                                                    </Button>
-                                                </td>
-                                            </tr>
-                                        );
-                                    })
-                                    : "No data available"}
-                            </tbody>
-                        </Table>
-                    </div>
-                </article>
-
-
+                                <td>
+                                  <Link to={`/editrole`}>
+                                    <Button onClick={() => handleEdit(role.id)}>
+                                      Edit
+                                    </Button>
+                                  </Link>
+                                  &nbsp;
+                                  <Button
+                                    onClick={() => deleteRole(role.roleId)}
+                                  >
+                                    Delete
+                                  </Button>
+                                </td>
+                              </tr>
+                            );
+                          })
+                        : "No data available"}
+                    </tbody>
+                  </Table>
+                </div>
+              </article>
             </div>
-            </Col>
-
-            </Row>
-
+          </Col>
+        </Row>
       </Container>
-        </>
-    );
+    </>
+  );
 };
 
 export default RolePage;
