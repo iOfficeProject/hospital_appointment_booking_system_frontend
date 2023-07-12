@@ -19,6 +19,7 @@ const Header = () => {
 
   const handleLogout = () => {
     console.log('Logout');
+    navigate("/");
   };
 
   const navigate = useNavigate();

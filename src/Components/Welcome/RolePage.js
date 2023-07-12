@@ -17,11 +17,6 @@ const RolePage = () => {
 
   const API_URL = "https://localhost:7264/api/roles";
 
-  const handleEdit = (id, role) => {
-    localStorage.setItem("Role", role);
-    localStorage.setItem("Id", id);
-  };
-
   useEffect(() => {
     getRoles();
   }, []);
@@ -95,12 +90,6 @@ const RolePage = () => {
                                 <td>{role.roleName}</td>
 
                                 <td>
-                                  <Link to={`/editrole`}>
-                                    <Button onClick={() => handleEdit(role.id)}>
-                                      Edit
-                                    </Button>
-                                  </Link>
-                                  &nbsp;
                                   <Button
                                     onClick={() => deleteRole(role.roleId)}
                                   >
