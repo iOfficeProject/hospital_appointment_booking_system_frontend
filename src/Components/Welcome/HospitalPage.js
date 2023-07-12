@@ -25,7 +25,6 @@ const HospitalPage = () => {
       .catch((error) => console.error(`Error: ${error}`));
   };
 
-
   const handleEdit = (id, name, locality, contact) => {
     localStorage.setItem("Name", name);
     localStorage.setItem("Locality", locality);
@@ -33,15 +32,14 @@ const HospitalPage = () => {
     localStorage.setItem("Id", id);
   };
 
-  const deleteHospital = async(id) => {
-     try{
-      const res = await axios.delete(`${API_URL}/${id}`)
+  const deleteHospital = async (id) => {
+    try {
+      const res = await axios.delete(`${API_URL}/${id}`);
       console.log("deleted successfully");
       getHospitals();
-     }
-     catch(err){
+    } catch (err) {
       console.error(`Error:${err}`);
-     }
+    }
   };
   return (
     <>
@@ -78,23 +76,14 @@ const HospitalPage = () => {
                               <td>{hospital.hospitalName}</td>
                               <td>{hospital.location}</td>
                               <td>
-                                <Link to={`/edithospital`}>
-                                  <Button
-                                    onClick={() =>
-                                      handleEdit(
-                                        hospital.id,
-                                        hospital.Name,
-                                        hospital.locality,
-                                        hospital.Contact
-                                      )
-                                    }
-                                  >
-                                    Edit
-                                  </Button>
+                                <Link to={`/edithospital/${hospital.hospitalId}`}>
+                                  <Button>Edit</Button>
                                 </Link>
                                 &nbsp;
                                 <Button
-                                  onClick={() => deleteHospital(hospital.hospitalId)}
+                                  onClick={() =>
+                                    deleteHospital(hospital.hospitalId)
+                                  }
                                 >
                                   Delete
                                 </Button>

@@ -1,10 +1,10 @@
-import "./App.css"
+import "./App.css";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "./Components/Home/Home";
 
-import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import LogIn from "./Components/LogIn/LoginForm";
 
@@ -29,19 +29,11 @@ import EditHospital from "./Components/Welcome/EditHospital";
 import EditRole from "./Components/Welcome/EditRole";
 import RolePage from "./Components/Welcome/RolePage";
 
-
-
-
 function App() {
-
   return (
-
     <>
-
       <BrowserRouter>
-
         <Routes>
-
           {/* <Route path="/" element={<Home/>} />
 
         <Route path="/login" element={<LogIn/>}/> */}
@@ -58,31 +50,21 @@ function App() {
 
           <Route path="/adduser" element={<AddUser />} />
           <Route path="/edituser" element={<EditUser />} />
-          <Route path="/user" element={<UserPage/>}/>
+          <Route path="/user" element={<UserPage />} />
 
           <Route path="/addrole" element={<AddRole />} />
 
-          <Route path="/edithospital" element={<EditHospital />} />
+          <Route path="/edithospital/:id" element={<EditHospital />} />
           <Route path="/editrole" element={<EditRole />} />
           <Route path="/role" element={<RolePage />} />
-
-
-
         </Routes>
 
         {/* <AdminPage /> */}
-
       </BrowserRouter>
 
       {/* // <Welcome /> */}
-
     </>
-
-  )
-
+  );
 }
-
-
-
 
 export default App;
