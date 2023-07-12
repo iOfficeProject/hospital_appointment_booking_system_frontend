@@ -58,18 +58,22 @@ function UserPage() {
       });
   };
 
-  const deleteUser = (userId) => {
-    var url = "https://localhost:3000/user/" + userId;
+  const deleteUser = async (id) => {
 
-    axios
+    try {
 
-      .delete(url)
+      const res = await axios.delete(`${url}/${id}`);
 
-      .then((res) => {})
+      console.log("deleted successfully");
 
-      .catch((err) => {});
+      getUsers();
 
-    navigate("/user");
+    } catch (err) {
+
+      console.error(`Error: ${err}`);
+
+    }
+
   };
 
   return (
@@ -149,7 +153,7 @@ function UserPage() {
                                   </Button>
                                 </Link>
                                 &nbsp;
-                                <Button onClick={() => deleteUser(user.id)}>
+                                <Button onClick={() => deleteUser(user.userId)}>
                                   Delete
                                 </Button>
                               </td>

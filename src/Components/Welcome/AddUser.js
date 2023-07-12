@@ -18,7 +18,7 @@ const AddUser = () => {
   const [roleName, setRoleName] = useState("");
 
   const navigate = useNavigate();
- const url="https://localhost:7264/api/users";
+  const url = "https://localhost:7264/api/users";
 
   const onNameChangeHandler = (e) => {
     setName(e.target.value);
@@ -44,34 +44,36 @@ const AddUser = () => {
     navigate("/user");
   };
 
-  const onSubmitClickHandler = async(e) => {
+  const onSubmitClickHandler = async (e) => {
     e.preventDefault();
-    const post={
-       name,email,mobileNumber,password,roleName
-    }
-    try{
-        const res = await axios.post(url,post)
-        console.log(res);
-    }
-    catch(err){
-        console.error(`Error: ${err}`);
+    const post = {
+      name,
+      email,
+      mobileNumber,
+      password,
+      roleName,
+    };
+    try {
+      const res = await axios.post(url, post);
+      console.log(res);
+    } catch (err) {
+      console.error(`Error: ${err}`);
     }
 
     navigate("/user");
-};
+  };
 
+  //   const addUser = () => {
+  //     axios
 
-//   const addUser = () => {
-//     axios
+  //       .post("url", {})
 
-//       .post("url", {})
+  //       .then((res) => {})
 
-//       .then((res) => {})
+  //       .catch((err) => {});
 
-//       .catch((err) => {});
-
-//     navigate("/users");
-//   };
+  //     navigate("/users");
+  //   };
 
   return (
     <div className="form-container">
@@ -145,13 +147,21 @@ const AddUser = () => {
 
         <label htmlFor="dropdown">Select your role:</label>
 
-        <select id="dropdown" value={roleName} onChange={onRoleChangeHandler}>
+        {/* <select id="dropdown" value={roleName} onChange={onRoleChangeHandler}>
           <option value="">-- Select --</option>
 
           <option value="option1">Doctor</option>
 
           <option value="option1">User</option>
-        </select>
+  </select>*/}
+
+        <input
+          type="text"
+          placeholder="Enter Role Name"
+          value={roleName}
+          onChange={onRoleChangeHandler}
+          required
+        />
 
         <br />
 
