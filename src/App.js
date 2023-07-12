@@ -62,7 +62,7 @@ function App() {
 
           <Route path="/addrole" element={<AddRole />} />
 
-          <Route path="/edithospital/:id" element={<EditHospital />} />
+          <Route path="/edithospital/:hospitalId" element={<EditHospital />} />
 
           <Route path="/role" element={<RolePage />} />
         </Routes>
