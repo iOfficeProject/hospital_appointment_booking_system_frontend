@@ -7,17 +7,29 @@ import Home from "./Components/Home/Home";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import LogIn from "./Components/LogIn/LoginForm";
+
 import Welcome from "./Components/Welcome/Welcome";
+
 import AdminPage from "./Components/Welcome/AdminPage";
+
 import AddDoctor from "./Components/Welcome/AddDoctor";
+
 import EditDoctor from "./Components/Welcome/EditDoctor";
+
 import AddHospital from "./Components/Welcome/AddHospital";
+
 import AddUser from "./Components/Welcome/AddUser";
+
 import EditUser from "./Components/Welcome/EditUser";
+
 import AddRole from "./Components/Welcome/AddRole";
+
 import HospitalPage from "./Components/Welcome/HospitalPage";
+
 import UserPage from "./Components/Welcome/UserPage";
+
 import EditHospital from "./Components/Welcome/EditHospital";
+
 import RolePage from "./Components/Welcome/RolePage";
 
 function App() {
@@ -27,36 +39,34 @@ function App() {
         <Routes>
           {/* <Route path="/" element={<Home/>} />
 
+
+
+
         <Route path="/login" element={<LogIn/>}/> */}
 
           <Route path="/" element={<AdminPage />} />
+
           <Route path="/adddoctor" element={<AddDoctor />} />
+
           <Route path="/editdoctor" element={<EditDoctor />} />
+
           <Route path="/hospital" element={<HospitalPage />} />
+
           <Route path="/addhospital" element={<AddHospital />} />
+
           <Route path="/adduser" element={<AddUser />} />
+
           <Route path="/edituser" element={<EditUser />} />
+
           <Route path="/user" element={<UserPage />} />
-<<<<<<< HEAD
 
           <Route path="/addrole" element={<AddRole />} />
 
           <Route path="/edithospital/:id" element={<EditHospital />} />
-          <Route path="/editrole" element={<EditRole />} />
-          <Route path="/role" element={<RolePage />} />
-        </Routes>
 
-        {/* <AdminPage /> */}
-      </BrowserRouter>
-
-      {/* // <Welcome /> */}
-=======
-          <Route path="/addrole" element={<AddRole />} />
-          <Route path="/edithospital" element={<EditHospital />} />
           <Route path="/role" element={<RolePage />} />
         </Routes>
       </BrowserRouter>
->>>>>>> 6bc06fe2b0464800625956bfd89104a08045a6b1
     </>
   );
 }
