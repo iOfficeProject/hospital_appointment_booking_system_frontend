@@ -59,7 +59,7 @@ export default function (props) {
         const jwtToken=response.data
         localStorage.setItem("jwtToken", jwtToken)
         alert("Successfully loggedin");
-        navigate('/welcome')
+        navigate('/hospital')
       })
       .catch((err) => {
         console.log(err);
