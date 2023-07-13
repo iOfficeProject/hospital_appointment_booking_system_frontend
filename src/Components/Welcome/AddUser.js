@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
 
@@ -15,7 +15,8 @@ const AddUser = () => {
 
   const [password, setPassword] = useState("");
 
-  const [roleName, setRoleName] = useState("");
+  const [roleId, setRoleId] = useState("");
+  const [roles, setRoles] = useState([]);
 
   const navigate = useNavigate();
   const url = "https://localhost:7264/api/users";
@@ -37,43 +38,57 @@ const AddUser = () => {
   };
 
   const onRoleChangeHandler = (e) => {
-    setRoleName(e.target.value);
+    setRoleId(e.target.value);
   };
 
   const backBtnHandler = () => {
     navigate("/user");
   };
+  const API_URL = "https://localhost:7264/api/roles";
+
+  useEffect(() => {
+    getRoles();
+  }, []);
+
+  const getRoles = () => {
+    axios
+      .get(`${API_URL}`)
+      .then((res) => {
+        const allRoles = res.data;
+        setRoles(allRoles);
+        console.log(allRoles);
+      })
+      .catch((err) => {
+        console.error(`Error: ${err}`);
+      });
+  };
 
   const onSubmitClickHandler = async (e) => {
     e.preventDefault();
+    var role = roles.filter(
+      (item) => item.roleId == Number.parseInt(roleId)
+    );
+
+    console.log("role ==>", role);
     const post = {
-      name,
-      email,
-      mobileNumber,
-      password,
-      roleName,
+      name: name,
+      email: email,
+      mobileNumber: mobileNumber,
+      password: password,
+      roleId: Number.parseInt(roleId),
+      specializationId: 2,
+      hospitalId: 2,
+      role: role[0],
     };
+    console.log(post)
     try {
       const res = await axios.post(url, post);
       console.log(res);
     } catch (err) {
       console.error(`Error: ${err}`);
     }
-
     navigate("/user");
   };
-
-  //   const addUser = () => {
-  //     axios
-
-  //       .post("url", {})
-
-  //       .then((res) => {})
-
-  //       .catch((err) => {});
-
-  //     navigate("/users");
-  //   };
 
   return (
     <div className="form-container">
@@ -147,21 +162,15 @@ const AddUser = () => {
 
         <label htmlFor="dropdown">Select your role:</label>
 
-        {/* <select id="dropdown" value={roleName} onChange={onRoleChangeHandler}>
-          <option value="">-- Select --</option>
-
-          <option value="option1">Doctor</option>
-
-          <option value="option1">User</option>
-  </select>*/}
-
-        <input
-          type="text"
-          placeholder="Enter Role Name"
-          value={roleName}
-          onChange={onRoleChangeHandler}
-          required
-        />
+        <select id="dropdown" value={roleId} onChange={onRoleChangeHandler}>
+          {roles.map((role) => {
+            return (
+              <>
+                <option value={role.roleId}>{role.roleName}</option>
+              </>
+            );
+          })}
+        </select>
 
         <br />
 
