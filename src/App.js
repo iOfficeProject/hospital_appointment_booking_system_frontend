@@ -56,7 +56,7 @@ function App() {
 
           <Route path="/adduser" element={<AddUser />} />
 
-          <Route path="/edituser" element={<EditUser />} />
+          <Route path="/edituser/:userId" element={<EditUser />} />
 
           <Route path="/user" element={<UserPage />} />
 

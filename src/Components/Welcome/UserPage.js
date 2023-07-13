@@ -59,21 +59,15 @@ function UserPage() {
   };
 
   const deleteUser = async (id) => {
-
     try {
-
       const res = await axios.delete(`${url}/${id}`);
 
       console.log("deleted successfully");
 
       getUsers();
-
     } catch (err) {
-
       console.error(`Error: ${err}`);
-
     }
-
   };
 
   return (
@@ -127,30 +121,11 @@ function UserPage() {
                               <td>{user.email}</td>
 
                               <td>{user.mobileNumber}</td>
-                                <td>{user.role.roleName}</td>
-                               
+                              <td>{user.role.roleName}</td>
 
                               <td>
-                                <Link to={`/edituser`}>
-                                  <Button
-                                    onClick={() =>
-                                      handleEdit(
-                                        user.id,
-
-                                        user.Name,
-
-                                        user.Email,
-
-                                        user.Contact,
-
-                                        user.Password,
-
-                                        user.Role
-                                      )
-                                    }
-                                  >
-                                    Edit
-                                  </Button>
+                              <Link to={`/edituser/${user.userId}`}>
+                                  <Button>Edit</Button>
                                 </Link>
                                 &nbsp;
                                 <Button onClick={() => deleteUser(user.userId)}>
