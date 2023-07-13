@@ -48,7 +48,8 @@ function App() {
 
           <Route path="/edithospital/:hospitalId" element={<EditHospital />} />
 
-          <Route path="/role" element={<RolePage />} />
+          <Route path="/role" elem
+          ent={<RolePage />} />
         </Routes>
       </BrowserRouter>
     </>
