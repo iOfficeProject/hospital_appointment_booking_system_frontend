@@ -17,8 +17,12 @@ const EditUser = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    
+    var rolID =
+      selectedRole == null ? data.roleId : Number.parseInt(selectedRole);
+
     var role = roles.filter(
-      (item) => item.roleId == Number.parseInt(selectedRole)
+      (item) => item.roleId == Number.parseInt(rolID)
     );
 
     console.log("role ==>", role);
@@ -29,7 +33,7 @@ const EditUser = () => {
       email: data.email,
       password: data.password,
       mobileNumber: data.mobileNumber,
-      roleId: Number.parseInt(selectedRole),
+      roleId: rolID,
       role: role[0],
       specializationId: data.specializationId,
       hospitalId: data.hospitalId,
