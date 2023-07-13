@@ -2,6 +2,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import classes from "./NavBar.module.css";
 // import "./NavBar.css";
+import { Link } from "react-router-dom";
 
 function App() {
   return (
@@ -9,17 +10,14 @@ function App() {
     <nav className={classes.nav}>
       <ul>
         <li>
-          <a href="/">About</a>
+          <Link to="/about">About</Link>
         </li>
         <li>
-          <a href="/">ContactUs</a>
-        </li>
-        <li>
-          <a href="/">Services</a>
+          <Link to="/services">Services</Link>
         </li>
         <li>
           <button>
-            <a href="/login">SignIn</a>
+            <Link to="/login">SignIn</Link>
           </button>
         </li>
       </ul>

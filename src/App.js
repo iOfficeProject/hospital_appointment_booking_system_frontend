@@ -1,48 +1,32 @@
 import "./App.css";
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 import Home from "./Components/Home/Home";
-
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import LogIn from "./Components/LogIn/LoginForm";
-
 import Welcome from "./Components/Welcome/Welcome";
-
 import AdminPage from "./Components/Welcome/AdminPage";
-
 import AddDoctor from "./Components/Welcome/AddDoctor";
-
 import EditDoctor from "./Components/Welcome/EditDoctor";
-
 import AddHospital from "./Components/Welcome/AddHospital";
-
 import AddUser from "./Components/Welcome/AddUser";
-
 import EditUser from "./Components/Welcome/EditUser";
-
 import AddRole from "./Components/Welcome/AddRole";
-
 import HospitalPage from "./Components/Welcome/HospitalPage";
-
 import UserPage from "./Components/Welcome/UserPage";
-
 import EditHospital from "./Components/Welcome/EditHospital";
-
 import RolePage from "./Components/Welcome/RolePage";
+import AboutUs from "./Components/Welcome/AboutUs";
+import Services from "./Components/Welcome/Services";
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          {/* <Route path="/" element={<Home/>} />
-
-
-
-
-        <Route path="/login" element={<LogIn/>}/> */}
+          {/* <Route path="/" element={<Home />} />
+          <Route path="/login" element={<LogIn />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/services" element={<Services />} /> */}
 
           <Route path="/" element={<AdminPage />} />
 
@@ -64,7 +48,8 @@ function App() {
 
           <Route path="/edithospital/:hospitalId" element={<EditHospital />} />
 
-          <Route path="/role" element={<RolePage />} />
+          <Route path="/role" elem
+          ent={<RolePage />} />
         </Routes>
       </BrowserRouter>
     </>
