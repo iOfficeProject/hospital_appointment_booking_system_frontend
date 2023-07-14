@@ -65,9 +65,7 @@ const AddUser = () => {
 
   const onSubmitClickHandler = async (e) => {
     e.preventDefault();
-    var role = roles.filter(
-      (item) => item.roleId == Number.parseInt(roleId)
-    );
+    var role = roles.filter((item) => item.roleId == Number.parseInt(roleId));
 
     console.log("role ==>", role);
     const post = {
@@ -76,11 +74,9 @@ const AddUser = () => {
       mobileNumber: mobileNumber,
       password: password,
       roleId: Number.parseInt(roleId),
-      specializationId: 2,
-      hospitalId: 2,
       role: role[0],
     };
-    console.log(post)
+    console.log(post);
     try {
       const res = await axios.post(url, post);
       console.log(res);
