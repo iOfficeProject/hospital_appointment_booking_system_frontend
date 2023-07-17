@@ -93,34 +93,6 @@ const RolePage = () => {
                 <br />
 
                 <div style={{ margin: "2rem" }}>
-                  {/* <Table striped bordered hover size="sm">
-                    <thead>
-                      <tr>
-                        <th>Roles</th>
-                        <th>Actions</th>
-                      </tr>
-                    </thead>
-
-                    <tbody>
-                      {roles && roles.length > 0
-                        ? roles.map((role) => {
-                            return (
-                              <tr>
-                                <td>{role.roleName}</td>
-
-                                <td>
-                                  <Button
-                                    onClick={() => deleteRole(role.roleId)}
-                                  >
-                                    Delete
-                                  </Button>
-                                </td>
-                              </tr>
-                            );
-                          })
-                        : "No data available"}
-                    </tbody>
-                  </Table> */}
                   <TableContainer component={Paper}>
                     <Table>
                       <TableHead>

@@ -1,43 +1,15 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "../Hospital/Hospital.css"
+import "../Hospital/Hospital.css";
 import Button from "@mui/material/Button";
 
-
 const AddRole = () => {
-
   const [roleName, setRoleName] = useState("");
 
   const navigate = useNavigate();
 
   const url = "https://localhost:7264/api/roles";
-
-  //   useEffect(() => {
-
-  //     // Fetch role names from the API
-
-  //     fetch("https://localhost:7264/api/roles")
-
-  //       .then((response) => response.json())
-
-  //       .then((data) => {
-
-  //         // Extract role names from the array of objects
-
-  //         const names = data.map((item) => item.roleName);
-
-  //         setRoleNames(names);
-
-  //       })
-
-  //       .catch((error) => {
-
-  //         console.error("Error fetching role names:", error);
-
-  //       });
-
-  //   }, []);
 
   const onRoleChangeHandler = (e) => {
     setRoleName(e.target.value);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-// import "./AdminPage.css";
-import "../AdminPage/AdminPage.css"
+
+import "../AdminPage/AdminPage.css";
 import { FaHome, FaHospitalSymbol, FaUserAlt } from "react-icons/fa";
 import { RiAdminLine } from "react-icons/ri";
 import { HiUsers } from "react-icons/hi";
@@ -10,70 +10,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import Sidebar from "../Sidebar/Sidebar";
 import Header from "../Header/Header";
-// import Image from "../image/doctor.jpg";
+
 import Image from "../../image/doctor.jpg";
 
 const AdminPage = () => {
-  // const [doctor, setDoctor] = useState([]);
-
-  // const API_URL = "";
-
-  // const getDoctors = async () => {
-  //   try {
-  //     const fetchData = await axios.get(API_URL, {
-  //       headers: {
-  //         authorization: "Bearer JWT Token",
-  //       },
-  //     });
-  //     setDoctor(fetchData.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   window.addEventListener("load", getDoctors);
-  //   return () => {
-  //     window.removeEventListener("load", getDoctors);
-  //   };
-  // }, [doctor]);
-
-  const handleEdit = (id, name, speciality, contact) => {
-    localStorage.setItem("Name", name);
-
-    localStorage.setItem("Speciality", speciality);
-
-    localStorage.setItem("Contact", contact);
-
-    localStorage.setItem("Id", id);
-  };
-
-  // const handleDelete = (id) => {
-
-  //   let index = Doctors.map(function (e) {
-
-  //     return e.id;
-
-  //   }).indexOf(id);
-
-  //   Doctors.splice(index, 1);
-
-  //   navigate("/");
-
-  // };
-
-  const deleteDoctor = (doctorId) => {
-    var url = "https://localhost:3000/doctor/" + doctorId;
-
-    axios
-
-      .delete(url)
-
-      .then((res) => {})
-
-      .catch((err) => {});
-  };
-
   return (
     <>
       {/* Header */}

@@ -21,22 +21,6 @@ import Add from "@mui/icons-material/Add";
 function UserPage() {
   const [users, setUsers] = useState([]);
 
-  // const navigate = useNavigate();
-
-  // const handleEdit = (id, name, email, contact, password, role) => {
-  //   localStorage.setItem("Name", name);
-
-  //   localStorage.setItem("Email", email);
-
-  //   localStorage.setItem("Contact", contact);
-
-  //   localStorage.setItem("Password", password);
-
-  //   localStorage.setItem("Role", role);
-
-  //   localStorage.setItem("Id", id);
-  // };
-
   const url = "https://localhost:7264/api/users";
 
   useEffect(() => {
@@ -81,7 +65,15 @@ function UserPage() {
           <Col md={10}>
             <div id="main">
               <article>
-                <h2 style={{ textAlign: "center", color: "black", textDecoration: "underline" }}>List of Users</h2>
+                <h2
+                  style={{
+                    textAlign: "center",
+                    color: "black",
+                    textDecoration: "underline",
+                  }}
+                >
+                  List of Users
+                </h2>
 
                 <br />
 
@@ -96,52 +88,6 @@ function UserPage() {
                 <br />
 
                 <div style={{ margin: "2rem" }}>
-                  {/* <Table striped bordered hover size="sm">
-                    <thead>
-                      <tr>
-                        <th>Name</th>
-
-                        <th>Email</th>
-
-                        <th>Contact</th>
-
-                        <th>Role</th>
-
-                        <th>Actions</th>
-                      </tr>
-                    </thead>
-
-                    <tbody>
-                      {users && users.length > 0 ? (
-                        users.map((user, index) => {
-                          return (
-                            <tr key={index}>
-                              <td>{user.name}</td>
-
-                              <td>{user.email}</td>
-
-                              <td>{user.mobileNumber}</td>
-                              <td>{user.role.roleName}</td>
-
-                              <td>
-                              <Link to={`/edituser/${user.userId}`}>
-                                  <Button>Edit</Button>
-                                </Link>
-                                &nbsp;
-                                <Button onClick={() => deleteUser(user.userId)}>
-                                  Delete
-                                </Button>
-                              </td>
-                            </tr>
-                          );
-                        })
-                      ) : (
-                        <tr>
-                          <td colSpan={4}>No data available</td>
-                        </tr>
-                      )}
-                    </tbody>
-                  </Table> */}
                   <TableContainer component={Paper}>
                     <Table>
                       <TableHead>
@@ -158,48 +104,51 @@ function UserPage() {
                           <TableCell align="center">
                             <b style={{ fontSize: "18px" }}>Role</b>
                           </TableCell>
+                          <TableCell align="center">
+                            <b style={{ fontSize: "18px" }}>Actions</b>
+                          </TableCell>
                         </TableRow>
                       </TableHead>
                       <TableBody>
                         {users && users.length > 0
                           ? users.map((user) => (
-                            <TableRow>
-                              <TableCell
-                                component="th"
-                                scope="row"
-                                align="center"
-                              >
-                                {user.name}
-                              </TableCell>
-                              <TableCell align="center">
-                                {user.email}
-                              </TableCell>
-                              <TableCell align="center">
-                                {user.mobileNumber}
-                              </TableCell>
-                              <TableCell align="center">
-                                {user.role.roleName}
-                              </TableCell>
-                              <TableCell align="center">
-                                <Link to={`/edituser/${user.userId}`}>
+                              <TableRow>
+                                <TableCell
+                                  component="th"
+                                  scope="row"
+                                  align="center"
+                                >
+                                  {user.name}
+                                </TableCell>
+                                <TableCell align="center">
+                                  {user.email}
+                                </TableCell>
+                                <TableCell align="center">
+                                  {user.mobileNumber}
+                                </TableCell>
+                                <TableCell align="center">
+                                  {user.role.roleName}
+                                </TableCell>
+                                <TableCell align="center">
+                                  <Link to={`/edituser/${user.userId}`}>
+                                    <Button
+                                      variant="contained"
+                                      startIcon={<Update />}
+                                    >
+                                      Edit
+                                    </Button>
+                                  </Link>
+                                  &nbsp;
                                   <Button
                                     variant="contained"
-                                    startIcon={<Update />}
+                                    startIcon={<DeleteIcon />}
+                                    onClick={() => deleteUser(user.userId)}
                                   >
-                                    Edit
+                                    Delete
                                   </Button>
-                                </Link>
-                                &nbsp;
-                                <Button
-                                  variant="contained"
-                                  startIcon={<DeleteIcon />}
-                                  onClick={() => deleteUser(user.userId)}
-                                >
-                                  Delete
-                                </Button>
-                              </TableCell>
-                            </TableRow>
-                          ))
+                                </TableCell>
+                              </TableRow>
+                            ))
                           : "No data available"}
                       </TableBody>
                     </Table>

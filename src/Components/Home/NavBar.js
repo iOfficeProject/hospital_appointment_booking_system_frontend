@@ -1,12 +1,11 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import classes from "./NavBar.module.css";
-// import "./NavBar.css";
+
 import { Link } from "react-router-dom";
 
 function App() {
   return (
-  
     <nav className={classes.nav}>
       <ul>
         <li>

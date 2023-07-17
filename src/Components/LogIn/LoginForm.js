@@ -49,10 +49,7 @@ export default function (props) {
     console.log("Submitted form");
     
 
-    // axios.post("https://reqres.in/api/login", {
-    //   email: email,
-    //   password: password,
-    // });
+   
     axios
       .post("https://localhost:7264/api/login/", dataToLoggedIn)
       .then((response) => {
@@ -75,11 +72,7 @@ export default function (props) {
       console.log(name);
       console.log(password);
     
-      // Check email validity
-      // if (!validateEmail(email)) {
-      //   alert("Invalid email address");
-      //   return;
-      // }
+     
     
       // Check password length
       if (password.length < 8) {
@@ -111,17 +104,7 @@ export default function (props) {
       },
     };
 
-    // axios
-    //   .post(
-    //     "https://reqres.in/api/register",
-    //     {
-    //       name: name,
-    //       email: email,
-    //       password: password,
-    //       mobile: mobile,
-    //     },
-    //     config
-    //   )
+  
     axios
       .post("https://localhost:7264/api/users", userToRegister)
       .then((response) => {
@@ -148,20 +131,7 @@ export default function (props) {
                 Sign Up
               </span>
             </div>
-            {/* <div className="form-group mt-3">
-              <label>Hospital</label>
-
-              <select
-                placeholder="hospitalList"
-                name="hospital"
-                id=""
-                className="form-control mt-1"
-              >
-                <option>KEM</option>
-                <option>Civil</option>
-                <option>Sahyadri</option>
-              </select>
-            </div> */}
+           
             <div className="form-group mt-3">
               <label>Email address</label>
               <input

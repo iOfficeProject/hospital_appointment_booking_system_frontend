@@ -62,7 +62,15 @@ const HospitalPage = () => {
           <Col md={10}>
             <div id="main">
               <article>
-                <h2 style={{ textAlign: "center", color:"black", textDecoration:"underline" }}>List of Hospitals</h2>
+                <h2
+                  style={{
+                    textAlign: "center",
+                    color: "black",
+                    textDecoration: "underline",
+                  }}
+                >
+                  List of Hospitals
+                </h2>
                 <br />
                 <Link to="/addhospital">
                   <Button variant="contained" startIcon={<Add />}>
@@ -72,44 +80,6 @@ const HospitalPage = () => {
                 <br />
                 <br />
                 <div style={{ margin: "2rem" }}>
-                  {/* <Table striped bordered hover size="sm">
-                    <thead>
-                      <tr>
-                        <th>Name</th>
-                        <th>Locality</th>
-                        <th>Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {hospitals && hospitals.length > 0 ? (
-                        hospitals.map((hospital, index) => {
-                          return (
-                            <tr key={index}>
-                              <td>{hospital.hospitalName}</td>
-                              <td>{hospital.location}</td>
-                              <td>
-                                <Link to={`/edithospital/${hospital.hospitalId}`}>
-                                  <Button>Edit</Button>
-                                </Link>
-                                &nbsp;
-                                <Button
-                                  onClick={() =>
-                                    deleteHospital(hospital.hospitalId)
-                                  }
-                                >
-                                  Delete
-                                </Button>
-                              </td>
-                            </tr>
-                          );
-                        })
-                      ) : (
-                        <tr>
-                          <td colSpan={4}>No data available</td>
-                        </tr>
-                      )}
-                    </tbody>
-                  </Table> */}
                   <TableContainer component={Paper}>
                     <Table>
                       <TableHead>

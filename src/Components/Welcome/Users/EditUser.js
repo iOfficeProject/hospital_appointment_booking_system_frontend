@@ -43,7 +43,7 @@ const EditUser = () => {
       password: data.password,
       roleId: selectedRole,
       specializationId: data.specializationId,
-      hospitalId: data.hospitalId
+      hospitalId: data.hospitalId,
     };
 
     console.log("H ==>", form);
@@ -109,18 +109,6 @@ const EditUser = () => {
       })
       .catch((err) => console.log(err));
   }, [URL, userId]);
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   axios
-  //     .put(URL, data)
-  //     .then((res) => {
-  //       alert("Data updated successfully");
-  //       navigate("/user");
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
 
   const handleBackBtn = () => {
     navigate("/user");
