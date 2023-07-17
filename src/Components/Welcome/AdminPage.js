@@ -4,12 +4,23 @@ import { FaHome, FaHospitalSymbol, FaUserAlt } from "react-icons/fa";
 import { RiAdminLine } from "react-icons/ri";
 import { HiUsers } from "react-icons/hi";
 import { Link, Navigate, NavLink, useNavigate } from "react-router-dom";
-import { Button, Table, Row, Col, Container } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Doctors from "./Doctors";
 import axios from "axios";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button";
+import DeleteIcon from "@mui/icons-material/Delete";
+import Update from "@mui/icons-material/Update";
+import Add from "@mui/icons-material/Add";
 
 const AdminPage = () => {
   // const [doctor, setDoctor] = useState([]);
@@ -94,7 +105,9 @@ const AdminPage = () => {
                 <br />
 
                 <Link to="/adddoctor">
-                  <Button size="lg">Add Doctors</Button>
+                  <Button variant="contained" startIcon={<Add />}>
+                    Add Doctors
+                  </Button>
                 </Link>
 
                 <br />
@@ -102,7 +115,7 @@ const AdminPage = () => {
                 <br />
 
                 <div style={{ margin: "2rem" }}>
-                  <Table striped bordered hover size="sm">
+                  {/* <Table striped bordered hover size="sm">
                     <thead>
                       <tr>
                         <th>Name</th>
@@ -156,7 +169,72 @@ const AdminPage = () => {
                           })
                         : "No data available"}
                     </tbody>
-                  </Table>
+                  </Table> */}
+                  <TableContainer component={Paper}>
+                    <Table>
+                      <TableHead>
+                        <TableRow>
+                          <TableCell align="center">
+                            <b style={{ fontSize: "18px" }}>Name</b>
+                          </TableCell>
+                          <TableCell align="center">
+                            <b style={{ fontSize: "18px" }}>Speciality</b>
+                          </TableCell>
+                          <TableCell align="center">
+                            <b style={{ fontSize: "18px" }}>Contact</b>
+                          </TableCell>
+                          <TableCell align="center">
+                            <b style={{ fontSize: "18px" }}>Actions</b>
+                          </TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+                        {Doctors && Doctors.length > 0
+                          ? Doctors.map((doctor) => (
+                              <TableRow key={doctor.id}>
+                                <TableCell
+                                  component="th"
+                                  scope="row"
+                                  align="center"
+                                >
+                                  {doctor.Name}
+                                </TableCell>
+                                <TableCell align="center">
+                                  {doctor.Speciality}
+                                </TableCell>
+                                <TableCell align="center">
+                                  {doctor.Contact}
+                                </TableCell>
+                                <TableCell align="center">
+                                  <Button
+                                    variant="contained"
+                                    startIcon={<Update />}
+                                    onClick={() =>
+                                      handleEdit(
+                                        doctor.id,
+                                        doctor.Name,
+                                        doctor.Speciality,
+                                        doctor.Contact
+                                      )
+                                    }
+                                  >
+                                    Edit
+                                  </Button>
+                                  &nbsp;
+                                  <Button
+                                    variant="contained"
+                                    startIcon={<DeleteIcon />}
+                                    onClick={() => deleteDoctor(doctor.id)}
+                                  >
+                                    Delete
+                                  </Button>
+                                </TableCell>
+                              </TableRow>
+                            ))
+                          : "No data available"}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
                 </div>
               </article>
             </div>

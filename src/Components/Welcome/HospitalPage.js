@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
-import { Button, Row, Col, Container } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Hospitals from "./Hospitals";
 import axios from "axios";
@@ -12,6 +12,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button";
+import DeleteIcon from "@mui/icons-material/Delete";
+import Update from "@mui/icons-material/Update";
+import Add from "@mui/icons-material/Add";
 
 const HospitalPage = () => {
   const [hospitals, setHospitals] = useState([]);
@@ -62,7 +66,9 @@ const HospitalPage = () => {
                 <h2 style={{ textAlign: "center" }}>List of Hospitals</h2>
                 <br />
                 <Link to="/addhospital">
-                  <Button size="lg">Add Hospital</Button>
+                  <Button variant="contained" startIcon={<Add />}>
+                    Add Hospital
+                  </Button>
                 </Link>
                 <br />
                 <br />
@@ -105,7 +111,7 @@ const HospitalPage = () => {
                       )}
                     </tbody>
                   </Table> */}
-                   <TableContainer component={Paper}>
+                  <TableContainer component={Paper}>
                     <Table>
                       <TableHead>
                         <TableRow>
@@ -138,11 +144,18 @@ const HospitalPage = () => {
                                   <Link
                                     to={`/edithospital/${hospital.hospitalId}`}
                                   >
-                                    <Button>Edit</Button>
+                                    <Button
+                                      variant="contained"
+                                      startIcon={<Update />}
+                                    >
+                                      Edit
+                                    </Button>
                                   </Link>
                                   &nbsp;
                                   <Link>
                                     <Button
+                                      variant="contained"
+                                      startIcon={<DeleteIcon />}
                                       onClick={() =>
                                         deleteHospital(hospital.hospitalId)
                                       }

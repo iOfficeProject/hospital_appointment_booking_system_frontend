@@ -4,7 +4,7 @@ import { FaHome, FaHospitalSymbol, FaUserAlt } from "react-icons/fa";
 import { RiAdminLine } from "react-icons/ri";
 import { HiUsers } from "react-icons/hi";
 import { Link, Navigate, NavLink, useNavigate } from "react-router-dom";
-import { Button, Row, Col, Container } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import Roles from "./Roles";
@@ -17,9 +17,12 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button";
+import DeleteIcon from "@mui/icons-material/Delete";
+import Add from "@mui/icons-material/Add";
 
 const RolePage = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [roles, setRoles] = useState([]);
 
   const API_URL = "https://localhost:7264/api/roles";
@@ -73,7 +76,9 @@ const RolePage = () => {
                 <br />
 
                 <Link to="/addrole">
-                  <Button size="lg">Add Role</Button>
+                  <Button variant="contained" startIcon={<Add />}>
+                    Add Role
+                  </Button>
                 </Link>
 
                 <br />
@@ -109,7 +114,7 @@ const RolePage = () => {
                         : "No data available"}
                     </tbody>
                   </Table> */}
-                   <TableContainer component={Paper}>
+                  <TableContainer component={Paper}>
                     <Table>
                       <TableHead>
                         <TableRow>
@@ -134,6 +139,8 @@ const RolePage = () => {
                                 </TableCell>
                                 <TableCell align="center">
                                   <Button
+                                    variant="contained"
+                                    startIcon={<DeleteIcon />}
                                     onClick={() => deleteRole(role.roleId)}
                                   >
                                     Delete
