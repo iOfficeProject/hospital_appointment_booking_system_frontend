@@ -1,36 +1,26 @@
-import React, { useState } from 'react';
-import { FaHome } from 'react-icons/fa';
-import { AiOutlineUser } from 'react-icons/ai';
-import './Header.css';
-import { useNavigate } from 'react-router-dom';
-
-
+import React, { useState } from "react";
+import { FaHome } from "react-icons/fa";
+import { AiOutlineUser } from "react-icons/ai";
+import "./Header.css";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
-
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
 
-
-
   const handleLogout = () => {
-    console.log('Logout');
+    console.log("Logout");
     navigate("/");
   };
 
   const navigate = useNavigate();
 
   const homeClickHandler = () => {
-
     navigate("/");
-
   };
-
-
 
   return (
     <div className="body">
@@ -55,7 +45,5 @@ const Header = () => {
     </div>
   );
 };
-
-
 
 export default Header;

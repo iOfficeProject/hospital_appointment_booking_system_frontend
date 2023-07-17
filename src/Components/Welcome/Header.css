@@ -1,32 +1,20 @@
 .nav {
-  background-color: #1a237e;
-
+  background-color: rgb(5, 68, 104);
   height: 100px;
-
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
-
   padding: 0 4rem;
-
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
   position: relative;
 }
 
 .nav ul {
   list-style: none;
-
   margin: 0;
-
   padding: 0;
-
   display: flex;
-
   align-items: center;
-
   font-size: 15px;
 }
 
@@ -36,31 +24,22 @@
 
 .icon {
   font-size: 2rem;
-
   color: #ffffff;
-
   position: absolute;
-
   left: 4rem;
-
   top: 50%;
-
   transform: translateY(-50%);
 }
 
 .admin-logo {
   font-size: 2rem;
-
   color: #ffffff;
-
   position: absolute;
-
   right: 4rem;
-
   top: 50%;
-
   transform: translateY(-50%);
 }
+
 .admin-logo span {
   margin-left: 0.75rem;
   font-size: 24px;
@@ -110,4 +89,27 @@ ul {
 .dropdown button:focus {
   outline: none;
   box-shadow: 0 0 0 2px red;
+}
+
+
+
+@media screen and (max-width: 768px) {
+  .nav {
+    padding: 0 2rem; 
+  }
+
+  .icon,
+  .admin-logo {
+    font-size: 1.5rem; 
+    left: 2rem; 
+    right: 2rem; 
+  }
+
+  .admin-logo span {
+    font-size: 20px; 
+  }
+
+  .dropdown {
+    right: 2rem;
+  }
 }

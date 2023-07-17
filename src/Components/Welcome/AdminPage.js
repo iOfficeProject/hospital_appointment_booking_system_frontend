@@ -10,17 +10,7 @@ import Doctors from "./Doctors";
 import axios from "axios";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import Button from "@mui/material/Button";
-import DeleteIcon from "@mui/icons-material/Delete";
-import Update from "@mui/icons-material/Update";
-import Add from "@mui/icons-material/Add";
+import Image from "../image/doctor.jpg";
 
 const AdminPage = () => {
   // const [doctor, setDoctor] = useState([]);
@@ -98,145 +88,35 @@ const AdminPage = () => {
 
           {/* Main Content */}
           <Col md={10}>
-            <div id="main">
-              <article>
-                <h2 style={{ textAlign: "center" }}>List of doctors</h2>
-
-                <br />
-
-                <Link to="/adddoctor">
-                  <Button variant="contained" startIcon={<Add />}>
-                    Add Doctors
-                  </Button>
-                </Link>
-
-                <br />
-
-                <br />
-
-                <div style={{ margin: "2rem" }}>
-                  {/* <Table striped bordered hover size="sm">
-                    <thead>
-                      <tr>
-                        <th>Name</th>
-
-                        <th>Speciality</th>
-
-                        <th>Contact</th>
-
-                        <th>Actions</th>
-                      </tr>
-                    </thead>
-
-                    <tbody>
-                      {Doctors && Doctors.length > 0
-                        ? Doctors.map((doctor) => {
-                            return (
-                              <tr>
-                                <td>{doctor.Name}</td>
-
-                                <td>{doctor.Speciality}</td>
-
-                                <td>{doctor.Contact}</td>
-
-                                <td>
-                                  <Link to={`/editdoctor`}>
-                                    <Button
-                                      onClick={() =>
-                                        handleEdit(
-                                          doctor.id,
-
-                                          doctor.Name,
-
-                                          doctor.Speciality,
-
-                                          doctor.Contact
-                                        )
-                                      }
-                                    >
-                                      Edit
-                                    </Button>
-                                  </Link>
-                                  &nbsp;
-                                  <Button
-                                    onClick={() => deleteDoctor(doctor.id)}
-                                  >
-                                    Delete
-                                  </Button>
-                                </td>
-                              </tr>
-                            );
-                          })
-                        : "No data available"}
-                    </tbody>
-                  </Table> */}
-                  <TableContainer component={Paper}>
-                    <Table>
-                      <TableHead>
-                        <TableRow>
-                          <TableCell align="center">
-                            <b style={{ fontSize: "18px" }}>Name</b>
-                          </TableCell>
-                          <TableCell align="center">
-                            <b style={{ fontSize: "18px" }}>Speciality</b>
-                          </TableCell>
-                          <TableCell align="center">
-                            <b style={{ fontSize: "18px" }}>Contact</b>
-                          </TableCell>
-                          <TableCell align="center">
-                            <b style={{ fontSize: "18px" }}>Actions</b>
-                          </TableCell>
-                        </TableRow>
-                      </TableHead>
-                      <TableBody>
-                        {Doctors && Doctors.length > 0
-                          ? Doctors.map((doctor) => (
-                              <TableRow key={doctor.id}>
-                                <TableCell
-                                  component="th"
-                                  scope="row"
-                                  align="center"
-                                >
-                                  {doctor.Name}
-                                </TableCell>
-                                <TableCell align="center">
-                                  {doctor.Speciality}
-                                </TableCell>
-                                <TableCell align="center">
-                                  {doctor.Contact}
-                                </TableCell>
-                                <TableCell align="center">
-                                  <Button
-                                    variant="contained"
-                                    startIcon={<Update />}
-                                    onClick={() =>
-                                      handleEdit(
-                                        doctor.id,
-                                        doctor.Name,
-                                        doctor.Speciality,
-                                        doctor.Contact
-                                      )
-                                    }
-                                  >
-                                    Edit
-                                  </Button>
-                                  &nbsp;
-                                  <Button
-                                    variant="contained"
-                                    startIcon={<DeleteIcon />}
-                                    onClick={() => deleteDoctor(doctor.id)}
-                                  >
-                                    Delete
-                                  </Button>
-                                </TableCell>
-                              </TableRow>
-                            ))
-                          : "No data available"}
-                      </TableBody>
-                    </Table>
-                  </TableContainer>
+            <div className="container">
+              <div className="card my-5  ">
+                <div className="row g-0">
+                  <div className="col-md-4 order-md-2">
+                    <img
+                      src={Image}
+                      className="img-fluid rounded-start"
+                      alt="..."
+                      width={300}
+                      height={300}
+                    />
+                  </div>
+                  <div className="col-md-8">
+                    <div className="card-body">
+                      <h2 className="card-title">Welcome To Admin Page</h2>
+                      <br />
+                      <p className="card-text">
+                        <h5>
+                          1. Admin can add, delete and update the hospitals.
+                        </h5>
+                        <br />
+                        <h5>2. Admin can add, delete and update the users.</h5>
+                        <br />
+                        <h5>3. Admin can add, delete and update the roles.</h5>
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </article>
+              </div>
             </div>
           </Col>
         </Row>

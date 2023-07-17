@@ -1,54 +1,79 @@
-.sidebar {
+ .sidebar {
     width: auto;
     height: 100vh;
-    background-color: rgb(219, 215, 215);
+    background-color: rgba(5, 68, 104);
     padding: 20px;
     box-sizing: border-box;
-}
-
-h2 {
-    color: #333;
+  }
+  
+  h2 {
+    color: whitesmoke;
     margin-bottom: 20px;
     font-size: 1.8rem;
-}
-
-ul {
+  }
+  
+  ul {
     list-style-type: none;
     padding: 0;
     margin-top: 20px;
-}
-
-li {
+  }
+  
+  li {
     margin: 30px;
     cursor: pointer;
-}
-
-li a {
+  }
+  
+  li a {
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: #333;
+    color: whitesmoke;
     font-size: 1.6rem;
-    font-weight:500;
+    font-weight: 500;
     transition: color 0.3s ease;
-}
-
-li a:hover {
+  }
+  
+  li a:hover {
     color: #555;
-}
-
-li a:focus,
-li a:hover,
-li a:active {
+  }
+  
+  li a:focus,
+  li a:hover,
+  li a:active {
     color: #5e5df0;
     outline: none;
-}
-
-.side-icons {
+  }
+  
+  .side-icons {
     margin-right: 8px;
     display: inline-flex;
     align-items: center;
     column-gap: 12px;
     font-size: 1.5rem;
-}
-
+    color: whitesmoke;
+  }
+  
+ 
+  
+  @media screen and (max-width: 768px) {
+    .sidebar {
+      padding: 10px;
+    }
+  
+    h2 {
+      font-size: 1.5rem;
+    }
+  
+    li {
+      margin: 20px;
+    }
+  
+    li a {
+      font-size: 1.4rem;
+    }
+  
+    .side-icons {
+      font-size: 1.3rem;
+    }
+  }
+  

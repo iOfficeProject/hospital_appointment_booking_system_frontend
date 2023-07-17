@@ -63,7 +63,7 @@ const HospitalPage = () => {
           <Col md={10}>
             <div id="main">
               <article>
-                <h2 style={{ textAlign: "center" }}>List of Hospitals</h2>
+                <h2 style={{ textAlign: "center", color:"black", textDecoration:"underline" }}>List of Hospitals</h2>
                 <br />
                 <Link to="/addhospital">
                   <Button variant="contained" startIcon={<Add />}>

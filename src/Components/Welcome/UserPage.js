@@ -84,7 +84,7 @@ function UserPage() {
           <Col md={10}>
             <div id="main">
               <article>
-                <h2 style={{ textAlign: "center" }}>List of Users</h2>
+                <h2 style={{ textAlign: "center", color: "black", textDecoration: "underline" }}>List of Users</h2>
 
                 <br />
 
@@ -166,43 +166,43 @@ function UserPage() {
                       <TableBody>
                         {users && users.length > 0
                           ? users.map((user) => (
-                              <TableRow>
-                                <TableCell
-                                  component="th"
-                                  scope="row"
-                                  align="center"
-                                >
-                                  {user.name}
-                                </TableCell>
-                                <TableCell align="center">
-                                  {user.email}
-                                </TableCell>
-                                <TableCell align="center">
-                                  {user.mobileNumber}
-                                </TableCell>
-                                <TableCell align="center">
-                                  {user.role.roleName}
-                                </TableCell>
-                                <TableCell align="center">
-                                  <Link to={`/edituser/${user.userId}`}>
-                                    <Button
-                                      variant="contained"
-                                      startIcon={<Update />}
-                                    >
-                                      Edit
-                                    </Button>
-                                  </Link>
-                                  &nbsp;
+                            <TableRow>
+                              <TableCell
+                                component="th"
+                                scope="row"
+                                align="center"
+                              >
+                                {user.name}
+                              </TableCell>
+                              <TableCell align="center">
+                                {user.email}
+                              </TableCell>
+                              <TableCell align="center">
+                                {user.mobileNumber}
+                              </TableCell>
+                              <TableCell align="center">
+                                {user.role.roleName}
+                              </TableCell>
+                              <TableCell align="center">
+                                <Link to={`/edituser/${user.userId}`}>
                                   <Button
                                     variant="contained"
-                                    startIcon={<DeleteIcon />}
-                                    onClick={() => deleteUser(user.userId)}
+                                    startIcon={<Update />}
                                   >
-                                    Delete
+                                    Edit
                                   </Button>
-                                </TableCell>
-                              </TableRow>
-                            ))
+                                </Link>
+                                &nbsp;
+                                <Button
+                                  variant="contained"
+                                  startIcon={<DeleteIcon />}
+                                  onClick={() => deleteUser(user.userId)}
+                                >
+                                  Delete
+                                </Button>
+                              </TableCell>
+                            </TableRow>
+                          ))
                           : "No data available"}
                       </TableBody>
                     </Table>

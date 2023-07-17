@@ -9,12 +9,20 @@ body {
 #main {
   display: flex;
   min-height: calc(100vh - 40vh);
+  /* background-color: red; */
 }
 #main article {
   flex: 1;
-  background: whitesmoke;
+  /* background-color: rgb(212, 205, 205); */
   height: 100vh;
 }
+
+.title {
+  text-align: center;
+  color: black;
+  text-decoration: underline;
+}
+
 #main nav {
   flex: 0 0 20vw;
   background: beige;

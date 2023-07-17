@@ -71,7 +71,15 @@ const RolePage = () => {
           <Col md={10}>
             <div id="main">
               <article>
-                <h2 style={{ textAlign: "center" }}>List of roles</h2>
+                <h2
+                  style={{
+                    textAlign: "center",
+                    color: "black",
+                    textDecoration: "underline",
+                  }}
+                >
+                  List of Roles
+                </h2>
 
                 <br />
 
