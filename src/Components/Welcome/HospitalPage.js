@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
-import { Button, Table, Row, Col, Container } from "react-bootstrap";
+import { Button, Row, Col, Container } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Hospitals from "./Hospitals";
 import axios from "axios";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 
 const HospitalPage = () => {
   const [hospitals, setHospitals] = useState([]);
@@ -60,7 +67,7 @@ const HospitalPage = () => {
                 <br />
                 <br />
                 <div style={{ margin: "2rem" }}>
-                  <Table striped bordered hover size="sm">
+                  {/* <Table striped bordered hover size="sm">
                     <thead>
                       <tr>
                         <th>Name</th>
@@ -97,7 +104,59 @@ const HospitalPage = () => {
                         </tr>
                       )}
                     </tbody>
-                  </Table>
+                  </Table> */}
+                   <TableContainer component={Paper}>
+                    <Table>
+                      <TableHead>
+                        <TableRow>
+                          <TableCell align="center">
+                            <b style={{ fontSize: "18px" }}>Name</b>
+                          </TableCell>
+                          <TableCell align="center">
+                            <b style={{ fontSize: "18px" }}>Locality</b>
+                          </TableCell>
+                          <TableCell align="center">
+                            <b style={{ fontSize: "18px" }}>Actions</b>
+                          </TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+                        {hospitals && hospitals.length > 0
+                          ? hospitals.map((hospital) => (
+                              <TableRow key={hospital.hospitalId}>
+                                <TableCell
+                                  component="th"
+                                  scope="row"
+                                  align="center"
+                                >
+                                  {hospital.hospitalName}
+                                </TableCell>
+                                <TableCell align="center">
+                                  {hospital.location}
+                                </TableCell>
+                                <TableCell align="center">
+                                  <Link
+                                    to={`/edithospital/${hospital.hospitalId}`}
+                                  >
+                                    <Button>Edit</Button>
+                                  </Link>
+                                  &nbsp;
+                                  <Link>
+                                    <Button
+                                      onClick={() =>
+                                        deleteHospital(hospital.hospitalId)
+                                      }
+                                    >
+                                      Delete
+                                    </Button>
+                                  </Link>
+                                </TableCell>
+                              </TableRow>
+                            ))
+                          : "No data available"}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
                 </div>
               </article>
             </div>

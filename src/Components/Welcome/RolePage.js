@@ -4,12 +4,19 @@ import { FaHome, FaHospitalSymbol, FaUserAlt } from "react-icons/fa";
 import { RiAdminLine } from "react-icons/ri";
 import { HiUsers } from "react-icons/hi";
 import { Link, Navigate, NavLink, useNavigate } from "react-router-dom";
-import { Button, Table, Row, Col, Container } from "react-bootstrap";
+import { Button, Row, Col, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import Roles from "./Roles";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 
 const RolePage = () => {
   const navigate = useNavigate();
@@ -74,7 +81,7 @@ const RolePage = () => {
                 <br />
 
                 <div style={{ margin: "2rem" }}>
-                  <Table striped bordered hover size="sm">
+                  {/* <Table striped bordered hover size="sm">
                     <thead>
                       <tr>
                         <th>Roles</th>
@@ -101,7 +108,43 @@ const RolePage = () => {
                           })
                         : "No data available"}
                     </tbody>
-                  </Table>
+                  </Table> */}
+                   <TableContainer component={Paper}>
+                    <Table>
+                      <TableHead>
+                        <TableRow>
+                          <TableCell align="center">
+                            <b style={{ fontSize: "18px" }}>Roles</b>
+                          </TableCell>
+                          <TableCell align="center">
+                            <b style={{ fontSize: "18px" }}>Actions</b>
+                          </TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+                        {roles && roles.length > 0
+                          ? roles.map((role) => (
+                              <TableRow key={role.roleId}>
+                                <TableCell
+                                  component="th"
+                                  scope="row"
+                                  align="center"
+                                >
+                                  {role.roleName}
+                                </TableCell>
+                                <TableCell align="center">
+                                  <Button
+                                    onClick={() => deleteRole(role.roleId)}
+                                  >
+                                    Delete
+                                  </Button>
+                                </TableCell>
+                              </TableRow>
+                            ))
+                          : "No data available"}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
                 </div>
               </article>
             </div>
