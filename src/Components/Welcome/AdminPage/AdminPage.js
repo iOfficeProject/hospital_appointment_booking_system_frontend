@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
-import "./AdminPage.css";
+// import "./AdminPage.css";
+import "../AdminPage/AdminPage.css"
 import { FaHome, FaHospitalSymbol, FaUserAlt } from "react-icons/fa";
 import { RiAdminLine } from "react-icons/ri";
 import { HiUsers } from "react-icons/hi";
 import { Link, Navigate, NavLink, useNavigate } from "react-router-dom";
 import { Row, Col, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Doctors from "./Doctors";
 import axios from "axios";
-import Sidebar from "./Sidebar";
-import Header from "./Header";
-import Image from "../image/doctor.jpg";
+import Sidebar from "../Sidebar/Sidebar";
+import Header from "../Header/Header";
+// import Image from "../image/doctor.jpg";
+import Image from "../../image/doctor.jpg";
 
 const AdminPage = () => {
   // const [doctor, setDoctor] = useState([]);

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./AddDoctor.css";
+import "../Hospital/Hospital.css"
 import axios from "axios";
 
 const AddHospital = () => {

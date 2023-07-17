@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "./AddDoctor.css";
+import "../Hospital/Hospital.css"
 import Button from "@mui/material/Button";
 
 

@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Header from "./Header";
-import Sidebar from "./Sidebar";
-import { Link, useNavigate } from "react-router-dom";
+import Header from "../Header/Header";
+import Sidebar from "../Sidebar/Sidebar";
+import { Link } from "react-router-dom";
 import { Row, Col, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Doctors from "./Doctors";
 import axios from "axios";
-import "./AdminPage.css";
-// import './User.css';
-import Users from "./Users";
+import "../AdminPage/AdminPage.css";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -63,7 +60,7 @@ function UserPage() {
     try {
       const res = await axios.delete(`${url}/${id}`);
 
-      console.log("deleted successfully");
+      console.log("deleted successfully" + res);
 
       getUsers();
     } catch (err) {

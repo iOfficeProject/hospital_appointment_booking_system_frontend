@@ -20,7 +20,7 @@ const EditUser = () => {
     var rolID =
       selectedRole == null ? data.roleId : Number.parseInt(selectedRole);
 
-    var role = roles.filter((item) => item.roleId == Number.parseInt(rolID));
+    var role = roles.filter((item) => item.roleId === Number.parseInt(rolID));
 
     console.log("role ==>", role);
 

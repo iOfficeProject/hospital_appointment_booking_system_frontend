@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Header from "./Header";
-import Sidebar from "./Sidebar";
+import Header from "../Header/Header";
+import Sidebar from "../Sidebar/Sidebar";
 import { Row, Col, Container } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import Hospitals from "./Hospitals";
 import axios from "axios";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";

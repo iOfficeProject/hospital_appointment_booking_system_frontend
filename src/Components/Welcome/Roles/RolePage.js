@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./AdminPage.css";
+import "../AdminPage/AdminPage.css";
 import { FaHome, FaHospitalSymbol, FaUserAlt } from "react-icons/fa";
 import { RiAdminLine } from "react-icons/ri";
 import { HiUsers } from "react-icons/hi";
@@ -7,9 +7,8 @@ import { Link, Navigate, NavLink, useNavigate } from "react-router-dom";
 import { Row, Col, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
-import Roles from "./Roles";
-import Sidebar from "./Sidebar";
-import Header from "./Header";
+import Sidebar from "../Sidebar/Sidebar";
+import Header from "../Header/Header";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";

@@ -1,7 +1,7 @@
 import React from "react";
-import Image from "../image/doctor.jpg";
-import NavBar from "../Home/NavBar";
-import Footer from "../Home/Footer";
+import Image from "../../image/doctor.jpg";
+import NavBar from "../../Home/NavBar";
+import Footer from "../../Home/Footer";
 
 const AboutUs = () => {
   return (
