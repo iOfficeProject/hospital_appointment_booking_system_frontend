@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Hospital/Hospital.css";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 const AddUser = () => {
   const [name, setName] = useState("");
@@ -10,8 +12,7 @@ const AddUser = () => {
   const [password, setPassword] = useState("");
   const [roleId, setRoleId] = useState("");
   const [roles, setRoles] = useState([]);
-  // const [showPassword, setShowPassword] = useState(false);
-
+  const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
   const url = "https://localhost:7264/api/users";
@@ -83,9 +84,9 @@ const AddUser = () => {
     navigate("/user");
   };
 
-  // const togglePasswordVisibility = () => {
-  //   setShowPassword(!showPassword);
-  // };
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
     <div className="form-container">
@@ -97,7 +98,6 @@ const AddUser = () => {
         <label htmlFor="name">
           <b>Enter your full name :</b>
         </label>
-
         <input
           type="text"
           placeholder="Full Name"
@@ -107,13 +107,10 @@ const AddUser = () => {
           pattern={"[A-Za-z ]+"}
           title="Must contain alphabets and spaces only, numbers not allowed"
         />
-
         <br />
-
         <label htmlFor="email">
           <b>Enter your email address :</b>
         </label>
-
         <input
           type="email"
           placeholder="Email"
@@ -122,13 +119,10 @@ const AddUser = () => {
           required
           title="Email should be in proper format"
         />
-
         <br />
-
         <label htmlFor="contact">
           <b>Enter your mobile number :</b>
         </label>
-
         <input
           type="text"
           placeholder="Mobile Number"
@@ -138,32 +132,34 @@ const AddUser = () => {
           pattern="[0-9]{10}"
           title="Mobile number should contain exactly 10 digits"
         />
-
         <br />
-
-        <label htmlFor="contact">
+       
+        <label htmlFor="password">
+          
           <b>Enter your Password :</b>
         </label>
-
-        <input
-          // type={showPassword ? "text" : "password"}
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={onPasswordChangeHandler}
-          pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
-          title="Password must contain at least 8 characters, including 1 alphabet, 1 number, and 1 special character."
-          required
-        />
-
-        {/* <button type="button" onClick={togglePasswordVisibility}>
-          {showPassword ? "Hide Password" : "Show Password"}
-        </button> */}
-
+        <div className="password-input-container">
+          
+          <input
+            type={showPassword ? "text" : "password"}
+            placeholder="Password"
+            value={password}
+            onChange={onPasswordChangeHandler}
+            pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+            title="Password must contain at least 8 characters, including 1 alphabet, 1 number, and 1 special character."
+            required
+          />
+          <button
+            type="button"
+            className="password-toggle-btn"
+            onClick={togglePasswordVisibility}
+          >
+            
+            <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+          </button>
+        </div>
         <br />
-
         <label htmlFor="dropdown">Select your role:</label>
-
         <select id="dropdown" value={roleId} onChange={onRoleChangeHandler}>
           {roles.map((role) => {
             return (
@@ -173,16 +169,13 @@ const AddUser = () => {
             );
           })}
         </select>
-
         <br />
-
         <input
           type="button"
           className="back-btn"
           value="Back"
           onClick={backBtnHandler}
         />
-
         <input type="submit" className="btn" value="Submit" />
       </form>
     </div>
