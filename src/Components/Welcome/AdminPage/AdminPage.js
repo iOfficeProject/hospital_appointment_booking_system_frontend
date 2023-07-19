@@ -52,7 +52,7 @@ const AdminPage = () => {
                         <br />
                         <h5>2. Admin can add, delete and update the users.</h5>
                         <br />
-                        <h5>3. Admin can add, delete and update the roles.</h5>
+                        <h5>3. Admin can add and delete the roles.</h5>
                       </p>
                     </div>
                   </div>
