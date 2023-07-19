@@ -110,7 +110,7 @@ const AddUser = () => {
 
   const onSubmitClickHandler = async (e) => {
     e.preventDefault();
-    var role = roles.filter((item) => item.roleId == Number.parseInt(roleId));
+    var role = roles.filter((item) => item.roleId === Number.parseInt(roleId));
 
     console.log("role ==>", role);
     const post = {

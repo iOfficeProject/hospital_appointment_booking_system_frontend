@@ -205,7 +205,7 @@ const EditUser = () => {
         <select onChange={change}>
           {roles.map((role) => (
             <option
-              selected={role.roleId == data.roleId}
+              selected={role.roleId === data.roleId}
               key={role.roleId}
               value={role.roleId}
             >
