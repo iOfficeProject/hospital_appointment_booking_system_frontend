@@ -17,6 +17,7 @@ import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Update from "@mui/icons-material/Update";
 import Add from "@mui/icons-material/Add";
+import "../Hospital/Hospital.css";
 
 function UserPage() {
   const [users, setUsers] = useState([]);
@@ -65,14 +66,8 @@ function UserPage() {
           <Col md={10}>
             <div id="main">
               <article>
-                <h2
-                  style={{
-                    textAlign: "center",
-                    color: "black",
-                    textDecoration: "underline",
-                  }}
-                >
-                  List of Users
+                <h2>
+                  LIST OF USERS
                 </h2>
 
                 <br />

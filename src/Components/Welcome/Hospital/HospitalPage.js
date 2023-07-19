@@ -15,6 +15,7 @@ import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Update from "@mui/icons-material/Update";
 import Add from "@mui/icons-material/Add";
+import "./Hospital.css";
 
 const HospitalPage = () => {
   const [hospitals, setHospitals] = useState([]);
@@ -62,14 +63,8 @@ const HospitalPage = () => {
           <Col md={10}>
             <div id="main">
               <article>
-                <h2
-                  style={{
-                    textAlign: "center",
-                    color: "black",
-                    textDecoration: "underline",
-                  }}
-                >
-                  List of Hospitals
+                <h2>
+                  LIST OF HOSPITALS
                 </h2>
                 <br />
                 <Link to="/addhospital">

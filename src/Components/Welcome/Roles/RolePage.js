@@ -19,6 +19,7 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Add from "@mui/icons-material/Add";
+import "../Hospital/Hospital.css";
 
 const RolePage = () => {
   // const navigate = useNavigate();
@@ -70,14 +71,8 @@ const RolePage = () => {
           <Col md={10}>
             <div id="main">
               <article>
-                <h2
-                  style={{
-                    textAlign: "center",
-                    color: "black",
-                    textDecoration: "underline",
-                  }}
-                >
-                  List of Roles
+                <h2>
+                  LIST OF ROLES
                 </h2>
 
                 <br />
