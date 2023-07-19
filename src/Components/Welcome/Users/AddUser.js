@@ -1,22 +1,17 @@
 import React, { useState, useEffect } from "react";
-
 import { useNavigate } from "react-router-dom";
-
 import "../Hospital/Hospital.css";
-
 import axios from "axios";
 
 const AddUser = () => {
   const [name, setName] = useState("");
-
   const [email, setEmail] = useState("");
-
   const [mobileNumber, setMobileNumber] = useState("");
-
   const [password, setPassword] = useState("");
-
   const [roleId, setRoleId] = useState("");
   const [roles, setRoles] = useState([]);
+  // const [showPassword, setShowPassword] = useState(false);
+
 
   const navigate = useNavigate();
   const url = "https://localhost:7264/api/users";
@@ -88,6 +83,10 @@ const AddUser = () => {
     navigate("/user");
   };
 
+  // const togglePasswordVisibility = () => {
+  //   setShowPassword(!showPassword);
+  // };
+
   return (
     <div className="form-container">
       <div>
@@ -136,8 +135,8 @@ const AddUser = () => {
           value={mobileNumber}
           onChange={onContactChangeHandler}
           required
-          pattern="[0-9]+"
-          title="Must contain numbers only"
+          pattern="[0-9]{10}"
+          title="Mobile number should contain exactly 10 digits"
         />
 
         <br />
@@ -147,6 +146,7 @@ const AddUser = () => {
         </label>
 
         <input
+          // type={showPassword ? "text" : "password"}
           type="password"
           placeholder="Password"
           value={password}
@@ -155,6 +155,10 @@ const AddUser = () => {
           title="Password must contain at least 8 characters, including 1 alphabet, 1 number, and 1 special character."
           required
         />
+
+        {/* <button type="button" onClick={togglePasswordVisibility}>
+          {showPassword ? "Hide Password" : "Show Password"}
+        </button> */}
 
         <br />
 

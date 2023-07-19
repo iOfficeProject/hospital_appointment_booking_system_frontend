@@ -8,6 +8,7 @@ const EditUser = () => {
   const [data, setData] = useState({});
   const [roleId, setRoleId] = useState({});
   const [roles, setRoles] = useState([]);
+  // const [showPassword, setShowPassword] = useState(false);
 
   const [selectedRole, setSelectedRole] = useState(null);
   const navigate = useNavigate();
@@ -119,6 +120,10 @@ const EditUser = () => {
     setSelectedRole(event.target.value);
   };
 
+  // const togglePasswordVisibility = () => {
+  //   setShowPassword(!showPassword);
+  // };
+
   return (
     <div className="form-container">
       <div>
@@ -163,8 +168,8 @@ const EditUser = () => {
           placeholder="Mobile Number"
           required
           value={data.mobileNumber || ""}
-          pattern="[0-9]+"
-          title="Must contain numbers only"
+          pattern="[0-9]{10}"
+          title="Mobile number should contain exactly 10 digits"
           onChange={(e) => setData({ ...data, mobileNumber: e.target.value })}
         />
 
@@ -174,6 +179,7 @@ const EditUser = () => {
           <b>Enter your Password :</b>
         </label>
         <input
+          // type={showPassword ? "text" : "password"}
           type="password"
           placeholder="Password"
           pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
@@ -183,10 +189,14 @@ const EditUser = () => {
           onChange={(e) => setData({ ...data, password: e.target.value })}
         />
 
+        {/* <button type="button" onClick={togglePasswordVisibility}>
+          {showPassword ? "Hide Password" : "Show Password"}
+        </button> */}
+
         <br />
 
         <label htmlFor="dropdown">Select your role:</label>
-        <select onChange={change}>
+        <select onChange={change} >
           {roles.map((role) => (
             <option
               selected={role.roleId == data.roleId}
