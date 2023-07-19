@@ -103,7 +103,7 @@ label{
 
 h2{
   text-align: center;
-  color: white;
+  color: white !important;
   line-height: 1.6;
   text-decoration: none;
   background-color: #1976d2;
