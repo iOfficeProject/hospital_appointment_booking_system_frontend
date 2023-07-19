@@ -66,38 +66,37 @@ select{
   margin-right: 10px;
 }
 
-
-/*******/
-/* Add styles to the password input container */
 .password-input-container {
   position: relative;
 }
 
- 
-
-/* Add styles to the password input field */
 .password-input-container input[type="password"] {
-  padding-right: 40px; /* Adjust the value as per your design */
+  padding-right: 40px;
 }
 
- 
-
-/* Add styles to the eye icon button */
 .password-toggle-btn {
   position: absolute;
   top: 50%;
-  right: 10px; /* Adjust the value as per your design */
+  right: 10px; 
   transform: translateY(-50%);
   background: none;
   border: none;
   cursor: pointer;
 }
 
- 
-
-/* Style the eye icon */
 .eye-icon {
-  width: 20px; /* Adjust the width and height as per your design */
+  width: 20px; 
   height: 20px;
-  fill: #999; /* Adjust the color of the icon */
+  fill: #999; 
+}
+
+select{
+    padding: 2px;
+    width: 170px;
+    margin-left: 8px;
+    font-size: 1rem;
+    text-transform: capitalize;
+}
+label{
+  font-weight: bold;
 }

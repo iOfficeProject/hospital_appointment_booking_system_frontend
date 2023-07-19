@@ -137,6 +137,8 @@ const AddUser = () => {
     setShowPassword(!showPassword);
   };
 
+  const showSpecializationAndHospital = Number.parseInt(roleId) === 2;
+
   return (
     <div className="form-container">
       <div>
@@ -182,7 +184,6 @@ const AddUser = () => {
           title="Mobile number should contain exactly 10 digits"
         />
         <br />
-
         <label htmlFor="password">
           <b>Enter your Password :</b>
         </label>
@@ -207,55 +208,45 @@ const AddUser = () => {
         <br />
         <label htmlFor="dropdown">Select your role:</label>
         <select id="dropdown" value={roleId} onChange={onRoleChangeHandler}>
-          {roles.map((role) => {
-            return (
-              <>
-                <option value={role.roleId}>{role.roleName}</option>
-              </>
-            );
-          })}
+          {roles.map((role) => (
+            <option key={role.roleId} value={role.roleId}>
+              {role.roleName}
+            </option>
+          ))}
         </select>
-        <br />
-        <label htmlFor="dropdown">Select your Specialization:</label>
-
-        <select
-          id="dropdown"
-          value={specializations}
-          onChange={onSpecializationChangeHandler}
-        >
-          {specializations.map((specialization) => {
-            return (
-              <>
-                <option value={specialization.specializationId}>
+        <br/>
+        {showSpecializationAndHospital && (
+          <>
+            <label htmlFor="dropdown">Select your Specialization:</label>
+            <select
+              id="dropdown"
+              value={specializations}
+              onChange={onSpecializationChangeHandler}
+            >
+              {specializations.map((specialization) => (
+                <option
+                  key={specialization.specializationId}
+                  value={specialization.specializationId}
+                >
                   {specialization.specializationName}
                 </option>
-              </>
-            );
-          })}
-        </select>
-
-        <br />
-
-        <label htmlFor="dropdown">Select your Hospital:</label>
-
-        <select
-          id="dropdown"
-          value={hospitals}
-          onChange={onHospitalChangeHandler}
-        >
-          {hospitals.map((hospital) => {
-            return (
-              <>
-                <option value={hospital.hospitalId}>
+              ))}
+            </select>
+            <br /> <label htmlFor="dropdown">Select your Hospital:</label>
+            <select
+              id="dropdown"
+              value={hospitals}
+              onChange={onHospitalChangeHandler}
+            >
+              {hospitals.map((hospital) => (
+                <option key={hospital.hospitalId} value={hospital.hospitalId}>
                   {hospital.hospitalName}
                 </option>
-              </>
-            );
-          })}
-        </select>
-
+              ))}
+            </select>
+          </>
+        )}
         <br />
-
         <input
           type="button"
           className="back-btn"
