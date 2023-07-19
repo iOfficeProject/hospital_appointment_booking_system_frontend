@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import "../AdminPage/AdminPage.css";
 import { FaHome, FaHospitalSymbol, FaUserAlt } from "react-icons/fa";
 import { RiAdminLine } from "react-icons/ri";
@@ -10,7 +9,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import Sidebar from "../Sidebar/Sidebar";
 import Header from "../Header/Header";
-
 import Image from "../../image/doctor.jpg";
 
 const AdminPage = () => {
@@ -18,7 +16,7 @@ const AdminPage = () => {
     <>
       {/* Header */}
 
-      <Header />
+      <Header/>
 
       <Container fluid>
         <Row>
