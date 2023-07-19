@@ -184,8 +184,8 @@ const EditUser = () => {
           <input
             type={showPassword ? "text" : "password"}
             placeholder="Password"
-            value={password}
-            onChange={onPasswordChangeHandler}
+            value={data.password || ""}
+            onChange={(e) => setData({ ...data, password: e.target.value })}
             pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
             title="Password must contain at least 8 characters, including 1 alphabet, 1 number, and 1 special character."
             required
