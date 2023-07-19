@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 const EditUser = () => {
   const { userId } = useParams();
@@ -8,7 +10,7 @@ const EditUser = () => {
   const [data, setData] = useState({});
   const [roleId, setRoleId] = useState({});
   const [roles, setRoles] = useState([]);
-  // const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const [selectedRole, setSelectedRole] = useState(null);
   const navigate = useNavigate();
@@ -120,9 +122,9 @@ const EditUser = () => {
     setSelectedRole(event.target.value);
   };
 
-  // const togglePasswordVisibility = () => {
-  //   setShowPassword(!showPassword);
-  // };
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
     <div className="form-container">
@@ -178,25 +180,29 @@ const EditUser = () => {
         <label htmlFor="password">
           <b>Enter your Password :</b>
         </label>
-        <input
-          // type={showPassword ? "text" : "password"}
-          type="password"
-          placeholder="Password"
-          pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
-          title="Password must contain at least 8 characters, including 1 alphabet, 1 number, and 1 special character."
-          required
-          value={data.password || ""}
-          onChange={(e) => setData({ ...data, password: e.target.value })}
-        />
-
-        {/* <button type="button" onClick={togglePasswordVisibility}>
-          {showPassword ? "Hide Password" : "Show Password"}
-        </button> */}
+        <div className="password-input-container">
+          <input
+            type={showPassword ? "text" : "password"}
+            placeholder="Password"
+            value={password}
+            onChange={onPasswordChangeHandler}
+            pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+            title="Password must contain at least 8 characters, including 1 alphabet, 1 number, and 1 special character."
+            required
+          />
+          <button
+            type="button"
+            className="password-toggle-btn"
+            onClick={togglePasswordVisibility}
+          >
+            <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+          </button>
+        </div>
 
         <br />
 
         <label htmlFor="dropdown">Select your role:</label>
-        <select onChange={change} >
+        <select onChange={change}>
           {roles.map((role) => (
             <option
               selected={role.roleId == data.roleId}
