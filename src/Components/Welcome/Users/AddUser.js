@@ -13,6 +13,8 @@ const AddUser = () => {
   const [roleId, setRoleId] = useState("");
   const [roles, setRoles] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
+  const [specializations, setSpecializations] = useState([]);
+  const [hospitals, setHospitals] = useState([]);
 
   const navigate = useNavigate();
   const url = "https://localhost:7264/api/users";
@@ -37,6 +39,14 @@ const AddUser = () => {
     setRoleId(e.target.value);
   };
 
+  const onSpecializationChangeHandler = (e) => {
+    setSpecializations(e.target.value);
+  };
+
+  const onHospitalChangeHandler = (e) => {
+    setHospitals(e.target.value);
+  };
+
   const backBtnHandler = () => {
     navigate("/user");
   };
@@ -44,6 +54,9 @@ const AddUser = () => {
 
   useEffect(() => {
     getRoles();
+    getSpecialization();
+
+    getHospital();
   }, []);
 
   const getRoles = () => {
@@ -54,6 +67,42 @@ const AddUser = () => {
         setRoles(allRoles);
         console.log(allRoles);
       })
+      .catch((err) => {
+        console.error(`Error: ${err}`);
+      });
+  };
+
+  const getSpecialization = () => {
+    axios
+
+      .get("https://localhost:7264/api/specializations")
+
+      .then((res) => {
+        const allSpecializations = res.data;
+
+        setSpecializations(allSpecializations);
+
+        console.log(allSpecializations);
+      })
+
+      .catch((err) => {
+        console.error(`Error: ${err}`);
+      });
+  };
+
+  const getHospital = () => {
+    axios
+
+      .get("https://localhost:7264/api/Hospital")
+
+      .then((res) => {
+        const allHospitals = res.data;
+
+        setHospitals(allHospitals);
+
+        console.log(allHospitals);
+      })
+
       .catch((err) => {
         console.error(`Error: ${err}`);
       });
@@ -133,13 +182,11 @@ const AddUser = () => {
           title="Mobile number should contain exactly 10 digits"
         />
         <br />
-       
+
         <label htmlFor="password">
-          
           <b>Enter your Password :</b>
         </label>
         <div className="password-input-container">
-          
           <input
             type={showPassword ? "text" : "password"}
             placeholder="Password"
@@ -154,7 +201,6 @@ const AddUser = () => {
             className="password-toggle-btn"
             onClick={togglePasswordVisibility}
           >
-            
             <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
           </button>
         </div>
@@ -170,6 +216,46 @@ const AddUser = () => {
           })}
         </select>
         <br />
+        <label htmlFor="dropdown">Select your Specialization:</label>
+
+        <select
+          id="dropdown"
+          value={specializations}
+          onChange={onSpecializationChangeHandler}
+        >
+          {specializations.map((specialization) => {
+            return (
+              <>
+                <option value={specialization.specializationId}>
+                  {specialization.specializationName}
+                </option>
+              </>
+            );
+          })}
+        </select>
+
+        <br />
+
+        <label htmlFor="dropdown">Select your Hospital:</label>
+
+        <select
+          id="dropdown"
+          value={hospitals}
+          onChange={onHospitalChangeHandler}
+        >
+          {hospitals.map((hospital) => {
+            return (
+              <>
+                <option value={hospital.hospitalId}>
+                  {hospital.hospitalName}
+                </option>
+              </>
+            );
+          })}
+        </select>
+
+        <br />
+
         <input
           type="button"
           className="back-btn"
