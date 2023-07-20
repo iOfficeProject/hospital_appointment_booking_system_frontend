@@ -14,7 +14,9 @@ const AddUser = () => {
   const [roles, setRoles] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
   const [specializations, setSpecializations] = useState([]);
+  const [specialization, setSpecialization] = useState("");
   const [hospitals, setHospitals] = useState([]);
+  const [hospital, setHospital] = useState("");
 
   const navigate = useNavigate();
   const url = "https://localhost:7264/api/users";
@@ -40,11 +42,11 @@ const AddUser = () => {
   };
 
   const onSpecializationChangeHandler = (e) => {
-    setSpecializations(e.target.value);
+    setSpecialization(e.target.value);
   };
 
   const onHospitalChangeHandler = (e) => {
-    setHospitals(e.target.value);
+    setHospital(e.target.value);
   };
 
   const backBtnHandler = () => {
@@ -112,18 +114,19 @@ const AddUser = () => {
     e.preventDefault();
     var role = roles.filter((item) => item.roleId === Number.parseInt(roleId));
 
-    console.log("role ==>", role);
+     console.log("hospital ==>", hospital);
     const post = {
       name: name,
       email: email,
       mobileNumber: mobileNumber,
       password: password,
       roleId: Number.parseInt(roleId),
-      specializationId: 2,
-      hospitalId: 2,
+      specializationId:
+        specialization != "" ? Number.parseInt(specialization) : null,
+      hospitalId: hospital != "" ? Number.parseInt(hospital) : null,
       role: role[0],
     };
-    console.log(post);
+    console.log(JSON.stringify(post));
     try {
       const res = await axios.post(url, post);
       console.log(res);
@@ -139,6 +142,8 @@ const AddUser = () => {
 
   const showSpecializationAndHospital =
     Number.parseInt(roleId) === 2 || Number.parseInt(roleId) !== 1;
+
+  // console.log("Add USer","specializations => "+specializations);
 
   return (
     <div className="form-container">
@@ -207,10 +212,10 @@ const AddUser = () => {
           </button>
         </div>
         <br />
-        
+
         <label htmlFor="dropdown">Select your role:</label>
         <select id="dropdown" value={roleId} onChange={onRoleChangeHandler}>
-        <option value="">Select role</option>
+          <option value="">Select role</option>
           {roles.map((role) => (
             <option key={role.roleId} value={role.roleId}>
               {role.roleName}
@@ -218,33 +223,37 @@ const AddUser = () => {
           ))}
         </select>
         <br />
-        {showSpecializationAndHospital && (
+
+        {Number.parseInt(roleId) === 2 && (
           <>
-            {Number.parseInt(roleId) === 2 && (
-              <>
-                <label htmlFor="dropdown">Select your Specialization:</label>
-                <select
-                  id="dropdown"
-                  value={specializations}
-                  onChange={onSpecializationChangeHandler}
+            <label htmlFor="dropdown">Select your Specialization:</label>
+            <select
+              id="dropdown"
+              value={specialization}
+              onChange={onSpecializationChangeHandler}
+            >
+            <option value="">Select Specialization</option>
+              {specializations.map((specialization) => (
+                <option
+                  key={specialization.specializationId}
+                  value={specialization.specializationId}
                 >
-                  {specializations.map((specialization) => (
-                    <option
-                      key={specialization.specializationId}
-                      value={specialization.specializationId}
-                    >
-                      {specialization.specializationName}
-                    </option>
-                  ))}
-                </select>
-              </>
-            )}
+                  {specialization.specializationName}
+                </option>
+              ))}
+            </select>
+          </>
+        )}
+
+        {roleId != "" && Number.parseInt(roleId) != 1 && (
+          <>
             <br /> <label htmlFor="dropdown">Select your Hospital:</label>
             <select
               id="dropdown"
-              value={hospitals}
+              value={hospital}
               onChange={onHospitalChangeHandler}
             >
+            <option value="">Select Hospital</option>
               {hospitals.map((hospital) => (
                 <option key={hospital.hospitalId} value={hospital.hospitalId}>
                   {hospital.hospitalName}
@@ -253,6 +262,7 @@ const AddUser = () => {
             </select>
           </>
         )}
+
         <br />
         <input
           type="button"
