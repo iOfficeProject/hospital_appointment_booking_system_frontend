@@ -114,7 +114,7 @@ const AddUser = () => {
     e.preventDefault();
     var role = roles.filter((item) => item.roleId === Number.parseInt(roleId));
 
-     console.log("hospital ==>", hospital);
+    console.log("hospital ==>", hospital);
     const post = {
       name: name,
       email: email,
@@ -150,13 +150,14 @@ const AddUser = () => {
       <div>
         <h3 className="heading">Add User Form</h3>
       </div>
-
+      <br />
       <form onSubmit={onSubmitClickHandler}>
         <label htmlFor="name">
           <b>Enter your full name :</b>
         </label>
         <input
           type="text"
+          className="input-field"
           placeholder="Full Name"
           value={name}
           onChange={onNameChangeHandler}
@@ -232,7 +233,7 @@ const AddUser = () => {
               value={specialization}
               onChange={onSpecializationChangeHandler}
             >
-            <option value="">Select Specialization</option>
+              <option value="">Select Specialization</option>
               {specializations.map((specialization) => (
                 <option
                   key={specialization.specializationId}
@@ -245,7 +246,7 @@ const AddUser = () => {
           </>
         )}
 
-        {roleId != "" && Number.parseInt(roleId) != 1 && (
+        {roleId !== "" && Number.parseInt(roleId) !== 1 && (
           <>
             <br /> <label htmlFor="dropdown">Select your Hospital:</label>
             <select
@@ -253,7 +254,7 @@ const AddUser = () => {
               value={hospital}
               onChange={onHospitalChangeHandler}
             >
-            <option value="">Select Hospital</option>
+              <option value="">Select Hospital</option>
               {hospitals.map((hospital) => (
                 <option key={hospital.hospitalId} value={hospital.hospitalId}>
                   {hospital.hospitalName}
@@ -264,13 +265,15 @@ const AddUser = () => {
         )}
 
         <br />
-        <input
-          type="button"
-          className="back-btn"
-          value="Back"
-          onClick={backBtnHandler}
-        />
-        <input type="submit" className="btn" value="Submit" />
+        <div className="btn-container">
+          <input
+            type="button"
+            className="back-btn"
+            value="Back"
+            onClick={backBtnHandler}
+          />
+          <input type="submit" className="btn" value="Submit" />
+        </div>
       </form>
     </div>
   );

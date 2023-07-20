@@ -40,6 +40,7 @@ const EditHospital = () => {
       <div>
         <h3 className="heading">Edit Hospital Form</h3>
       </div>
+      <br/>
 
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">
@@ -67,14 +68,15 @@ const EditHospital = () => {
           title="Can contain alphabets, numbers and some relevant symbols"
         />
 
-        <input
-          type="button"
-          className="back-btn"
-          value="Back"
-          onClick={backBtnHandler}
-        />
-
-        <input type="submit" className="btn" value="Update" />
+        <div className="btn-container">
+          <input
+            type="button"
+            className="back-btn"
+            value="Back"
+            onClick={backBtnHandler}
+          />
+          <input type="submit" className="btn" value="Update" />
+        </div>
       </form>
     </div>
   );

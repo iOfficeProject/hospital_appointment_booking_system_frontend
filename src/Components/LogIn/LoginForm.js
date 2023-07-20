@@ -8,20 +8,22 @@ export default function (props) {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
-  const [hospitalId, setHospitalId]=useState(1)
+  const [hospitalId, setHospitalId] = useState(1);
 
+  const navigate = useNavigate();
 
-  const navigate=useNavigate()
-
-  const dataToLoggedIn={
+  const dataToLoggedIn = {
     email,
-    password
-  }
+    password,
+  };
 
-  const userToRegister={
-    email, password,
-    name, mobileNumber, hospitalId
-  }
+  const userToRegister = {
+    email,
+    password,
+    name,
+    mobileNumber,
+    hospitalId,
+  };
 
   const changeAuthMode = () => {
     setAuthMode(authMode === "signin" ? "signup" : "signin");
@@ -47,48 +49,40 @@ export default function (props) {
   const handleSubmitLogin = (event) => {
     event.preventDefault();
     console.log("Submitted form");
-    
 
-   
     axios
       .post("https://localhost:7264/api/login/", dataToLoggedIn)
       .then((response) => {
-        const jwtToken=response.data
-        localStorage.setItem("jwtToken", jwtToken)
+        const jwtToken = response.data;
+        localStorage.setItem("jwtToken", jwtToken);
         alert("Successfully loggedin");
-        navigate('/hospital')
+        navigate("/admin");
       })
       .catch((err) => {
         console.log(err);
         console.log(err.response);
-       // alert(err.response.data.error.message);
+        // alert(err.response.data.error.message);
       });
   };
 
-    const handleSubmitSignup = (event) => {
-      event.preventDefault();
-      console.log("Submitted form");
-      console.log(email);
-      console.log(name);
-      console.log(password);
-    
-     
-    
-      // Check password length
-      if (password.length < 8) {
-        alert("Password must be at least 8 characters long");
-        return;
-      }
-    
-      // Check mobile number length
-      if (mobileNumber.length !== 10) {
-        alert("Mobile number must be 10 digits long");
-        return;
-      }
+  const handleSubmitSignup = (event) => {
+    event.preventDefault();
+    console.log("Submitted form");
+    console.log(email);
+    console.log(name);
+    console.log(password);
 
+    // Check password length
+    if (password.length < 8) {
+      alert("Password must be at least 8 characters long");
+      return;
+    }
 
-
-
+    // Check mobile number length
+    if (mobileNumber.length !== 10) {
+      alert("Mobile number must be 10 digits long");
+      return;
+    }
 
     const config = {
       headers: {
@@ -104,13 +98,12 @@ export default function (props) {
       },
     };
 
-  
     axios
       .post("https://localhost:7264/api/users", userToRegister)
       .then((response) => {
         console.log(response);
         alert("Successfully registered..!");
-        navigate('/')
+        navigate("/");
       })
       .catch((err) => {
         console.log(err);
@@ -131,7 +124,7 @@ export default function (props) {
                 Sign Up
               </span>
             </div>
-           
+
             <div className="form-group mt-3">
               <label>Email address</label>
               <input
@@ -216,7 +209,7 @@ export default function (props) {
               value={mobileNumber}
             />
           </div>
-          <div form-group mt-3>
+          <div className="form-group mt-3">
             <label> Hospitals</label>
             <select name="" id="" className="form-control mt-1">
               <option>KEM</option>

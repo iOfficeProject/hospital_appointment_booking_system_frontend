@@ -16,7 +16,7 @@ const AdminPage = () => {
     <>
       {/* Header */}
 
-      <Header/>
+      <Header />
 
       <Container fluid>
         <Row>

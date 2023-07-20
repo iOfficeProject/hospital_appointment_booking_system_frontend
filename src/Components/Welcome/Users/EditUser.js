@@ -131,7 +131,7 @@ const EditUser = () => {
       <div>
         <h3 className="heading">Edit User Form</h3>
       </div>
-
+      <br />
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">
           <b>Enter your full name :</b>
@@ -214,15 +214,15 @@ const EditUser = () => {
           ))}
         </select>
         <br />
-
-        <input
-          onClick={handleBackBtn}
-          type="button"
-          className="back-btn"
-          value="Back"
-        />
-
-        <input type="submit" className="btn" value="Update" />
+        <div className="btn-container">
+          <input
+            type="button"
+            className="back-btn"
+            value="Back"
+            onClick={handleBackBtn}
+          />
+          <input type="submit" className="btn" value="Update" />
+        </div>
       </form>
     </div>
   );

@@ -20,11 +20,11 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          {/* <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/about" element={<AboutUs />} />
-          <Route path="/services" element={<Services />} /> */}
-          <Route path="/" element={<AdminPage />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/admin" element={<AdminPage />} />
           <Route path="/hospital" element={<HospitalPage />} />
           <Route path="/addhospital" element={<AddHospital />} />
           <Route path="/adduser" element={<AddUser />} />

@@ -42,6 +42,7 @@ const AddRole = () => {
       <div>
         <h3 className="heading">Add Role Form</h3>
       </div>
+      <br/>
 
       <form onSubmit={onSubmitClickHandler}>
         <label htmlFor="dropdown">Select your role:</label>
@@ -55,15 +56,15 @@ const AddRole = () => {
         />
 
         <br />
-
-        <input
-          type="button"
-          className="back-btn"
-          value="Back"
-          onClick={backBtnHandler}
-        />
-
-        <input type="submit" className="btn" value="Submit" />
+        <div className="btn-container">
+          <input
+            type="button"
+            className="back-btn"
+            value="Back"
+            onClick={backBtnHandler}
+          />
+          <input type="submit" className="btn" value="Submit" />
+        </div>
       </form>
     </div>
   );
