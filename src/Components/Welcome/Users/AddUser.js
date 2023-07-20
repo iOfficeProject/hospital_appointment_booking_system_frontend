@@ -137,7 +137,8 @@ const AddUser = () => {
     setShowPassword(!showPassword);
   };
 
-  const showSpecializationAndHospital = Number.parseInt(roleId) === 2;
+  const showSpecializationAndHospital =
+    Number.parseInt(roleId) === 2 || Number.parseInt(roleId) !== 1;
 
   return (
     <div className="form-container">
@@ -206,32 +207,38 @@ const AddUser = () => {
           </button>
         </div>
         <br />
+        
         <label htmlFor="dropdown">Select your role:</label>
         <select id="dropdown" value={roleId} onChange={onRoleChangeHandler}>
+        <option value="">Select role</option>
           {roles.map((role) => (
             <option key={role.roleId} value={role.roleId}>
               {role.roleName}
             </option>
           ))}
         </select>
-        <br/>
+        <br />
         {showSpecializationAndHospital && (
           <>
-            <label htmlFor="dropdown">Select your Specialization:</label>
-            <select
-              id="dropdown"
-              value={specializations}
-              onChange={onSpecializationChangeHandler}
-            >
-              {specializations.map((specialization) => (
-                <option
-                  key={specialization.specializationId}
-                  value={specialization.specializationId}
+            {Number.parseInt(roleId) === 2 && (
+              <>
+                <label htmlFor="dropdown">Select your Specialization:</label>
+                <select
+                  id="dropdown"
+                  value={specializations}
+                  onChange={onSpecializationChangeHandler}
                 >
-                  {specialization.specializationName}
-                </option>
-              ))}
-            </select>
+                  {specializations.map((specialization) => (
+                    <option
+                      key={specialization.specializationId}
+                      value={specialization.specializationId}
+                    >
+                      {specialization.specializationName}
+                    </option>
+                  ))}
+                </select>
+              </>
+            )}
             <br /> <label htmlFor="dropdown">Select your Hospital:</label>
             <select
               id="dropdown"
