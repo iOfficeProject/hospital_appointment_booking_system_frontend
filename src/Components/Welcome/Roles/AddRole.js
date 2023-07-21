@@ -6,6 +6,26 @@ import Button from "@mui/material/Button";
 
 const AddRole = () => {
   const [roleName, setRoleName] = useState("");
+  const [roles, setRoles] = useState([]);
+
+  const API_URL_ALL_ROLES = "https://localhost:7264/api/roles";
+
+  useEffect(() => {
+    getRoles();
+  }, []);
+
+  const getRoles = () => {
+    axios
+      .get(`${API_URL_ALL_ROLES}`)
+      .then((res) => {
+        const allRoles = res.data;
+        setRoles(allRoles);
+        console.log(allRoles);
+      })
+      .catch((err) => {
+        console.error(`Error: ${err}`);
+      });
+  };
 
   const navigate = useNavigate();
 
@@ -21,6 +41,14 @@ const AddRole = () => {
 
   const onSubmitClickHandler = async (e) => {
     e.preventDefault();
+
+    const tmpRoles = roles.filter(
+      (item) => item.roleName.toLowerCase() == roleName.toLowerCase()
+    );
+    if (tmpRoles.length > 0) {
+      alert("Role already exist, Please enter different role.");
+      return;
+    }
 
     const post = {
       roleName,
@@ -42,7 +70,7 @@ const AddRole = () => {
       <div>
         <h3 className="heading">Add Role Form</h3>
       </div>
-      <br/>
+      <br />
 
       <form onSubmit={onSubmitClickHandler}>
         <label htmlFor="dropdown">Select your role:</label>

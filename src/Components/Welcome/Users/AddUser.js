@@ -112,15 +112,15 @@ const AddUser = () => {
 
   const onSubmitClickHandler = async (e) => {
     e.preventDefault();
-    var role = roles.filter((item) => item.roleId === Number.parseInt(roleId));
+    var role = roles.filter((item) => item.roleName.toLowerCase() == roleId.toLowerCase());
 
-    console.log("hospital ==>", hospital);
+    console.log("hospital ==>", role);
     const post = {
       name: name,
       email: email,
       mobileNumber: mobileNumber,
       password: password,
-      roleId: Number.parseInt(roleId),
+      roleId: Number.parseInt(role[0].roleId),
       specializationId:
         specialization != "" ? Number.parseInt(specialization) : null,
       hospitalId: hospital != "" ? Number.parseInt(hospital) : null,
@@ -139,11 +139,6 @@ const AddUser = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-
-  const showSpecializationAndHospital =
-    Number.parseInt(roleId) === 2 || Number.parseInt(roleId) !== 1;
-
-  // console.log("Add USer","specializations => "+specializations);
 
   return (
     <div className="form-container">
@@ -218,14 +213,14 @@ const AddUser = () => {
         <select id="dropdown" value={roleId} onChange={onRoleChangeHandler}>
           <option value="">Select role</option>
           {roles.map((role) => (
-            <option key={role.roleId} value={role.roleId}>
+            <option key={role.roleName} value={role.roleName}>
               {role.roleName}
             </option>
           ))}
         </select>
         <br />
 
-        {Number.parseInt(roleId) === 2 && (
+        {roleId.toLowerCase() == "doctor" && (
           <>
             <label htmlFor="dropdown">Select your Specialization:</label>
             <select
@@ -246,7 +241,7 @@ const AddUser = () => {
           </>
         )}
 
-        {roleId !== "" && Number.parseInt(roleId) !== 1 && (
+        {roleId != "" && roleId.toLowerCase() != "user" && (
           <>
             <br /> <label htmlFor="dropdown">Select your Hospital:</label>
             <select
