@@ -21,8 +21,7 @@ export default function (props) {
     email,
     password,
     name,
-    mobileNumber,
-    hospitalId,
+    mobileNumber
   };
 
   const changeAuthMode = () => {
@@ -208,14 +207,6 @@ export default function (props) {
               onChange={handleMobileChange}
               value={mobileNumber}
             />
-          </div>
-          <div className="form-group mt-3">
-            <label> Hospitals</label>
-            <select name="" id="" className="form-control mt-1">
-              <option>KEM</option>
-              <option>Civil</option>
-              <option>Sahyadri</option>
-            </select>
           </div>
           <div className="d-grid gap-2 mt-3">
             <button type="submit" className="btn btn-primary">

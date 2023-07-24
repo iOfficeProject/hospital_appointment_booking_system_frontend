@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: #f0f0f0;
-  /* padding: 10px; */
+  padding: 10px;
   height: 110px;
 }
 
@@ -17,9 +17,7 @@
 .navbar-items {
   list-style: none;
   display: flex;
-  align-items: center;
   margin: 0;
-  padding: 0;
 }
 
 .navbar-items li {
@@ -27,21 +25,23 @@
 }
 
 .navbar-items li:last-child {
-  margin-right: 0;
+  margin-right: 5px;
 }
 
 .signin-button {
   background-color: #1182fc;
-  color: #fff;
   border: #fff;
   cursor: pointer;
-  font-size: 16px;
-  padding: 8px 12px;
-  border-radius: 4px;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 10px;
 }
 
 .signin-button:hover {
   background-color: #0056b3;
+}
+.signin-button a{
+  color: #fff !important;
 }
 
 .navbar-items li a {

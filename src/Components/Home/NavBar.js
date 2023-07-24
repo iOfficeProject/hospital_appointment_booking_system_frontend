@@ -13,26 +13,24 @@ function NavBar() {
 
   return (
     <nav className="navbar">
-      <div className="home-icon" onClick={homeClickHandler}>
-        <FaHome />
-      </div>
-      <ul className="navbar-items">
-        <li>
-          <Link to="/about">About</Link>
-        </li>
-        <li>
-          <Link to="/services">Services</Link>
-        </li>
-        <li>
-          <button className="signin-button">
-            <Link to="/login">SignIn</Link>
-          </button>
-        </li>
-      </ul>
+        <div className="home-icon" onClick={homeClickHandler}>
+          <FaHome />
+        </div>
+        <ul className="navbar-items">
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/services">Services</Link>
+          </li>
+          <li>
+            <button className="signin-button">
+              <Link to="/login">SignIn</Link>
+            </button>
+          </li>
+        </ul>
     </nav>
   );
 }
 
 export default NavBar;
-
-
