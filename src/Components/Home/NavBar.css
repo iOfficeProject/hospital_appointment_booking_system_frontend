@@ -2,7 +2,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #f0f0f0;
+  /* background-color: #f0f0f0; */
+  background-color:  rgb(5, 68, 104);
   padding: 10px;
   height: 110px;
 }
@@ -10,7 +11,7 @@
 .home-icon {
   margin-left: 10px;
   cursor: pointer;
-  color: black;
+  color: #fff;
   font-size: 2rem;
 }
 
@@ -45,7 +46,7 @@
 }
 
 .navbar-items li a {
-  color: #333;
+  color: #fff;
   text-decoration: none;
 }
 

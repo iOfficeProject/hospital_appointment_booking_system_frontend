@@ -19,7 +19,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   const homeClickHandler = () => {
-    navigate("/");
+    navigate("/admin");
   };
 
   return (

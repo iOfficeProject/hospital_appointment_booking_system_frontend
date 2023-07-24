@@ -13,9 +13,9 @@ const Footer = () => {
               <br />
               Country, Postal Code
               <br />
-              Phone: xxx-xxx-xxxx
+              Phone: 911-777-555
               <br />
-              Email: info@example.com
+              Email: hospitalmanagement@gmail.com
             </p>
           </div>
           <div className="col-md-6">
