@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../AdminPage/AdminPage.css";
-import { Link, Navigate, NavLink, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Row, Col, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
@@ -43,7 +43,7 @@ const RolePage = () => {
   const deleteRole = async (id) => {
     try {
       const res = await axios.delete(`${API_URL}/${id}`);
-      console.log("deleted successfully");
+      console.log("deleted successfully", res);
       getRoles();
     } catch (err) {
       console.error(`Error:${err}`);

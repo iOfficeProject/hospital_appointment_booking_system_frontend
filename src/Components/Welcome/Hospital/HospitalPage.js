@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import Sidebar from "../Sidebar/Sidebar";
 import { Row, Col, Container } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -36,17 +36,17 @@ const HospitalPage = () => {
       .catch((error) => console.error(`Error: ${error}`));
   };
 
-  const handleEdit = (id, name, locality, contact) => {
-    localStorage.setItem("Name", name);
-    localStorage.setItem("Locality", locality);
-    localStorage.setItem("Contact", contact);
-    localStorage.setItem("Id", id);
-  };
+  // const handleEdit = (id, name, locality, contact) => {
+  //   localStorage.setItem("Name", name);
+  //   localStorage.setItem("Locality", locality);
+  //   localStorage.setItem("Contact", contact);
+  //   localStorage.setItem("Id", id);
+  // };
 
   const deleteHospital = async (id) => {
     try {
       const res = await axios.delete(`${API_URL}/${id}`);
-      console.log("deleted successfully");
+      console.log("deleted successfully", res);
       getHospitals();
     } catch (err) {
       console.error(`Error:${err}`);
