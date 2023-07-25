@@ -4,7 +4,6 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const EditHospital = () => {
   const { hospitalId } = useParams();
-
   const [data, setData] = useState({});
   const navigate = useNavigate();
   const URL = "https://localhost:7264/api/Hospital/";

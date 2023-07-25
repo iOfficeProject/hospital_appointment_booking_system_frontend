@@ -1,5 +1,4 @@
 import React from "react";
-
 import Image from "../image/doctor.jpg";
 
 const About = () => {

@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "../AdminPage/AdminPage.css";
-import { FaHome, FaHospitalSymbol, FaUserAlt } from "react-icons/fa";
-import { RiAdminLine } from "react-icons/ri";
-import { HiUsers } from "react-icons/hi";
 import { Link, Navigate, NavLink, useNavigate } from "react-router-dom";
 import { Row, Col, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -22,7 +19,6 @@ import Add from "@mui/icons-material/Add";
 import "../Hospital/Hospital.css";
 
 const RolePage = () => {
-  // const navigate = useNavigate();
   const [roles, setRoles] = useState([]);
 
   const API_URL = "https://localhost:7264/api/roles";
@@ -71,22 +67,15 @@ const RolePage = () => {
           <Col md={10}>
             <div id="main">
               <article>
-                <h2>
-                  LIST OF ROLES
-                </h2>
-
+                <h2>LIST OF ROLES</h2>
                 <br />
-
                 <Link to="/addrole">
                   <Button variant="contained" startIcon={<Add />}>
                     Add Role
                   </Button>
                 </Link>
-
                 <br />
-
                 <br />
-
                 <div style={{ margin: "2rem" }}>
                   <TableContainer component={Paper}>
                     <Table>

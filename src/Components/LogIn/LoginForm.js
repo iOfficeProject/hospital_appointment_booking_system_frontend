@@ -107,7 +107,7 @@ export default function (props) {
       .catch((err) => {
         console.log(err);
         console.log(err.response);
-        // alert(err.response.data.error.message);
+        alert(err.response.data.error.message);
       });
   };
 

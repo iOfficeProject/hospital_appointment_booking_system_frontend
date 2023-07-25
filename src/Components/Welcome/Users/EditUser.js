@@ -39,15 +39,15 @@ const EditUser = () => {
       hospitalId: data.hospitalId,
     };
 
-    const formData = {
-      name: data.name,
-      email: data.email,
-      mobileNumber: data.mobileNumber,
-      password: data.password,
-      roleId: selectedRole,
-      specializationId: data.specializationId,
-      hospitalId: data.hospitalId,
-    };
+    // const formData = {
+    //   name: data.name,
+    //   email: data.email,
+    //   mobileNumber: data.mobileNumber,
+    //   password: data.password,
+    //   roleId: selectedRole,
+    //   specializationId: data.specializationId,
+    //   hospitalId: data.hospitalId,
+    // };
 
     console.log("H ==>", form);
 
@@ -62,11 +62,9 @@ const EditUser = () => {
       .then((data) => {
         console.log("User created successfully:", data);
         handleBackBtn();
-        // Handle any success actions
       })
       .catch((error) => {
         console.error("Error creating user:", error);
-        // Handle any error actions
         navigate("/user");
       });
   };

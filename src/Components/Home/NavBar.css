@@ -2,8 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* background-color: #f0f0f0; */
-  background-color:  rgb(5, 68, 104);
+  background-color: rgb(5, 68, 104);
   padding: 10px;
   height: 110px;
 }
@@ -41,7 +40,7 @@
 .signin-button:hover {
   background-color: #0056b3;
 }
-.signin-button a{
+.signin-button a {
   color: #fff !important;
 }
 
