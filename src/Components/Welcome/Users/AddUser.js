@@ -17,6 +17,14 @@ const AddUser = () => {
   const [specialization, setSpecialization] = useState("");
   const [hospitals, setHospitals] = useState([]);
   const [hospital, setHospital] = useState("");
+  const jwtToken=localStorage.getItem("jwtToken");
+
+  const config={
+    headers:{
+      Authorization:"Bearer "+jwtToken
+    }
+  }
+
 
   const navigate = useNavigate();
   const url = "https://localhost:7264/api/users";
@@ -63,7 +71,7 @@ const AddUser = () => {
 
   const getRoles = () => {
     axios
-      .get(`${API_URL}`)
+      .get(`${API_URL}`, config)
       .then((res) => {
         const allRoles = res.data;
         setRoles(allRoles);
@@ -77,7 +85,7 @@ const AddUser = () => {
   const getSpecialization = () => {
     axios
 
-      .get("https://localhost:7264/api/specializations")
+      .get("https://localhost:7264/api/specializations", config)
 
       .then((res) => {
         const allSpecializations = res.data;
@@ -95,7 +103,7 @@ const AddUser = () => {
   const getHospital = () => {
     axios
 
-      .get("https://localhost:7264/api/Hospital")
+      .get("https://localhost:7264/api/Hospital", config)
 
       .then((res) => {
         const allHospitals = res.data;
@@ -128,10 +136,10 @@ const AddUser = () => {
     };
     console.log(JSON.stringify(post));
     try {
-      const res = await axios.post(url, post);
+      const res = await axios.post(url, post, config);
       console.log(res);
     } catch (err) {
-      console.error(`Error: ${err}`);
+      alert(err.response.data)
     }
     navigate("/user");
   };

@@ -14,6 +14,7 @@ import EditHospital from "./Components/Welcome/Hospital/EditHospital";
 import RolePage from "./Components/Welcome/Roles/RolePage";
 import AboutUs from "./Components/Welcome/UiPages/AboutUs";
 import Services from "./Components/Welcome/UiPages/Services";
+import Error from "./Components/Error/Error";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="/addrole" element={<AddRole />} />
           <Route path="/edithospital/:hospitalId" element={<EditHospital />} />
           <Route path="/role" element={<RolePage />} />
+          <Route path="/error" element={<Error />} />
         </Routes>
       </BrowserRouter>
     </>

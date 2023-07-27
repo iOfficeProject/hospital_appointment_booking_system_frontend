@@ -16,19 +16,26 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Update from "@mui/icons-material/Update";
 import Add from "@mui/icons-material/Add";
 import "./Hospital.css";
+import Error from "../../Error/Error";
 
 const HospitalPage = () => {
   const [hospitals, setHospitals] = useState([]);
 
   const API_URL = "https://localhost:7264/api/Hospital";
+  const jwtToken=localStorage.getItem("jwtToken");
 
   useEffect(() => {
     getHospitals();
   }, []);
-
+  
+  const config={
+    headers:{
+      Authorization:"Bearer "+jwtToken
+    }
+  }
   const getHospitals = () => {
     axios
-      .get(`${API_URL}`)
+      .get(`${API_URL}`, config)
       .then((response) => {
         const allHospitals = response.data;
         setHospitals(allHospitals);
@@ -45,7 +52,7 @@ const HospitalPage = () => {
 
   const deleteHospital = async (id) => {
     try {
-      const res = await axios.delete(`${API_URL}/${id}`);
+      const res = await axios.delete(`${API_URL}/${id}`, config);
       console.log("deleted successfully", res);
       getHospitals();
     } catch (err) {
@@ -54,6 +61,7 @@ const HospitalPage = () => {
   };
   return (
     <>
+    {jwtToken===null?<Error/>:<>
       <Header />
       <Container fluid>
         <Row>
@@ -140,6 +148,7 @@ const HospitalPage = () => {
           </Col>
         </Row>
       </Container>
+    </>}
     </>
   );
 };

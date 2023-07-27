@@ -12,7 +12,7 @@ const Header = () => {
   };
 
   const handleLogout = () => {
-    console.log("Logout");
+    localStorage.removeItem("jwtToken");
     navigate("/");
   };
 

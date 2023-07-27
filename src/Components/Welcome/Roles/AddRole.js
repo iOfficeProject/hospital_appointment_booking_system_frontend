@@ -9,6 +9,14 @@ const AddRole = () => {
   const [roles, setRoles] = useState([]);
 
   const API_URL_ALL_ROLES = "https://localhost:7264/api/roles";
+  const jwtToken=localStorage.getItem("jwtToken");
+
+  const config={
+    headers:{
+      Authorization:"Bearer "+jwtToken
+    }
+  }
+
 
   useEffect(() => {
     getRoles();
@@ -16,7 +24,7 @@ const AddRole = () => {
 
   const getRoles = () => {
     axios
-      .get(`${API_URL_ALL_ROLES}`)
+      .get(`${API_URL_ALL_ROLES}`, config)
       .then((res) => {
         const allRoles = res.data;
         setRoles(allRoles);
@@ -55,7 +63,7 @@ const AddRole = () => {
     };
 
     try {
-      const res = await axios.post(url, post);
+      const res = await axios.post(url, post, config);
 
       console.log(res);
     } catch (err) {

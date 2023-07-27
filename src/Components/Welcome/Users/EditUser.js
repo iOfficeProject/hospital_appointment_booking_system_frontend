@@ -17,6 +17,16 @@ const EditUser = () => {
 
   const URL = `https://localhost:7264/api/users/${userId}`;
 
+
+  const jwtToken=localStorage.getItem("jwtToken");
+
+  const config={
+    headers:{
+      Authorization:"Bearer "+jwtToken
+    }
+  }
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -51,22 +61,29 @@ const EditUser = () => {
 
     console.log("H ==>", form);
 
-    fetch("https://localhost:7264/api/users/" + data.userId, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(form),
-    })
-      .then((response) => response)
-      .then((data) => {
-        console.log("User created successfully:", data);
-        handleBackBtn();
-      })
-      .catch((error) => {
-        console.error("Error creating user:", error);
-        navigate("/user");
-      });
+    axios.put("https://localhost:7264/api/users/"+data.userId, form, config).then(response=>{
+      if(response!=null){
+        navigate('/user')
+      }
+    }).catch((error=>{
+      alert(error.response.data)
+      //console.error("Error updating user:", error);
+      navigate("/user");
+    }))
+
+    // fetch("https://localhost:7264/api/users/" + data.userId, {
+    //   method: "PUT",
+    //   body: JSON.stringify(form),
+    // }, config)
+    //   .then((response) => response)
+    //   .then((data) => {
+    //     console.log("User created successfully:", data);
+    //     handleBackBtn();
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error creating user:", error);
+    //     navigate("/user");
+    //   });
   };
 
   useEffect(() => {
@@ -75,7 +92,7 @@ const EditUser = () => {
 
   const fetchRoles = () => {
     axios
-      .get("https://localhost:7264/api/roles")
+      .get("https://localhost:7264/api/roles", config)
       .then((response) => {
         setRoles(response.data);
       })
@@ -90,7 +107,7 @@ const EditUser = () => {
 
   const getUsers = () => {
     axios
-      .get("https://localhost:7264/api/users")
+      .get("https://localhost:7264/api/users", config)
       .then((response) => {
         const allUsers = response.data;
         setUsers(allUsers);
@@ -103,7 +120,7 @@ const EditUser = () => {
 
   useEffect(() => {
     axios
-      .get(URL)
+      .get(URL, config)
       .then((res) => {
         console.log("Useffect", res.data);
         setData(res.data);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../AdminPage/AdminPage.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Row, Col, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
@@ -17,11 +17,19 @@ import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Add from "@mui/icons-material/Add";
 import "../Hospital/Hospital.css";
+import Error from "../../Error/Error";
 
 const RolePage = () => {
   const [roles, setRoles] = useState([]);
-
   const API_URL = "https://localhost:7264/api/roles";
+  const jwtToken=localStorage.getItem("jwtToken");
+
+  const config={
+    headers:{
+      Authorization:"Bearer "+jwtToken
+    }
+  }
+
 
   useEffect(() => {
     getRoles();
@@ -29,20 +37,20 @@ const RolePage = () => {
 
   const getRoles = () => {
     axios
-      .get(`${API_URL}`)
+      .get(`${API_URL}`, config)
       .then((res) => {
         const allRoles = res.data;
         setRoles(allRoles);
         console.log(allRoles);
       })
       .catch((err) => {
-        console.error(`Error: ${err}`);
+        console.log(err);
       });
   };
 
   const deleteRole = async (id) => {
     try {
-      const res = await axios.delete(`${API_URL}/${id}`);
+      const res = await axios.delete(`${API_URL}/${id}`, config);
       console.log("deleted successfully", res);
       getRoles();
     } catch (err) {
@@ -52,6 +60,7 @@ const RolePage = () => {
 
   return (
     <>
+    {jwtToken===null?<Error/>:<>
       {/* Header */}
 
       <Header />
@@ -121,6 +130,7 @@ const RolePage = () => {
           </Col>
         </Row>
       </Container>
+    </>}
     </>
   );
 };

@@ -24,22 +24,23 @@ export default function () {
 
   const handleSubmitLogin = (event) => {
     event.preventDefault();
-    console.log("Submitted form");
-
-    axios
-      .post("https://localhost:7264/api/login/", dataToLoggedIn)
-      .then((response) => {
-        const jwtToken = response.data;
-        localStorage.setItem("jwtToken", jwtToken);
-        alert("Successfully loggedin");
-        navigate("/admin");
-      })
-      .catch((err) => {
-        console.log(err);
-        console.log(err.response);
-        alert("Invalid credentials");
-      });
-  };
+     axios
+       .post("https://localhost:7264/api/login/", dataToLoggedIn)
+       .then((response) => {
+         const jwtToken = response.data.token;
+         const roleName = response.data.roleName;
+         localStorage.setItem("jwtToken", jwtToken);
+         if (roleName === "Admin") {
+           alert("Successfully loggedIn");
+           navigate("/admin");
+         }
+       })
+       .catch((err) => {
+         alert("Invalid Credentials")
+         navigate('/login')
+        // alert(err.response.data.error.message);
+       });
+   };
 
   return (
     <div className="Auth-form-container">

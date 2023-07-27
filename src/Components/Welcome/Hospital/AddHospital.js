@@ -6,8 +6,14 @@ import axios from "axios";
 const AddHospital = () => {
   const [hospitalName, setHospitalName] = useState("");
   const [location, setLocation] = useState("");
-
+  const jwtToken=localStorage.getItem("jwtToken");
   const url = "https://localhost:7264/api/Hospital";
+
+  const config={
+    headers:{
+      Authorization:"Bearer "+jwtToken
+    }
+  }
 
   const navigate = useNavigate();
 
@@ -30,10 +36,10 @@ const AddHospital = () => {
       location,
     };
     try {
-      const res = await axios.post(url, post);
+      const res = await axios.post(url, post, config);
       console.log(res);
     } catch (err) {
-      console.error(`Error: ${err}`);
+      alert(err.response.data)
     }
 
     navigate("/hospital");

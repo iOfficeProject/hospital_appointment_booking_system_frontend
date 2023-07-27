@@ -10,10 +10,18 @@ import axios from "axios";
 import Sidebar from "../Sidebar/Sidebar";
 import Header from "../Header/Header";
 import Image from "../../image/doctor.jpg";
+import Error from "../../Error/Error";
 
 const AdminPage = () => {
+  const loggeduser = localStorage.getItem("jwtToken");
+  console.log(loggeduser);
+
   return (
     <>
+      {loggeduser === null ? 
+      <Error/>
+      : 
+      <>
       {/* Header */}
 
       <Header />
@@ -48,7 +56,9 @@ const AdminPage = () => {
                           1. Admin can add, delete and update the hospitals.
                         </h5>
                         <br />
-                        <h5>2. Admin can add, delete and update the users.</h5>
+                        <h5>
+                          2. Admin can add, delete and update the users.
+                        </h5>
                         <br />
                         <h5>3. Admin can add and delete the roles.</h5>
                       </p>
@@ -60,6 +70,8 @@ const AdminPage = () => {
           </Col>
         </Row>
       </Container>
+    </>
+      }
     </>
   );
 };
