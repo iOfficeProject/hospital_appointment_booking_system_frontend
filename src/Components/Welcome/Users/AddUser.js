@@ -1,9 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "../Hospital/Hospital.css";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import {
+  FormContainer,
+  Heading,
+  Label,
+  Input,
+  Button,
+  BtnContainer,
+  PasswordInputContainer,
+  PasswordToggleBtn,
+} from "../../StyledComponents/FormStyles";
+import "../Hospital/Hospital.css";
 
 const AddUser = () => {
   const [name, setName] = useState("");
@@ -17,17 +27,17 @@ const AddUser = () => {
   const [specialization, setSpecialization] = useState("");
   const [hospitals, setHospitals] = useState([]);
   const [hospital, setHospital] = useState("");
-  const jwtToken=localStorage.getItem("jwtToken");
+  const jwtToken = localStorage.getItem("jwtToken");
 
-  const config={
-    headers:{
-      Authorization:"Bearer "+jwtToken
-    }
-  }
-
+  const config = {
+    headers: {
+      Authorization: "Bearer " + jwtToken,
+    },
+  };
 
   const navigate = useNavigate();
   const url = "https://localhost:7264/api/users";
+  const API_URL = "https://localhost:7264/api/roles";
 
   const onNameChangeHandler = (e) => {
     setName(e.target.value);
@@ -60,12 +70,10 @@ const AddUser = () => {
   const backBtnHandler = () => {
     navigate("/user");
   };
-  const API_URL = "https://localhost:7264/api/roles";
 
   useEffect(() => {
     getRoles();
     getSpecialization();
-
     getHospital();
   }, []);
 
@@ -84,17 +92,12 @@ const AddUser = () => {
 
   const getSpecialization = () => {
     axios
-
       .get("https://localhost:7264/api/specializations", config)
-
       .then((res) => {
         const allSpecializations = res.data;
-
         setSpecializations(allSpecializations);
-
         console.log(allSpecializations);
       })
-
       .catch((err) => {
         console.error(`Error: ${err}`);
       });
@@ -102,17 +105,12 @@ const AddUser = () => {
 
   const getHospital = () => {
     axios
-
       .get("https://localhost:7264/api/Hospital", config)
-
       .then((res) => {
         const allHospitals = res.data;
-
         setHospitals(allHospitals);
-
         console.log(allHospitals);
       })
-
       .catch((err) => {
         console.error(`Error: ${err}`);
       });
@@ -120,9 +118,10 @@ const AddUser = () => {
 
   const onSubmitClickHandler = async (e) => {
     e.preventDefault();
-    var role = roles.filter((item) => item.roleName.toLowerCase() == roleId.toLowerCase());
+    var role = roles.filter(
+      (item) => item.roleName.toLowerCase() === roleId.toLowerCase()
+    );
 
-    console.log("hospital ==>", role);
     const post = {
       name: name,
       email: email,
@@ -130,16 +129,16 @@ const AddUser = () => {
       password: password,
       roleId: Number.parseInt(role[0].roleId),
       specializationId:
-        specialization != "" ? Number.parseInt(specialization) : null,
-      hospitalId: hospital != "" ? Number.parseInt(hospital) : null,
+        specialization !== "" ? Number.parseInt(specialization) : null,
+      hospitalId: hospital !== "" ? Number.parseInt(hospital) : null,
       role: role[0],
     };
-    console.log(JSON.stringify(post));
+
     try {
       const res = await axios.post(url, post, config);
       console.log(res);
     } catch (err) {
-      alert(err.response.data)
+      alert(err.response.data);
     }
     navigate("/user");
   };
@@ -149,16 +148,16 @@ const AddUser = () => {
   };
 
   return (
-    <div className="form-container">
+    <FormContainer>
       <div>
-        <h3 className="heading">Add User Form</h3>
+        <Heading>Add User Form</Heading>
       </div>
       <br />
       <form onSubmit={onSubmitClickHandler}>
-        <label htmlFor="name">
+        <Label htmlFor="name">
           <b>Enter your full name :</b>
-        </label>
-        <input
+        </Label>
+        <Input
           type="text"
           className="input-field"
           placeholder="Full Name"
@@ -169,10 +168,10 @@ const AddUser = () => {
           title="Must contain alphabets and spaces only, numbers not allowed"
         />
         <br />
-        <label htmlFor="email">
+        <Label htmlFor="email">
           <b>Enter your email address :</b>
-        </label>
-        <input
+        </Label>
+        <Input
           type="email"
           placeholder="Email"
           value={email}
@@ -181,10 +180,10 @@ const AddUser = () => {
           title="Email should be in proper format"
         />
         <br />
-        <label htmlFor="contact">
+        <Label htmlFor="contact">
           <b>Enter your mobile number :</b>
-        </label>
-        <input
+        </Label>
+        <Input
           type="text"
           placeholder="Mobile Number"
           value={mobileNumber}
@@ -194,11 +193,11 @@ const AddUser = () => {
           title="Mobile number should contain exactly 10 digits"
         />
         <br />
-        <label htmlFor="password">
+        <Label htmlFor="password">
           <b>Enter your Password :</b>
-        </label>
-        <div className="password-input-container">
-          <input
+        </Label>
+        <PasswordInputContainer>
+          <Input
             type={showPassword ? "text" : "password"}
             placeholder="Password"
             value={password}
@@ -207,17 +206,17 @@ const AddUser = () => {
             title="Password must contain at least 8 characters, including 1 alphabet, 1 number, and 1 special character."
             required
           />
-          <button
+          <PasswordToggleBtn
             type="button"
             className="password-toggle-btn"
             onClick={togglePasswordVisibility}
           >
             <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
-          </button>
-        </div>
+          </PasswordToggleBtn>
+        </PasswordInputContainer>
         <br />
 
-        <label htmlFor="dropdown">Select your role:</label>
+        <Label htmlFor="dropdown">Select your role:</Label>
         <select id="dropdown" value={roleId} onChange={onRoleChangeHandler}>
           <option value="">Select role</option>
           {roles.map((role) => (
@@ -228,9 +227,9 @@ const AddUser = () => {
         </select>
         <br />
 
-        {roleId.toLowerCase() == "doctor" && (
+        {roleId.toLowerCase() === "doctor" && (
           <>
-            <label htmlFor="dropdown">Select your Specialization:</label>
+            <Label htmlFor="dropdown">Select your Specialization:</Label>
             <select
               id="dropdown"
               value={specialization}
@@ -249,9 +248,9 @@ const AddUser = () => {
           </>
         )}
 
-        {roleId != "" && roleId.toLowerCase() != "user" && (
+        {roleId !== "" && roleId.toLowerCase() !== "user" && (
           <>
-            <br /> <label htmlFor="dropdown">Select your Hospital:</label>
+            <br /> <Label htmlFor="dropdown">Select your Hospital:</Label>
             <select
               id="dropdown"
               value={hospital}
@@ -268,17 +267,17 @@ const AddUser = () => {
         )}
 
         <br />
-        <div className="btn-container">
-          <input
+        <BtnContainer>
+          <Button
             type="button"
             className="back-btn"
             value="Back"
             onClick={backBtnHandler}
           />
-          <input type="submit" className="btn" value="Submit" />
-        </div>
+          <Button type="submit" className="btn" value="Submit" />
+        </BtnContainer>
       </form>
-    </div>
+    </FormContainer>
   );
 };
 

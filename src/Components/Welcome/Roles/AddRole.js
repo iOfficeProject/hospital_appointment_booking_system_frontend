@@ -1,26 +1,23 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "../Hospital/Hospital.css";
-import Button from "@mui/material/Button";
+import { FormContainer, Heading, Label, Input, Button, BtnContainer } from "../../StyledComponents/FormStyles"; 
 
 const AddRole = () => {
   const [roleName, setRoleName] = useState("");
   const [roles, setRoles] = useState([]);
+  const jwtToken = localStorage.getItem("jwtToken");
 
   const API_URL_ALL_ROLES = "https://localhost:7264/api/roles";
-  const jwtToken=localStorage.getItem("jwtToken");
+  const url = "https://localhost:7264/api/roles";
 
-  const config={
-    headers:{
-      Authorization:"Bearer "+jwtToken
-    }
-  }
+  const config = {
+    headers: {
+      Authorization: "Bearer " + jwtToken,
+    },
+  };
 
-
-  useEffect(() => {
-    getRoles();
-  }, []);
+  const navigate = useNavigate();
 
   const getRoles = () => {
     axios
@@ -35,9 +32,9 @@ const AddRole = () => {
       });
   };
 
-  const navigate = useNavigate();
-
-  const url = "https://localhost:7264/api/roles";
+  useEffect(() => {
+    getRoles();
+  }, []);
 
   const onRoleChangeHandler = (e) => {
     setRoleName(e.target.value);
@@ -51,10 +48,10 @@ const AddRole = () => {
     e.preventDefault();
 
     const tmpRoles = roles.filter(
-      (item) => item.roleName.toLowerCase() == roleName.toLowerCase()
+      (item) => item.roleName.toLowerCase() === roleName.toLowerCase()
     );
     if (tmpRoles.length > 0) {
-      alert("Role already exist, Please enter different role.");
+      alert("Role already exists, please enter a different role.");
       return;
     }
 
@@ -64,7 +61,6 @@ const AddRole = () => {
 
     try {
       const res = await axios.post(url, post, config);
-
       console.log(res);
     } catch (err) {
       console.error(`Error: ${err}`);
@@ -74,16 +70,16 @@ const AddRole = () => {
   };
 
   return (
-    <div className="form-container">
+    <FormContainer>
       <div>
-        <h3 className="heading">Add Role Form</h3>
+        <Heading>Add Role Form</Heading>
       </div>
       <br />
 
       <form onSubmit={onSubmitClickHandler}>
-        <label htmlFor="dropdown">Select your role:</label>
+        <Label htmlFor="dropdown">Select your role:</Label>
 
-        <input
+        <Input
           type="text"
           placeholder="Add Role"
           value={roleName}
@@ -92,17 +88,18 @@ const AddRole = () => {
         />
 
         <br />
-        <div className="btn-container">
-          <input
+        <BtnContainer>
+          <Button
             type="button"
             className="back-btn"
             value="Back"
             onClick={backBtnHandler}
+            back
           />
-          <input type="submit" className="btn" value="Submit" />
-        </div>
+          <Button type="submit" className="btn" value="Submit" />
+        </BtnContainer>
       </form>
-    </div>
+    </FormContainer>
   );
 };
 

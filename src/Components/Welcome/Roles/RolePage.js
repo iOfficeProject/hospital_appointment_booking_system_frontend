@@ -16,7 +16,6 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Add from "@mui/icons-material/Add";
-import "../Hospital/Hospital.css";
 import Error from "../../Error/Error";
 
 const RolePage = () => {

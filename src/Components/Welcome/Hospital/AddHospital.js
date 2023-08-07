@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../Hospital/Hospital.css";
+import {
+  FormContainer,
+  Heading,
+  Label,
+  Input,
+  Button,
+  BtnContainer,
+} from "../../StyledComponents/FormStyles";
 import axios from "axios";
 
 const AddHospital = () => {
@@ -46,16 +53,16 @@ const AddHospital = () => {
   };
 
   return (
-    <div className="form-container">
+    <FormContainer>
       <div>
-        <h3 className="heading">Add Hospital Form</h3>
+        <Heading>Add Hospital Form</Heading>
       </div>
-      <br/>
+      <br />
       <form onSubmit={onSubmitClickHandler}>
-        <label htmlFor="name">
+        <Label htmlFor="name">
           <b>Name of Hospital :</b>
-        </label>
-        <input
+        </Label>
+        <Input
           type="text"
           placeholder="Hospital's Name"
           value={hospitalName}
@@ -65,10 +72,10 @@ const AddHospital = () => {
           title="Must contain alphabets and spaces only, numbers not allowed"
         />
 
-        <label htmlFor="locality">
+        <Label htmlFor="locality">
           <b>Locality of Hospital :</b>
-        </label>
-        <input
+        </Label>
+        <Input
           type="text"
           placeholder="Address of Hospital"
           value={location}
@@ -76,17 +83,18 @@ const AddHospital = () => {
           required
           title="Can contain alphabets, numbers and some relevant symbols"
         />
-        <div className="btn-container">
-          <input
+        <BtnContainer>
+          <Button
             type="button"
             className="back-btn"
             value="Back"
             onClick={backBtnHandler}
+            back
           />
-          <input type="submit" className="btn" value="Submit" />
-        </div>
+          <Button type="submit" className="btn" value="Submit" />
+        </BtnContainer>
       </form>
-    </div>
+    </FormContainer>
   );
 };
 

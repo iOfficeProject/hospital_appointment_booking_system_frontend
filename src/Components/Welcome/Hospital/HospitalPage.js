@@ -15,7 +15,6 @@ import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Update from "@mui/icons-material/Update";
 import Add from "@mui/icons-material/Add";
-import "./Hospital.css";
 import Error from "../../Error/Error";
 
 const HospitalPage = () => {
@@ -42,13 +41,6 @@ const HospitalPage = () => {
       })
       .catch((error) => console.error(`Error: ${error}`));
   };
-
-  // const handleEdit = (id, name, locality, contact) => {
-  //   localStorage.setItem("Name", name);
-  //   localStorage.setItem("Locality", locality);
-  //   localStorage.setItem("Contact", contact);
-  //   localStorage.setItem("Id", id);
-  // };
 
   const deleteHospital = async (id) => {
     try {

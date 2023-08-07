@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import {
+  FormContainer,
+  Heading,
+  Label,
+  Input,
+  Button,
+  BtnContainer,
+  PasswordInputContainer,
+  PasswordToggleBtn,
+} from "../../StyledComponents/FormStyles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
@@ -49,16 +59,6 @@ const EditUser = () => {
       hospitalId: data.hospitalId,
     };
 
-    // const formData = {
-    //   name: data.name,
-    //   email: data.email,
-    //   mobileNumber: data.mobileNumber,
-    //   password: data.password,
-    //   roleId: selectedRole,
-    //   specializationId: data.specializationId,
-    //   hospitalId: data.hospitalId,
-    // };
-
     console.log("H ==>", form);
 
     axios.put("https://localhost:7264/api/users/"+data.userId, form, config).then(response=>{
@@ -70,20 +70,6 @@ const EditUser = () => {
       //console.error("Error updating user:", error);
       navigate("/user");
     }))
-
-    // fetch("https://localhost:7264/api/users/" + data.userId, {
-    //   method: "PUT",
-    //   body: JSON.stringify(form),
-    // }, config)
-    //   .then((response) => response)
-    //   .then((data) => {
-    //     console.log("User created successfully:", data);
-    //     handleBackBtn();
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error creating user:", error);
-    //     navigate("/user");
-    //   });
   };
 
   useEffect(() => {
@@ -142,16 +128,14 @@ const EditUser = () => {
   };
 
   return (
-    <div className="form-container">
-      <div>
-        <h3 className="heading">Edit User Form</h3>
-      </div>
+    <FormContainer>
+      <Heading>Edit User Form</Heading>
       <br />
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">
+        <Label>
           <b>Enter your full name :</b>
-        </label>
-        <input
+        </Label>
+        <Input
           type="text"
           placeholder="Full Name"
           required
@@ -163,10 +147,10 @@ const EditUser = () => {
 
         <br />
 
-        <label htmlFor="email">
+        <Label>
           <b>Enter your email address :</b>
-        </label>
-        <input
+        </Label>
+        <Input
           type="email"
           value={data.email || ""}
           placeholder="Email"
@@ -177,10 +161,10 @@ const EditUser = () => {
 
         <br />
 
-        <label htmlFor="contact">
+        <Label>
           <b>Enter your mobile number :</b>
-        </label>
-        <input
+        </Label>
+        <Input
           type="text"
           placeholder="Mobile Number"
           required
@@ -192,11 +176,11 @@ const EditUser = () => {
 
         <br />
 
-        <label htmlFor="password">
+        <Label>
           <b>Enter your Password :</b>
-        </label>
-        <div className="password-input-container">
-          <input
+        </Label>
+        <PasswordInputContainer>
+          <Input
             type={showPassword ? "text" : "password"}
             placeholder="Password"
             value={data.password || ""}
@@ -205,18 +189,14 @@ const EditUser = () => {
             title="Password must contain at least 8 characters, including 1 alphabet, 1 number, and 1 special character."
             required
           />
-          <button
-            type="button"
-            className="password-toggle-btn"
-            onClick={togglePasswordVisibility}
-          >
+          <PasswordToggleBtn onClick={togglePasswordVisibility}>
             <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
-          </button>
-        </div>
+          </PasswordToggleBtn>
+        </PasswordInputContainer>
 
         <br />
 
-        <label htmlFor="dropdown">Select your role:</label>
+        <Label>Select your role:</Label>
         <select onChange={change}>
           {roles.map((role) => (
             <option
@@ -229,17 +209,17 @@ const EditUser = () => {
           ))}
         </select>
         <br />
-        <div className="btn-container">
-          <input
+        <BtnContainer>
+          <Button
             type="button"
-            className="back-btn"
+            back
             value="Back"
             onClick={handleBackBtn}
           />
-          <input type="submit" className="btn" value="Update" />
-        </div>
+          <Button type="submit" value="Update" />
+        </BtnContainer>
       </form>
-    </div>
+    </FormContainer>
   );
 };
 

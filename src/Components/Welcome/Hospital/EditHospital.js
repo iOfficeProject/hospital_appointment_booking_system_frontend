@@ -1,6 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import {
+  FormContainer,
+  Heading,
+  Label,
+  Input,
+  Button,
+  BtnContainer,
+} from "../../StyledComponents/FormStyles";
 
 const EditHospital = () => {
   const { hospitalId } = useParams();
@@ -42,17 +50,17 @@ const EditHospital = () => {
   };
 
   return (
-    <div className="form-container">
+    <FormContainer>
       <div>
-        <h3 className="heading">Edit Hospital Form</h3>
+        <Heading>Edit Hospital Form</Heading>
       </div>
-      <br/>
+      <br />
 
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">
+        <Label htmlFor="name">
           <b>Name of Hospital :</b>
-        </label>
-        <input
+        </Label>
+        <Input
           type="text"
           placeholder="Hospital's Name"
           value={data.hospitalName || ""}
@@ -62,10 +70,10 @@ const EditHospital = () => {
           title="Must contain alphabets and spaces only, numbers not allowed"
         />
 
-        <label htmlFor="locality">
+        <Label htmlFor="locality">
           <b>Locality of Hospital :</b>
-        </label>
-        <input
+        </Label>
+        <Input
           type="text"
           placeholder="Address of Hospital"
           value={data.location || ""}
@@ -74,17 +82,18 @@ const EditHospital = () => {
           title="Can contain alphabets, numbers and some relevant symbols"
         />
 
-        <div className="btn-container">
-          <input
+        <BtnContainer>
+          <Button
             type="button"
             className="back-btn"
             value="Back"
             onClick={backBtnHandler}
+            back
           />
-          <input type="submit" className="btn" value="Update" />
-        </div>
+          <Button type="submit" className="btn" value="Update" />
+        </BtnContainer>
       </form>
-    </div>
+    </FormContainer>
   );
 };
 
