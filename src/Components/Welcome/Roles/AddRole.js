@@ -1,7 +1,14 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { FormContainer, Heading, Label, Input, Button, BtnContainer } from "../../StyledComponents/FormStyles"; 
+import {
+  FormContainer,
+  Heading,
+  Label,
+  Input,
+  Button,
+  BtnContainer,
+} from "../../StyledComponents/FormStyles";
 
 const AddRole = () => {
   const [roleName, setRoleName] = useState("");

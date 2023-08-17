@@ -1,35 +1,39 @@
-import React from 'react';
-import "./Sidebar.css";
-import { FaHospitalSymbol } from "react-icons/fa";
-import { FaUserAlt } from "react-icons/fa";
+import React from "react";
+import {
+  SidebarContainer,
+  SidebarList,
+  SidebarItem,
+  SidebarLink,
+  SideIcons,
+} from "../../StyledComponents/SidebarStyles";
+import { FaHospitalSymbol, FaUserAlt } from "react-icons/fa";
 import { HiUsers } from "react-icons/hi";
-import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
   return (
-    <nav className="sidebar">
-    <ul>
-      <li>
-        <div className="side-icons">
-          <FaHospitalSymbol />
-          <Link to="/hospital">Hospitals</Link>
-        </div>
-      </li>
-      <li>
-        <div className="side-icons">
-          <FaUserAlt />
-          <Link to="/user">Users</Link>
-        </div>
-      </li>
-      <li>
-        <div className="side-icons">
-          <HiUsers />
-          <Link to="/role">Roles</Link>
-        </div>
-      </li>
-    </ul>
-  </nav>
-  )
-}
+    <SidebarContainer>
+      <SidebarList>
+        <SidebarItem>
+          <SideIcons>
+            <FaHospitalSymbol />
+            <SidebarLink to="/hospital">Hospitals</SidebarLink>
+          </SideIcons>
+        </SidebarItem>
+        <SidebarItem>
+          <SideIcons>
+            <FaUserAlt />
+            <SidebarLink to="/user">Users</SidebarLink>
+          </SideIcons>
+        </SidebarItem>
+        <SidebarItem>
+          <SideIcons>
+            <HiUsers />
+            <SidebarLink to="/role">Roles</SidebarLink>
+          </SideIcons>
+        </SidebarItem>
+      </SidebarList>
+    </SidebarContainer>
+  );
+};
 
-export default Sidebar
+export default Sidebar;

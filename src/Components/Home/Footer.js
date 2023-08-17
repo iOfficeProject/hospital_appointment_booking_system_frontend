@@ -1,14 +1,22 @@
 import React from "react";
-import "./Footer.css";
+import {
+  FooterContainer,
+  FooterHeader,
+  FooterParagraph,
+  FooterLinksList,
+  FooterLinkItem,
+  FooterLink,
+  FootRow,
+} from "../StyledComponents/FooterStyles";
 
 const Footer = () => {
   return (
-    <footer className="footer">
+    <FooterContainer>
       <div className="container">
-        <div className="row">
+        <FootRow>
           <div className="col-md-6">
-            <h4>Contact Us</h4>
-            <p>
+            <FooterHeader>Contact Us</FooterHeader>
+            <FooterParagraph>
               Hospital Management System
               <br />
               Country, Postal Code
@@ -16,25 +24,37 @@ const Footer = () => {
               Phone: 911-777-555
               <br />
               Email: hospitalmanagement@gmail.com
-            </p>
+            </FooterParagraph>
           </div>
           <div className="col-md-6">
-            <h4>Social</h4>
-            <p>
-              Facebook
-              <br />
-              Twitter
-              <br />
-              LinkedIn
-              <br />
-              Youtube
-              <br />
-              Github
-            </p>
+            <FooterHeader>Social</FooterHeader>
+            <FooterParagraph>
+              <FooterLinksList>
+                <FooterLinkItem>
+                  <FooterLink href="#">Facebook</FooterLink>
+                </FooterLinkItem>
+                <br/>
+                <FooterLinkItem>
+                  <FooterLink href="#">Twitter</FooterLink>
+                </FooterLinkItem>
+                <br/>
+                <FooterLinkItem>
+                  <FooterLink href="#">LinkedIn</FooterLink>
+                </FooterLinkItem>
+                <br/>
+                <FooterLinkItem>
+                  <FooterLink href="#">Youtube</FooterLink>
+                </FooterLinkItem>
+                <br/>
+                <FooterLinkItem>
+                  <FooterLink href="#">Github</FooterLink>
+                </FooterLinkItem>
+              </FooterLinksList>
+            </FooterParagraph>
           </div>
-        </div>
+        </FootRow>
       </div>
-    </footer>
+    </FooterContainer>
   );
 };
 

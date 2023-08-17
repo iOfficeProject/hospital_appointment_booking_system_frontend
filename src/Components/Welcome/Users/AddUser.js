@@ -13,7 +13,6 @@ import {
   PasswordInputContainer,
   PasswordToggleBtn,
 } from "../../StyledComponents/FormStyles";
-import "../Hospital/Hospital.css";
 
 const AddUser = () => {
   const [name, setName] = useState("");

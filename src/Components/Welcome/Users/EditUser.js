@@ -208,7 +208,7 @@ const EditUser = () => {
             </option>
           ))}
         </select>
-        <br />
+        <br /> <br/>
         <BtnContainer>
           <Button
             type="button"

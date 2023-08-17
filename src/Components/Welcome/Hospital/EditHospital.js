@@ -15,13 +15,13 @@ const EditHospital = () => {
   const [data, setData] = useState({});
   const navigate = useNavigate();
   const URL = "https://localhost:7264/api/Hospital/";
-  const jwtToken=localStorage.getItem("jwtToken");
+  const jwtToken = localStorage.getItem("jwtToken");
 
-  const config={
-    headers:{
-      Authorization:"Bearer "+jwtToken
-    }
-  }
+  const config = {
+    headers: {
+      Authorization: "Bearer " + jwtToken,
+    },
+  };
 
   useEffect(() => {
     axios
@@ -37,7 +37,7 @@ const EditHospital = () => {
     e.preventDefault();
 
     axios
-      .put(`${URL}${hospitalId}`, data,config)
+      .put(`${URL}${hospitalId}`, data, config)
       .then((res) => {
         alert("Data updated successfully");
         navigate("/hospital");

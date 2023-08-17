@@ -1,8 +1,17 @@
-import React, { useState } from "react";
-import { FaHome } from "react-icons/fa";
-import { AiOutlineUser } from "react-icons/ai";
-import "./Header.css";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { FaHome } from 'react-icons/fa';
+import { AiOutlineUser } from 'react-icons/ai';
+import {
+  Nav,
+  NavList,
+  NavItem,
+  Icon,
+  AdminLogo,
+  AdminLogoText,
+  Dropdown,
+  DropdownButton,
+} from '../../StyledComponents/HeaderStyles';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -12,36 +21,36 @@ const Header = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("jwtToken");
-    navigate("/");
+    localStorage.removeItem('jwtToken');
+    navigate('/');
   };
 
   const navigate = useNavigate();
 
   const homeClickHandler = () => {
-    navigate("/admin");
+    navigate('/admin');
   };
 
   return (
     <div className="body">
-      <nav className="nav">
-        <ul>
-          <div className="icon">
+      <Nav>
+        <NavList>
+          <Icon>
             <FaHome onClick={homeClickHandler} />
-          </div>
-          <li>
-            <div className="admin-logo" onClick={toggleDropdown}>
+          </Icon>
+          <NavItem>
+            <AdminLogo onClick={toggleDropdown}>
               <AiOutlineUser />
-              <span>Admin</span>
-            </div>
+              <AdminLogoText>Admin</AdminLogoText>
+            </AdminLogo>
             {dropdownOpen && (
-              <div className="dropdown">
-                <button onClick={handleLogout}>Logout</button>
-              </div>
+              <Dropdown>
+                <DropdownButton onClick={handleLogout}>Logout</DropdownButton>
+              </Dropdown>
             )}
-          </li>
-        </ul>
-      </nav>
+          </NavItem>
+        </NavList>
+      </Nav>
     </div>
   );
 };

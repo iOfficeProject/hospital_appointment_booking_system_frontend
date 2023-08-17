@@ -16,22 +16,31 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Update from "@mui/icons-material/Update";
 import Add from "@mui/icons-material/Add";
 import Error from "../../Error/Error";
+import {
+  ContainerFluid,
+  MainContent,
+  CardContainer,
+  CardImage,
+  CardTitle,
+  CardText,
+  CardListItem,
+} from "../../StyledComponents/AdminPageStyles";
 
 const HospitalPage = () => {
   const [hospitals, setHospitals] = useState([]);
 
   const API_URL = "https://localhost:7264/api/Hospital";
-  const jwtToken=localStorage.getItem("jwtToken");
+  const jwtToken = localStorage.getItem("jwtToken");
 
   useEffect(() => {
     getHospitals();
   }, []);
-  
-  const config={
-    headers:{
-      Authorization:"Bearer "+jwtToken
-    }
-  }
+
+  const config = {
+    headers: {
+      Authorization: "Bearer " + jwtToken,
+    },
+  };
   const getHospitals = () => {
     axios
       .get(`${API_URL}`, config)
@@ -53,94 +62,100 @@ const HospitalPage = () => {
   };
   return (
     <>
-    {jwtToken===null?<Error/>:<>
-      <Header />
-      <Container fluid>
-        <Row>
-          <Col md={2}>
-            <Sidebar />
-          </Col>
-          <Col md={10}>
-            <div id="main">
-              <article>
-                <h2>
-                  LIST OF HOSPITALS
-                </h2>
-                <br />
-                <Link to="/addhospital">
-                  <Button variant="contained" startIcon={<Add />}>
-                    Add Hospital
-                  </Button>
-                </Link>
-                <br />
-                <br />
-                <div style={{ margin: "2rem" }}>
-                  <TableContainer component={Paper}>
-                    <Table>
-                      <TableHead>
-                        <TableRow>
-                          <TableCell align="center">
-                            <b style={{ fontSize: "18px" }}>Name</b>
-                          </TableCell>
-                          <TableCell align="center">
-                            <b style={{ fontSize: "18px" }}>Locality</b>
-                          </TableCell>
-                          <TableCell align="center">
-                            <b style={{ fontSize: "18px" }}>Actions</b>
-                          </TableCell>
-                        </TableRow>
-                      </TableHead>
-                      <TableBody>
-                        {hospitals && hospitals.length > 0
-                          ? hospitals.map((hospital) => (
-                              <TableRow key={hospital.hospitalId}>
-                                <TableCell
-                                  component="th"
-                                  scope="row"
-                                  align="center"
-                                >
-                                  {hospital.hospitalName}
+      {jwtToken === null ? (
+        <Error />
+      ) : (
+        <>
+          <Header />
+          <ContainerFluid>
+            <Row>
+              <Col md={2}>
+                <Sidebar />
+              </Col>
+              <Col md={10}>
+                <MainContent>
+                  <div id="main">
+                    <article>
+                      <h2 style={{ textAlign: "center" }}>LIST OF HOSPITALS</h2>
+                      <br />
+                      <Link to="/addhospital">
+                        <Button variant="contained" startIcon={<Add />}>
+                          Add Hospital
+                        </Button>
+                      </Link>
+                      <br />
+                      <br />
+                      <div style={{ margin: "2rem" }}>
+                        <TableContainer component={Paper}>
+                          <Table>
+                            <TableHead>
+                              <TableRow>
+                                <TableCell align="center">
+                                  <b style={{ fontSize: "18px" }}>Name</b>
                                 </TableCell>
                                 <TableCell align="center">
-                                  {hospital.location}
+                                  <b style={{ fontSize: "18px" }}>Locality</b>
                                 </TableCell>
                                 <TableCell align="center">
-                                  <Link
-                                    to={`/edithospital/${hospital.hospitalId}`}
-                                  >
-                                    <Button
-                                      variant="contained"
-                                      startIcon={<Update />}
-                                    >
-                                      Edit
-                                    </Button>
-                                  </Link>
-                                  &nbsp;
-                                  <Link>
-                                    <Button
-                                      variant="contained"
-                                      startIcon={<DeleteIcon />}
-                                      onClick={() =>
-                                        deleteHospital(hospital.hospitalId)
-                                      }
-                                    >
-                                      Delete
-                                    </Button>
-                                  </Link>
+                                  <b style={{ fontSize: "18px" }}>Actions</b>
                                 </TableCell>
                               </TableRow>
-                            ))
-                          : "No data available"}
-                      </TableBody>
-                    </Table>
-                  </TableContainer>
-                </div>
-              </article>
-            </div>
-          </Col>
-        </Row>
-      </Container>
-    </>}
+                            </TableHead>
+                            <TableBody>
+                              {hospitals && hospitals.length > 0
+                                ? hospitals.map((hospital) => (
+                                    <TableRow key={hospital.hospitalId}>
+                                      <TableCell
+                                        component="th"
+                                        scope="row"
+                                        align="center"
+                                      >
+                                        {hospital.hospitalName}
+                                      </TableCell>
+                                      <TableCell align="center">
+                                        {hospital.location}
+                                      </TableCell>
+                                      <TableCell align="center">
+                                        <Link
+                                          to={`/edithospital/${hospital.hospitalId}`}
+                                        >
+                                          <Button
+                                            variant="contained"
+                                            startIcon={<Update />}
+                                          >
+                                            Edit
+                                          </Button>
+                                        </Link>
+                                        &nbsp;
+                                        <Link>
+                                          <Button
+                                            variant="contained"
+                                            startIcon={<DeleteIcon />}
+                                            onClick={() =>
+                                              deleteHospital(
+                                                hospital.hospitalId
+                                              )
+                                            }
+                                          >
+                                            Delete
+                                          </Button>
+                                        </Link>
+                                      </TableCell>
+                                    </TableRow>
+                                  ))
+                                : "No data available"}
+                            </TableBody>
+                          </Table>
+                        </TableContainer>
+                      </div>
+                    </article>
+                  </div>
+                </MainContent>
+              </Col>
+            </Row>
+          </ContainerFluid>
+        </>
+      )}
     </>
   );
 };
