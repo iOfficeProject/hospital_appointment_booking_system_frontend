@@ -212,7 +212,6 @@ const EditUser = () => {
         <BtnContainer>
           <Button
             type="button"
-            back
             value="Back"
             onClick={handleBackBtn}
           />

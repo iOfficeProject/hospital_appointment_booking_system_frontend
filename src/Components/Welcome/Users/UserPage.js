@@ -49,10 +49,10 @@ function UserPage() {
       .then((response) => {
         const allUsers = response.data;
         setUsers(allUsers);
-        console.log(allUsers);
+        // console.log(allUsers);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   };
 
@@ -60,11 +60,11 @@ function UserPage() {
     try {
       const res = await axios.delete(`${url}/${id}`, config);
 
-      console.log("deleted successfully" + res);
+      // console.log("deleted successfully" + res);
 
       getUsers();
     } catch (err) {
-      console.error(`Error: ${err}`);
+      // console.error(`Error: ${err}`);
     }
   };
 
@@ -125,23 +125,34 @@ function UserPage() {
                             <TableBody>
                               {users && users.length > 0
                                 ? users.map((user) => (
-                                    <TableRow>
+                                    <TableRow key={user.userId}>
                                       <TableCell
+                                        data-testid={`name-${user.userId}`}
                                         component="th"
                                         scope="row"
                                         align="center"
                                       >
                                         {user.name}
                                       </TableCell>
-                                      <TableCell align="center">
+                                      <TableCell
+                                        data-testid={`email-${user.userId}`}
+                                        align="center"
+                                      >
                                         {user.email}
                                       </TableCell>
-                                      <TableCell align="center">
+                                      <TableCell
+                                        data-testid={`mobileNumber-${user.userId}`}
+                                        align="center"
+                                      >
                                         {user.mobileNumber}
                                       </TableCell>
-                                      <TableCell align="center">
+                                      <TableCell
+                                        data-testid={`role-${user.userId}`}
+                                        align="center"
+                                      >
                                         {user.role.roleName}
                                       </TableCell>
+
                                       <TableCell align="center">
                                         <Link to={`/edituser/${user.userId}`}>
                                           <Button
@@ -164,7 +175,13 @@ function UserPage() {
                                       </TableCell>
                                     </TableRow>
                                   ))
-                                : "No data available"}
+                                : (
+                                  <TableRow>
+                                    <TableCell colSpan={3} align="center">
+                                      No data available
+                                    </TableCell>
+                                  </TableRow>
+                                )}
                             </TableBody>
                           </Table>
                         </TableContainer>

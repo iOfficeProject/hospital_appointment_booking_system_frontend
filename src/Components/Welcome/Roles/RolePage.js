@@ -46,21 +46,21 @@ const RolePage = () => {
       .get(`${API_URL}`, config)
       .then((res) => {
         const allRoles = res.data;
-        setRoles(allRoles);
-        console.log(allRoles);
+          setRoles(allRoles);
+        // console.log(allRoles);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 
   const deleteRole = async (id) => {
     try {
       const res = await axios.delete(`${API_URL}/${id}`, config);
-      console.log("deleted successfully", res);
+      // console.log("deleted successfully", res);
       getRoles();
     } catch (err) {
-      console.error(`Error:${err}`);
+      // console.error(`Error:${err}`);
     }
   };
 
@@ -132,7 +132,13 @@ const RolePage = () => {
                                       </TableCell>
                                     </TableRow>
                                   ))
-                                : "No data available"}
+                                : (
+                                  <TableRow>
+                                    <TableCell colSpan={3} align="center">
+                                      No data available
+                                    </TableCell>
+                                  </TableRow>
+                                )}
                             </TableBody>
                           </Table>
                         </TableContainer>

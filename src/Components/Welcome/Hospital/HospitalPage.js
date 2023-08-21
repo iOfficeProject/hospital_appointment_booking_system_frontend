@@ -48,16 +48,19 @@ const HospitalPage = () => {
         const allHospitals = response.data;
         setHospitals(allHospitals);
       })
-      .catch((error) => console.error(`Error: ${error}`));
+      .catch((error) => {
+      // console.error(`Error: ${error}`)
+      }
+      );
   };
 
   const deleteHospital = async (id) => {
     try {
       const res = await axios.delete(`${API_URL}/${id}`, config);
-      console.log("deleted successfully", res);
+      // console.log("deleted successfully", res);
       getHospitals();
     } catch (err) {
-      console.error(`Error:${err}`);
+      // console.error(`Error:${err}`);
     }
   };
   return (
@@ -130,6 +133,7 @@ const HospitalPage = () => {
                                         <Link>
                                           <Button
                                             variant="contained"
+                                            data-testid="delete-button"
                                             startIcon={<DeleteIcon />}
                                             onClick={() =>
                                               deleteHospital(
@@ -143,7 +147,13 @@ const HospitalPage = () => {
                                       </TableCell>
                                     </TableRow>
                                   ))
-                                : "No data available"}
+                                : (
+                                  <TableRow>
+                                    <TableCell colSpan={3} align="center">
+                                      No data available
+                                    </TableCell>
+                                  </TableRow>
+                                )}
                             </TableBody>
                           </Table>
                         </TableContainer>

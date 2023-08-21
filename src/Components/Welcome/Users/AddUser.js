@@ -82,10 +82,10 @@ const AddUser = () => {
       .then((res) => {
         const allRoles = res.data;
         setRoles(allRoles);
-        console.log(allRoles);
+        // console.log(allRoles);
       })
       .catch((err) => {
-        console.error(`Error: ${err}`);
+        // console.error(`Error: ${err}`);
       });
   };
 
@@ -95,10 +95,10 @@ const AddUser = () => {
       .then((res) => {
         const allSpecializations = res.data;
         setSpecializations(allSpecializations);
-        console.log(allSpecializations);
+        // console.log(allSpecializations);
       })
       .catch((err) => {
-        console.error(`Error: ${err}`);
+        // console.error(`Error: ${err}`);
       });
   };
 
@@ -108,10 +108,10 @@ const AddUser = () => {
       .then((res) => {
         const allHospitals = res.data;
         setHospitals(allHospitals);
-        console.log(allHospitals);
+        // console.log(allHospitals);
       })
       .catch((err) => {
-        console.error(`Error: ${err}`);
+        // console.error(`Error: ${err}`);
       });
   };
 
@@ -135,7 +135,7 @@ const AddUser = () => {
 
     try {
       const res = await axios.post(url, post, config);
-      console.log(res);
+      // console.log(res);
     } catch (err) {
       alert(err.response.data);
     }
@@ -157,6 +157,7 @@ const AddUser = () => {
           <b>Enter your full name :</b>
         </Label>
         <Input
+          id="name"
           type="text"
           className="input-field"
           placeholder="Full Name"
@@ -171,6 +172,7 @@ const AddUser = () => {
           <b>Enter your email address :</b>
         </Label>
         <Input
+         id="email"
           type="email"
           placeholder="Email"
           value={email}
@@ -183,6 +185,7 @@ const AddUser = () => {
           <b>Enter your mobile number :</b>
         </Label>
         <Input
+        id="contact"
           type="text"
           placeholder="Mobile Number"
           value={mobileNumber}
@@ -197,6 +200,7 @@ const AddUser = () => {
         </Label>
         <PasswordInputContainer>
           <Input
+          id="password"
             type={showPassword ? "text" : "password"}
             placeholder="Password"
             value={password}
@@ -233,6 +237,7 @@ const AddUser = () => {
               id="dropdown"
               value={specialization}
               onChange={onSpecializationChangeHandler}
+              data-testid="specialization-select"
             >
               <option value="">Select Specialization</option>
               {specializations.map((specialization) => (
